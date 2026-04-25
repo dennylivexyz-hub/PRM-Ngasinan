@@ -1315,17 +1315,94 @@ body {
 })();
 
 // ========== APP STATE ==========
+// Data TIDAK disimpan di localStorage — selalu diambil dari Google Sheets
+// sehingga semua perangkat/browser mendapat data yang sama
 const APP = {
   role: 'pengurus',
   user: { nama:'Ketua PRM', jabatan:'Ketua', avatar:'K' },
   sheetsUrl: localStorage.getItem('prm_sheets_url') || '',
   sheetsId: localStorage.getItem('prm_sheets_id') || '',
   kasVisible: false,
-  anggota: JSON.parse(localStorage.getItem('prm_anggota') || '[]'),
-  kas: JSON.parse(localStorage.getItem('prm_kas') || '[]'),
-  pertemuan: JSON.parse(localStorage.getItem('prm_pertemuan') || '[]'),
-  surat: JSON.parse(localStorage.getItem('prm_surat') || '[]'),
+  anggota: [],
+  kas: [],
+  pertemuan: [],
+  surat: [],
+  syncing: false,
 };
+
+// ========== SINKRONISASI GOOGLE SHEETS (BACA DATA) ==========
+async function syncFromSheets(){
+  if(!APP.sheetsUrl) return;
+  APP.syncing = true;
+  showSyncStatus('Memuat data dari Google Sheets...', 'loading');
+  try {
+    const sheets = ['anggota','kas','pertemuan','surat'];
+    for(const s of sheets){
+      const url = APP.sheetsUrl + '?action=getData&sheet=' + s;
+      const res = await fetch(url);
+      const json = await res.json();
+      if(json.status==='ok' && Array.isArray(json.data)){
+        APP[s] = json.data.map(row => {
+          // Normalkan key dari header Google Sheets ke key yang dipakai app
+          return normalizeRow(s, row);
+        }).filter(r => r && (r.nama || r.ket || r.nama_pertemuan || r.perihal));
+      }
+    }
+    // Ambil juga logo jika tersimpan di Sheets config
+    const cfgUrl = APP.sheetsUrl + '?action=getConfig';
+    const cfgRes = await fetch(cfgUrl).catch(()=>null);
+    if(cfgRes){
+      const cfg = await cfgRes.json().catch(()=>null);
+      if(cfg && cfg.logo) applyLogo(cfg.logo);
+    }
+    showSyncStatus('Data berhasil dimuat', 'ok');
+    updateStats(); loadInfoTerbaru(); updateKasBanner();
+    loadAnggota(); loadKas(); loadNBM(); updateLaporan();
+  } catch(err){
+    showSyncStatus('Gagal memuat data: ' + err.message, 'error');
+  }
+  APP.syncing = false;
+}
+
+function normalizeRow(sheet, row){
+  // Map header Google Sheets → field yang dipakai app
+  const maps = {
+    anggota: {
+      'Nama Lengkap':'nama','Nomor NBM':'nbm','NIK':'nik',
+      'Tempat Lahir':'ttl','Tanggal Lahir':'tgl','Alamat':'alamat',
+      'No HP/WA':'hp','Jabatan':'jabatan','Pendidikan Terakhir':'pendidikan',
+      'Pekerjaan':'pekerjaan','Keaktifan':'keaktifan','Status Iuran':'iuran',
+      'Catatan':'catatan','Tanggal Daftar':'tglDaftar'
+    },
+    kas: {
+      'Tanggal':'tgl','Jenis':'jenis','Kategori':'kategori',
+      'Keterangan':'ket','Jumlah (Rp)':'jumlah','Sumber/Penerima':'sumber'
+    },
+    pertemuan: {
+      'Nama Pertemuan':'nama','Tanggal':'tgl','Waktu':'waktu',
+      'Lokasi':'lokasi','Agenda':'agenda','Jenis Pertemuan':'jenis'
+    },
+    surat: {
+      'Nomor Surat':'no','Tanggal':'tgl','Jenis Surat':'jenis',
+      'Perihal':'perihal','Kepada':'kepada','Isi Singkat':'isi','Status':'status'
+    }
+  };
+  const map = maps[sheet] || {};
+  const result = {};
+  Object.keys(row).forEach(k => {
+    const newKey = map[k] || k.toLowerCase().replace(/[^a-z]/g,'');
+    result[newKey] = row[k];
+  });
+  return result;
+}
+
+function showSyncStatus(msg, type){
+  const el = document.getElementById('sheetsConfig');
+  if(!el) return;
+  const icons = {loading:'fa-spinner fa-spin', ok:'fa-check-circle', error:'fa-exclamation-triangle'};
+  const colors = {loading:'var(--accent-cyan)', ok:'var(--accent-green)', error:'var(--accent-gold)'};
+  el.innerHTML = `<i class="fa ${icons[type]||icons.ok}" style="color:${colors[type]||colors.ok}"></i> <span style="color:${colors[type]||colors.ok};font-weight:700">${msg}</span>${type!=='loading'?` <a href="#" onclick="openSheetsSetup()" style="color:var(--accent-cyan);margin-left:8px;font-weight:700">Ubah →</a>`:''}`;
+}
 
 // Demo users
 const USERS = {
@@ -1381,17 +1458,18 @@ function showDashboard(){
   document.getElementById('p_jabatan').value = APP.user.jabatan;
   document.getElementById('p_sheets').value = APP.sheetsUrl;
 
-  if(APP.sheetsUrl) {
-    document.getElementById('sheetsConfig').innerHTML = `<i class="fa fa-check-circle" style="color:var(--accent-green)"></i> <strong style="color:var(--accent-green)">Google Sheets terhubung.</strong> <a href="#" onclick="openSheetsSetup()" style="color:var(--accent-cyan);margin-left:4px;font-weight:700">Ubah konfigurasi →</a>`;
-  }
+  // Load logo tersimpan lokal (hanya logo, bukan data)
+  const savedLogo = localStorage.getItem('prm_logo');
+  if(savedLogo) applyLogo(savedLogo);
 
-  updateStats();
-  loadInfoTerbaru();
-  updateKasBanner();
-  loadAnggota();
-  loadKas();
-  loadNBM();
-  updateLaporan();
+  if(APP.sheetsUrl){
+    // Langsung ambil data terbaru dari Google Sheets
+    syncFromSheets();
+  } else {
+    document.getElementById('sheetsConfig').innerHTML = `<i class="fa fa-exclamation-circle" style="color:var(--accent-gold)"></i> <strong style="color:var(--accent-gold)">Google Sheets belum terhubung</strong> — data tidak akan tersimpan permanen. <a href="#" onclick="openSheetsSetup()" style="color:var(--accent-cyan);margin-left:4px;font-weight:700">Hubungkan sekarang →</a>`;
+    updateStats(); loadInfoTerbaru(); updateKasBanner();
+    loadAnggota(); loadKas(); loadNBM(); updateLaporan();
+  }
 }
 
 function doLogout(){
@@ -1510,12 +1588,23 @@ function simpanAnggota(){
     tglDaftar: new Date().toISOString()
   };
   if(!a.nama){ showToast('Nama wajib diisi!','error'); return; }
+
+  // Tambah ke array lokal sementara agar langsung terlihat
   APP.anggota.push(a);
-  localStorage.setItem('prm_anggota', JSON.stringify(APP.anggota));
   closeModal('modalTambahAnggota');
-  showToast('Anggota berhasil disimpan!');
-  loadAnggota(); updateStats(); loadInfoTerbaru(); updateLaporan();
-  if(APP.sheetsUrl) syncToSheets('anggota', a);
+  showToast('Menyimpan data anggota...');
+  updateStats(); loadAnggota(); loadInfoTerbaru(); updateLaporan();
+
+  // Kirim ke Google Sheets
+  if(APP.sheetsUrl){
+    syncToSheets('anggota', a).then(()=>{
+      showToast('Anggota berhasil disimpan ke Google Sheets!');
+      // Refresh dari Sheets untuk pastikan data sinkron
+      setTimeout(()=> syncFromSheets(), 1500);
+    });
+  } else {
+    showToast('Anggota disimpan (belum terhubung ke Sheets)');
+  }
   // Reset form
   ['f_nama','f_nbm','f_nik','f_ttl','f_alamat','f_hp','f_pekerjaan','f_catatan'].forEach(id=>document.getElementById(id).value='');
 }
@@ -1548,11 +1637,15 @@ function simpanKas(){
   };
   if(!k.ket || !k.jumlah){ showToast('Keterangan dan jumlah wajib diisi!','error'); return; }
   APP.kas.push(k);
-  localStorage.setItem('prm_kas', JSON.stringify(APP.kas));
   closeModal('modalInputKas');
-  showToast('Transaksi kas berhasil disimpan!');
+  showToast('Menyimpan transaksi...');
   loadKas(); updateKasBanner(); updateLaporan();
-  if(APP.sheetsUrl) syncToSheets('kas', k);
+  if(APP.sheetsUrl){
+    syncToSheets('kas', k).then(()=>{
+      showToast('Kas berhasil disimpan ke Google Sheets!');
+      setTimeout(()=> syncFromSheets(), 1500);
+    });
+  }
   ['k_ket','k_jumlah','k_sumber'].forEach(id=>document.getElementById(id).value='');
 }
 
@@ -1568,11 +1661,15 @@ function simpanJadwal(){
   };
   if(!j.nama){ showToast('Nama pertemuan wajib!','error'); return; }
   APP.pertemuan.push(j);
-  localStorage.setItem('prm_pertemuan', JSON.stringify(APP.pertemuan));
   closeModal('modalJadwal');
-  showToast('Jadwal berhasil disimpan!');
+  showToast('Menyimpan jadwal...');
   loadPertemuan(); updateLaporan();
-  if(APP.sheetsUrl) syncToSheets('pertemuan', j);
+  if(APP.sheetsUrl){
+    syncToSheets('pertemuan', j).then(()=>{
+      showToast('Jadwal berhasil disimpan ke Google Sheets!');
+      setTimeout(()=> syncFromSheets(), 1500);
+    });
+  }
 }
 
 function loadPertemuan(){
@@ -1605,11 +1702,15 @@ function simpanSurat(){
   };
   if(!s.perihal){ showToast('Perihal surat wajib diisi!','error'); return; }
   APP.surat.push(s);
-  localStorage.setItem('prm_surat', JSON.stringify(APP.surat));
   closeModal('modalBuatSurat');
-  showToast('Surat berhasil disimpan!');
+  showToast('Menyimpan surat...');
   loadSurat();
-  if(APP.sheetsUrl) syncToSheets('surat', s);
+  if(APP.sheetsUrl){
+    syncToSheets('surat', s).then(()=>{
+      showToast('Surat berhasil disimpan ke Google Sheets!');
+      setTimeout(()=> syncFromSheets(), 1500);
+    });
+  }
 }
 
 function loadSurat(){
@@ -1693,14 +1794,16 @@ async function syncToSheets(sheet, data){
   if(!APP.sheetsUrl) return;
   try {
     const payload = { sheet, data, action: 'append' };
-    await fetch(APP.sheetsUrl, {
+    const res = await fetch(APP.sheetsUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify(payload)
     });
-    showToast('Data tersinkronisasi ke Google Sheets!');
+    const json = await res.json();
+    if(json.status !== 'ok') throw new Error(json.message || 'Gagal');
   } catch(e) {
-    console.log('Sheets sync failed:', e);
+    showToast('Gagal simpan ke Sheets: ' + e.message, 'error');
+    throw e;
   }
 }
 
@@ -1747,12 +1850,23 @@ function gantiLogo(){
 function loadLogo(input){
   const file = input.files[0];
   if(!file) return;
+  // Batasi ukuran file logo max 500KB agar tidak terlalu besar
+  if(file.size > 500*1024){ showToast('Logo terlalu besar! Maksimal 500KB.','error'); return; }
   const reader = new FileReader();
   reader.onload = function(e){
     const dataUrl = e.target.result;
+    // Simpan lokal agar langsung tampil
     localStorage.setItem('prm_logo', dataUrl);
     applyLogo(dataUrl);
-    showToast('Logo berhasil diperbarui!');
+    showToast('Logo diperbarui!');
+    // Simpan juga ke Google Sheets (PropertiesService) agar semua perangkat sama
+    if(APP.sheetsUrl){
+      fetch(APP.sheetsUrl, {
+        method:'POST',
+        headers:{'Content-Type':'text/plain'},
+        body: JSON.stringify({ sheet:'config', action:'saveConfig', data:{ logo: dataUrl } })
+      }).then(()=> showToast('Logo tersinkronisasi ke semua perangkat!')).catch(()=>{});
+    }
   };
   reader.readAsDataURL(file);
 }
