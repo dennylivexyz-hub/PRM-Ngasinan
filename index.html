@@ -931,7 +931,10 @@ body {
         </tbody>
       </table>
     </div>
-    <button class="btn-primary" onclick="closeModal('modalAnggota'); openModal('modalTambahAnggota')"><i class="fa fa-plus"></i> Tambah Anggota Baru</button>
+    <div style="display:flex;gap:8px;margin-top:16px">
+      <button class="btn-primary" style="flex:2" onclick="closeModal('modalAnggota'); openModal('modalTambahAnggota')"><i class="fa fa-plus"></i> Tambah Anggota</button>
+      <button class="btn-secondary" style="flex:1;margin-top:0" onclick="refreshData()"><i class="fa fa-sync-alt"></i> Refresh</button>
+    </div>
     <button class="btn-secondary" onclick="closeModal('modalAnggota')">Tutup</button>
   </div>
 </div>
@@ -940,7 +943,8 @@ body {
 <div class="modal-overlay" id="modalTambahAnggota">
   <div class="modal-sheet">
     <div class="modal-handle"></div>
-    <div class="modal-title"><i class="fa fa-user-plus" style="color:#60a5fa"></i>Tambah Anggota</div>
+    <div class="modal-title" id="titleFormAnggota"><i class="fa fa-user-plus" style="color:#60a5fa"></i>Tambah Anggota</div>
+    <input type="hidden" id="f_editIndex" value="-1">
     <div class="form-row">
       <div>
         <label class="form-label">Nama Lengkap *</label>
@@ -1020,8 +1024,27 @@ body {
     </div>
     <label class="form-label">Catatan</label>
     <div class="form-group"><i class="fa fa-sticky-note"></i><input class="form-control" id="f_catatan" placeholder="Catatan tambahan (opsional)"></div>
-    <button class="btn-primary" onclick="simpanAnggota()"><i class="fa fa-save"></i> Simpan ke Google Sheets</button>
-    <button class="btn-secondary" onclick="closeModal('modalTambahAnggota')">Batal</button>
+    <button class="btn-primary" id="btnSimpanAnggota" onclick="simpanAnggota()"><i class="fa fa-save"></i> Simpan ke Google Sheets</button>
+    <button class="btn-secondary" onclick="closeModal('modalTambahAnggota'); resetFormAnggota()">Batal</button>
+  </div>
+</div>
+
+<!-- MODAL: Konfirmasi Hapus Anggota -->
+<div class="modal-overlay" id="modalHapusAnggota">
+  <div class="modal-sheet" style="max-height:300px">
+    <div class="modal-handle"></div>
+    <div class="modal-title" style="color:var(--accent-red)"><i class="fa fa-trash-alt"></i> Hapus Anggota</div>
+    <p style="font-size:14px;color:var(--text-secondary);margin-bottom:8px">Yakin ingin menghapus anggota:</p>
+    <p style="font-size:16px;font-weight:800;color:var(--text-primary);margin-bottom:20px" id="namaHapus">-</p>
+    <p style="font-size:12px;color:var(--accent-gold);background:rgba(245,158,11,0.1);border-radius:8px;padding:10px;margin-bottom:16px">
+      <i class="fa fa-exclamation-triangle"></i> Data akan dihapus dari Google Sheets dan tidak bisa dikembalikan.
+    </p>
+    <div style="display:flex;gap:8px">
+      <button class="btn-secondary" style="flex:1;margin-top:0" onclick="closeModal('modalHapusAnggota')">Batal</button>
+      <button style="flex:1;padding:13px;background:var(--accent-red);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:800;font-family:Nunito,sans-serif;cursor:pointer" onclick="konfirmasiHapus()">
+        <i class="fa fa-trash-alt"></i> Ya, Hapus
+      </button>
+    </div>
   </div>
 </div>
 
@@ -1317,7 +1340,7 @@ body {
 // ========== KONFIGURASI TETAP ==========
 // PENTING: Ganti teks di bawah ini dengan URL Apps Script Google Sheets Anda.
 // Setelah diganti, upload ulang ke GitHub — semua perangkat langsung terhubung otomatis.
-const SHEETS_URL_TETAP = 'https://script.google.com/macros/s/AKfycbyMNQ90-ZdjMkrZ7QNcfbxrqCQeLxKTpBKX58kBTQdmbUsD2rPR0Yk2yxj5hiLZr4ZP/exec';
+const SHEETS_URL_TETAP = 'https://script.google.com/home/projects/1WbzGO8JInNfdgrwOUgHykDqWrkZxURljwpeAw2hvlJQWsHJ8ybcqbesF/edit';
 // Contoh isi: 'https://script.google.com/macros/s/AKfycby.../exec'
 
 // ========== APP STATE ==========
@@ -1564,56 +1587,147 @@ function renderAnggota(list){
   const b = document.getElementById('bodyAnggota');
   if(!list.length){ b.innerHTML='<tr><td colspan="6" style="text-align:center;color:var(--text-muted);padding:20px">Belum ada data anggota</td></tr>'; return; }
   b.innerHTML = list.map((a,i)=>{
+    const realIdx = APP.anggota.indexOf(a);
     const bClass = a.keaktifan==='Aktif'?'badge-green':a.keaktifan==='Kurang Aktif'?'badge-yellow':'badge-red';
     return `<tr>
       <td>${i+1}</td>
       <td><div style="font-weight:700">${a.nama}</div><div style="font-size:10px;color:var(--text-muted)">${a.hp||'-'}</div></td>
       <td style="font-size:12px">${a.nbm||'-'}</td>
-      <td style="font-size:12px">${a.jabatan}</td>
-      <td><span class="badge ${bClass}">${a.keaktifan}</span></td>
-      <td><span style="cursor:pointer;color:var(--accent-cyan);font-size:12px" onclick="editAnggota(${i})"><i class="fa fa-edit"></i></span></td>
+      <td style="font-size:12px">${a.jabatan||'-'}</td>
+      <td><span class="badge ${bClass}">${a.keaktifan||'-'}</span></td>
+      <td style="white-space:nowrap">
+        <span style="cursor:pointer;color:var(--accent-cyan);font-size:13px;margin-right:10px" onclick="editAnggota(${realIdx})" title="Edit"><i class="fa fa-edit"></i></span>
+        <span style="cursor:pointer;color:var(--accent-red);font-size:13px" onclick="hapusAnggota(${realIdx})" title="Hapus"><i class="fa fa-trash-alt"></i></span>
+      </td>
     </tr>`;
   }).join('');
 }
-function editAnggota(i){ showToast('Fitur edit akan segera hadir'); }
+
+// Index anggota yang sedang diedit/dihapus
+let _editIdx = -1;
+
+function editAnggota(i){
+  const a = APP.anggota[i];
+  if(!a) return;
+  _editIdx = i;
+  // Isi form dengan data anggota yang dipilih
+  document.getElementById('f_editIndex').value = i;
+  document.getElementById('f_nama').value     = a.nama     || '';
+  document.getElementById('f_nbm').value      = a.nbm      || '';
+  document.getElementById('f_nik').value      = a.nik      || '';
+  document.getElementById('f_ttl').value      = a.ttl      || '';
+  document.getElementById('f_tgl').value      = a.tgl      || '';
+  document.getElementById('f_alamat').value   = a.alamat   || '';
+  document.getElementById('f_hp').value       = a.hp       || '';
+  document.getElementById('f_pekerjaan').value= a.pekerjaan|| '';
+  document.getElementById('f_catatan').value  = a.catatan  || '';
+  // Dropdown
+  ['f_jabatan','f_pendidikan','f_keaktifan','f_iuran'].forEach(id=>{
+    const el = document.getElementById(id);
+    const key = id.replace('f_','');
+    if(a[key]) el.value = a[key];
+  });
+  // Ubah judul & tombol
+  document.getElementById('titleFormAnggota').innerHTML = '<i class="fa fa-edit" style="color:#fbbf24"></i> Edit Anggota';
+  document.getElementById('btnSimpanAnggota').innerHTML = '<i class="fa fa-save"></i> Simpan Perubahan';
+  closeModal('modalAnggota');
+  openModal('modalTambahAnggota');
+}
+
+function hapusAnggota(i){
+  const a = APP.anggota[i];
+  if(!a) return;
+  _editIdx = i;
+  document.getElementById('namaHapus').textContent = a.nama;
+  closeModal('modalAnggota');
+  openModal('modalHapusAnggota');
+}
+
+function konfirmasiHapus(){
+  const i = _editIdx;
+  if(i < 0 || !APP.anggota[i]) return;
+  const nama = APP.anggota[i].nama;
+  // Hapus dari array lokal
+  APP.anggota.splice(i, 1);
+  closeModal('modalHapusAnggota');
+  showToast('Menghapus data dari Google Sheets...');
+  updateStats(); loadAnggota(); loadInfoTerbaru(); updateLaporan();
+  // Hapus dari Google Sheets
+  if(APP.sheetsUrl){
+    syncActionToSheets('deleteByName', 'anggota', nama).then(()=>{
+      showToast(nama + ' berhasil dihapus!');
+      setTimeout(()=> syncFromSheets(), 1500);
+    }).catch(()=>{
+      showToast('Gagal hapus dari Sheets. Hapus manual di Sheet.', 'error');
+    });
+  }
+  _editIdx = -1;
+}
+
+function resetFormAnggota(){
+  _editIdx = -1;
+  document.getElementById('f_editIndex').value = -1;
+  document.getElementById('titleFormAnggota').innerHTML = '<i class="fa fa-user-plus" style="color:#60a5fa"></i> Tambah Anggota';
+  document.getElementById('btnSimpanAnggota').innerHTML = '<i class="fa fa-save"></i> Simpan ke Google Sheets';
+  ['f_nama','f_nbm','f_nik','f_ttl','f_alamat','f_hp','f_pekerjaan','f_catatan'].forEach(id=>document.getElementById(id).value='');
+}
+
+function refreshData(){
+  showToast('Memuat ulang data dari Google Sheets...');
+  syncFromSheets();
+}
 
 function simpanAnggota(){
+  const editIdx = parseInt(document.getElementById('f_editIndex').value);
   const a = {
-    nama: document.getElementById('f_nama').value.trim(),
-    nbm: document.getElementById('f_nbm').value.trim(),
-    nik: document.getElementById('f_nik').value.trim(),
-    ttl: document.getElementById('f_ttl').value.trim(),
-    tgl: document.getElementById('f_tgl').value,
-    alamat: document.getElementById('f_alamat').value.trim(),
-    hp: document.getElementById('f_hp').value.trim(),
-    jabatan: document.getElementById('f_jabatan').value,
+    nama:       document.getElementById('f_nama').value.trim(),
+    nbm:        document.getElementById('f_nbm').value.trim(),
+    nik:        document.getElementById('f_nik').value.trim(),
+    ttl:        document.getElementById('f_ttl').value.trim(),
+    tgl:        document.getElementById('f_tgl').value,
+    alamat:     document.getElementById('f_alamat').value.trim(),
+    hp:         document.getElementById('f_hp').value.trim(),
+    jabatan:    document.getElementById('f_jabatan').value,
     pendidikan: document.getElementById('f_pendidikan').value,
-    pekerjaan: document.getElementById('f_pekerjaan').value.trim(),
-    keaktifan: document.getElementById('f_keaktifan').value,
-    iuran: document.getElementById('f_iuran').value,
-    catatan: document.getElementById('f_catatan').value.trim(),
-    tglDaftar: new Date().toISOString()
+    pekerjaan:  document.getElementById('f_pekerjaan').value.trim(),
+    keaktifan:  document.getElementById('f_keaktifan').value,
+    iuran:      document.getElementById('f_iuran').value,
+    catatan:    document.getElementById('f_catatan').value.trim(),
+    tglDaftar:  editIdx >= 0 ? (APP.anggota[editIdx].tglDaftar || new Date().toISOString()) : new Date().toISOString()
   };
   if(!a.nama){ showToast('Nama wajib diisi!','error'); return; }
 
-  // Tambah ke array lokal sementara agar langsung terlihat
-  APP.anggota.push(a);
-  closeModal('modalTambahAnggota');
-  showToast('Menyimpan data anggota...');
-  updateStats(); loadAnggota(); loadInfoTerbaru(); updateLaporan();
-
-  // Kirim ke Google Sheets
-  if(APP.sheetsUrl){
-    syncToSheets('anggota', a).then(()=>{
-      showToast('Anggota berhasil disimpan ke Google Sheets!');
-      // Refresh dari Sheets untuk pastikan data sinkron
-      setTimeout(()=> syncFromSheets(), 1500);
-    });
+  const isEdit = editIdx >= 0;
+  if(isEdit){
+    // Update array lokal
+    const namaLama = APP.anggota[editIdx].nama;
+    APP.anggota[editIdx] = a;
+    closeModal('modalTambahAnggota');
+    resetFormAnggota();
+    showToast('Menyimpan perubahan...');
+    updateStats(); loadAnggota(); loadInfoTerbaru(); updateLaporan();
+    if(APP.sheetsUrl){
+      syncActionToSheets('updateByName', 'anggota', namaLama, a).then(()=>{
+        showToast('Data anggota berhasil diperbarui!');
+        setTimeout(()=> syncFromSheets(), 1500);
+      });
+    }
   } else {
-    showToast('Anggota disimpan (belum terhubung ke Sheets)');
+    // Tambah baru
+    APP.anggota.push(a);
+    closeModal('modalTambahAnggota');
+    resetFormAnggota();
+    showToast('Menyimpan data anggota...');
+    updateStats(); loadAnggota(); loadInfoTerbaru(); updateLaporan();
+    if(APP.sheetsUrl){
+      syncToSheets('anggota', a).then(()=>{
+        showToast('Anggota berhasil disimpan ke Google Sheets!');
+        setTimeout(()=> syncFromSheets(), 1500);
+      });
+    } else {
+      showToast('Anggota disimpan (belum terhubung ke Sheets)');
+    }
   }
-  // Reset form
-  ['f_nama','f_nbm','f_nik','f_ttl','f_alamat','f_hp','f_pekerjaan','f_catatan'].forEach(id=>document.getElementById(id).value='');
 }
 
 // ========== KAS ==========
@@ -1810,6 +1924,24 @@ async function syncToSheets(sheet, data){
     if(json.status !== 'ok') throw new Error(json.message || 'Gagal');
   } catch(e) {
     showToast('Gagal simpan ke Sheets: ' + e.message, 'error');
+    throw e;
+  }
+}
+
+// ========== SYNC EDIT & HAPUS KE SHEETS ==========
+async function syncActionToSheets(action, sheet, identifier, newData=null){
+  if(!APP.sheetsUrl) return;
+  try {
+    const payload = { action, sheet, identifier, newData };
+    const res = await fetch(APP.sheetsUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(payload)
+    });
+    const json = await res.json();
+    if(json.status !== 'ok') throw new Error(json.message || 'Gagal');
+  } catch(e) {
+    showToast('Gagal: ' + e.message, 'error');
     throw e;
   }
 }
