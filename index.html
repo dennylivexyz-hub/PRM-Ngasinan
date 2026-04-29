@@ -1584,26 +1584,39 @@ const APP = {
 APP.absensi = {};  // { "2025_Januari": [{nama, hadir}, ...], ... }
 APP.qurban  = {};  // { 2025: [{nama, alamat, hewan, catatan, tgl}, ...], ... }
 
-// ========== SIMPAN & MUAT QURBAN KE LOCALSTORAGE ==========
-function saveQurban(){
-  try { localStorage.setItem('prm_qurban', JSON.stringify(APP.qurban)); } catch(e) {}
-}
-function loadQurban(){
+// ========== QURBAN: BACA DARI GOOGLE SHEETS ==========
+async function loadQurbanFromSheets(){
+  if(!APP.sheetsUrl){ renderTabelQurban(); return; }
   try {
-    const raw = localStorage.getItem('prm_qurban');
-    if(raw){
-      const data = JSON.parse(raw);
-      if(data && typeof data === 'object'){
-        // Fix: JSON parse mengubah key integer jadi string, konversi balik ke integer
-        const fixed = {};
-        Object.keys(data).forEach(k => { fixed[parseInt(k)||k] = data[k]; });
-        APP.qurban = fixed;
-      }
+    const url = APP.sheetsUrl + '?action=getData&sheet=qurban';
+    const res = await fetch(url);
+    const json = await res.json();
+    if(json.status === 'ok' && Array.isArray(json.data)){
+      // Reset dan isi ulang APP.qurban dari data Sheets
+      APP.qurban = {};
+      json.data.forEach(row => {
+        // Header sheet: No, Tahun, Nama Muqorib, Alamat, Jenis Hewan, Catatan, Tanggal Input
+        const tahun = parseInt(row['Tahun']) || row['tahun'];
+        if(!tahun) return;
+        if(!APP.qurban[tahun]) APP.qurban[tahun] = [];
+        APP.qurban[tahun].push({
+          nama    : row['Nama Muqorib'] || row['nama']    || '',
+          alamat  : row['Alamat']       || row['alamat']  || '',
+          hewan   : row['Jenis Hewan']  || row['hewan']   || '',
+          catatan : row['Catatan']      || row['catatan'] || '',
+          tgl     : row['Tanggal Input']|| row['tgl']     || ''
+        });
+      });
     }
-  } catch(e) {}
+  } catch(e) {
+    console.warn('Gagal load Qurban dari Sheets:', e);
+  }
+  renderTabelQurban();
 }
-loadQurban();
 
+// saveQurban sekarang TIDAK menyimpan ke localStorage
+// (data canonical ada di Google Sheets)
+function saveQurban(){ /* tidak perlu, data di Sheets */ }
 
 // ========== SINKRONISASI GOOGLE SHEETS (BACA DATA) ==========
 async function syncFromSheets(){
@@ -2357,11 +2370,11 @@ function pilihTahunQurban(tahun){
   _qurbanTahun = tahun;
   document.getElementById('titleTabelQurban').innerHTML =
     `<i class="fa fa-moon" style="color:#2dd4bf"></i> Qurban Tahun ${tahun}`;
-  renderTabelQurban();
   closeModal('modalQurban');
   openModal('modalTabelQurban');
+  // Selalu ambil data segar dari Sheets saat buka
+  loadQurbanFromSheets();
 }
-
 function renderTabelQurban(){
   const data = APP.qurban[_qurbanTahun] || [];
   const b = document.getElementById('bodyQurban');
@@ -2386,8 +2399,8 @@ function renderTabelQurban(){
 }
 
 function refreshQurban(){
-  renderTabelQurban();
-  showToast('Data diperbarui');
+  showToast('Memuat data dari Google Sheets...');
+  loadQurbanFromSheets().then(()=> showToast('✅ Data Qurban diperbarui!'));
 }
 
 function simpanQurban(){
@@ -2401,20 +2414,28 @@ function simpanQurban(){
     tgl:     new Date().toISOString()
   };
   if(!APP.qurban[_qurbanTahun]) APP.qurban[_qurbanTahun] = [];
-  APP.qurban[_qurbanTahun].push(item);
-  saveQurban();
+  // Tidak perlu push ke APP.qurban lokal dulu — langsung simpan ke Sheets lalu refresh
   closeModal('modalTambahQurban');
-  renderTabelQurban();
-  showToast('Muqorib berhasil ditambahkan!');
+  showToast('Menyimpan ke Google Sheets...');
   if(APP.sheetsUrl){
     syncToSheets('qurban', {
-      tahun: _qurbanTahun,
-      nama: item.nama,
-      alamat: item.alamat,
-      hewan: item.hewan,
-      catatan: item.catatan,
-      tgl: item.tgl
-    }).then(()=> showToast('✅ ' + item.nama + ' tersimpan ke Google Sheets!')).catch(e=> showToast('Gagal simpan Sheets: '+e.message,'error'));
+      tahun   : _qurbanTahun,
+      nama    : item.nama,
+      alamat  : item.alamat,
+      hewan   : item.hewan,
+      catatan : item.catatan,
+      tgl     : item.tgl
+    }).then(()=>{
+      showToast('✅ ' + item.nama + ' tersimpan!');
+      // Reload dari Sheets agar semua device dapat data sama
+      setTimeout(()=> loadQurbanFromSheets(), 800);
+    }).catch(e=> showToast('Gagal simpan Sheets: '+e.message,'error'));
+  } else {
+    // Fallback offline: simpan lokal saja
+    if(!APP.qurban[_qurbanTahun]) APP.qurban[_qurbanTahun] = [];
+    APP.qurban[_qurbanTahun].push(item);
+    renderTabelQurban();
+    showToast('Tersimpan lokal (Sheets belum terhubung)');
   }
   ['q_nama','q_alamat','q_catatan'].forEach(id=>document.getElementById(id).value='');
 }
@@ -2423,9 +2444,19 @@ function hapusQurban(i){
   if(!APP.qurban[_qurbanTahun]) return;
   const nama = APP.qurban[_qurbanTahun][i]?.nama;
   if(!confirm(`Hapus muqorib "${nama}" dari daftar Qurban ${_qurbanTahun}?`)) return;
-  APP.qurban[_qurbanTahun].splice(i,1);
-  saveQurban();
-  renderTabelQurban();
+  // Hapus dari Sheets dulu, lalu reload
+  showToast('Menghapus dari Google Sheets...');
+  if(APP.sheetsUrl){
+    syncActionToSheets('deleteQurban', 'qurban', nama, {tahun: _qurbanTahun})
+      .then(()=>{
+        showToast('✅ ' + nama + ' dihapus!');
+        setTimeout(()=> loadQurbanFromSheets(), 800);
+      })
+      .catch(()=> showToast('Gagal hapus dari Sheets','error'));
+  } else {
+    APP.qurban[_qurbanTahun].splice(i,1);
+    renderTabelQurban();
+  }
   showToast(nama + ' dihapus dari daftar');
   // Hapus juga dari Google Sheets
   if(APP.sheetsUrl){
