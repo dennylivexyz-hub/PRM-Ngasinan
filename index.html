@@ -970,7 +970,7 @@ body {
     <label class="form-label">ID Spreadsheet</label>
     <div class="form-group">
       <i class="fa fa-key"></i>
-      <input type="text" class="form-control" id="sheetsId" placeholder="1CQspi7yVmtcJiBxmCbLpmB7ZoED-txBYVe-fsWKjLgQ">
+      <input type="text" class="form-control" id="sheetsId" placeholder="1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms">
     </div>
     <button class="btn-primary" onclick="saveSheetsConfig()"><i class="fa fa-save"></i> Simpan & Hubungkan</button>
     <button class="btn-secondary" onclick="closeModal('modalSheets')">Tutup</button>
@@ -1591,7 +1591,15 @@ function saveQurban(){
 function loadQurban(){
   try {
     const raw = localStorage.getItem('prm_qurban');
-    if(raw){ const data = JSON.parse(raw); if(data && typeof data === 'object') APP.qurban = data; }
+    if(raw){
+      const data = JSON.parse(raw);
+      if(data && typeof data === 'object'){
+        // Fix: JSON parse mengubah key integer jadi string, konversi balik ke integer
+        const fixed = {};
+        Object.keys(data).forEach(k => { fixed[parseInt(k)||k] = data[k]; });
+        APP.qurban = fixed;
+      }
+    }
   } catch(e) {}
 }
 loadQurban();
