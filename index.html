@@ -1479,11 +1479,13 @@ body {
   </div>
 </div>
 
-<!-- MODAL: Tambah Muqorib -->
+<!-- MODAL: Tambah / Edit Muqorib -->
 <div class="modal-overlay" id="modalTambahQurban">
-  <div class="modal-sheet" style="max-height:60vh">
+  <div class="modal-sheet" style="max-height:70vh">
     <div class="modal-handle"></div>
-    <div class="modal-title"><i class="fa fa-plus" style="color:#2dd4bf"></i>Tambah Muqorib</div>
+    <div class="modal-title" id="titleFormQurban"><i class="fa fa-plus" style="color:#2dd4bf"></i> Tambah Muqorib</div>
+    <input type="hidden" id="q_editIndex" value="-1">
+    <input type="hidden" id="q_namaLama" value="">
     <label class="form-label">Nama Muqorib *</label>
     <div class="form-group"><i class="fa fa-user"></i><input class="form-control" id="q_nama" placeholder="Nama muqorib / shohibul qurban"></div>
     <label class="form-label">Alamat</label>
@@ -1496,11 +1498,10 @@ body {
     </select>
     <label class="form-label">Catatan</label>
     <div class="form-group"><i class="fa fa-sticky-note"></i><input class="form-control" id="q_catatan" placeholder="Catatan (opsional)"></div>
-    <button class="btn-primary" onclick="simpanQurban()"><i class="fa fa-save"></i> Simpan</button>
-    <button class="btn-secondary" onclick="closeModal('modalTambahQurban')">Batal</button>
+    <button class="btn-primary" id="btnSimpanQurban" onclick="simpanQurban()"><i class="fa fa-save"></i> Simpan</button>
+    <button class="btn-secondary" onclick="resetFormQurban(); closeModal('modalTambahQurban')">Batal</button>
   </div>
 </div>
-
 <!-- MODAL: Profil -->
 <div class="modal-overlay" id="modalProfil">
   <div class="modal-sheet">
@@ -2390,7 +2391,10 @@ function renderTabelQurban(){
         <div style="font-size:10px;color:var(--text-muted)">${d.hewan||'Kambing'}</div>
       </td>
       <td style="font-size:12px">${d.alamat||'-'}</td>
-      <td>
+      <td style="white-space:nowrap">
+        <span onclick="editQurban(${i})" style="cursor:pointer;color:var(--accent-cyan);font-size:13px;margin-right:10px" title="Edit">
+          <i class="fa fa-edit"></i>
+        </span>
         <span onclick="hapusQurban(${i})" style="cursor:pointer;color:var(--accent-red);font-size:13px" title="Hapus">
           <i class="fa fa-trash-alt"></i>
         </span>
@@ -2403,43 +2407,107 @@ function refreshQurban(){
   loadQurbanFromSheets().then(()=> showToast('✅ Data Qurban diperbarui!'));
 }
 
+// ========== EDIT MUQORIB ==========
+function editQurban(i){
+  const data = APP.qurban[_qurbanTahun];
+  if(!data || !data[i]) return;
+  const d = data[i];
+
+  // Isi form dengan data yang akan diedit
+  document.getElementById('q_editIndex').value = i;
+  document.getElementById('q_namaLama').value  = d.nama; // simpan nama lama untuk update di Sheets
+  document.getElementById('q_nama').value      = d.nama    || '';
+  document.getElementById('q_alamat').value    = d.alamat  || '';
+  document.getElementById('q_hewan').value     = d.hewan   || 'Kambing';
+  document.getElementById('q_catatan').value   = d.catatan || '';
+
+  // Ubah judul & tombol
+  document.getElementById('titleFormQurban').innerHTML =
+    '<i class="fa fa-edit" style="color:#fbbf24"></i> Edit Muqorib';
+  document.getElementById('btnSimpanQurban').innerHTML =
+    '<i class="fa fa-save"></i> Simpan Perubahan';
+
+  openModal('modalTambahQurban');
+}
+
+function resetFormQurban(){
+  document.getElementById('q_editIndex').value = -1;
+  document.getElementById('q_namaLama').value  = '';
+  document.getElementById('q_nama').value      = '';
+  document.getElementById('q_alamat').value    = '';
+  document.getElementById('q_catatan').value   = '';
+  document.getElementById('q_hewan').value     = 'Kambing';
+  document.getElementById('titleFormQurban').innerHTML =
+    '<i class="fa fa-plus" style="color:#2dd4bf"></i> Tambah Muqorib';
+  document.getElementById('btnSimpanQurban').innerHTML =
+    '<i class="fa fa-save"></i> Simpan';
+}
+
 function simpanQurban(){
   const nama = document.getElementById('q_nama').value.trim();
   if(!nama){ showToast('Nama muqorib wajib diisi!','error'); return; }
-  const item = {
-    nama,
-    alamat:  document.getElementById('q_alamat').value.trim(),
-    hewan:   document.getElementById('q_hewan').value,
-    catatan: document.getElementById('q_catatan').value.trim(),
-    tgl:     new Date().toISOString()
-  };
-  if(!APP.qurban[_qurbanTahun]) APP.qurban[_qurbanTahun] = [];
-  // Tidak perlu push ke APP.qurban lokal dulu — langsung simpan ke Sheets lalu refresh
-  closeModal('modalTambahQurban');
-  showToast('Menyimpan ke Google Sheets...');
-  if(APP.sheetsUrl){
-    syncToSheets('qurban', {
-      tahun   : _qurbanTahun,
-      nama    : item.nama,
-      alamat  : item.alamat,
-      hewan   : item.hewan,
-      catatan : item.catatan,
-      tgl     : item.tgl
-    }).then(()=>{
-      showToast('✅ ' + item.nama + ' tersimpan!');
-      // Reload dari Sheets agar semua device dapat data sama
-      setTimeout(()=> loadQurbanFromSheets(), 800);
-    }).catch(e=> showToast('Gagal simpan Sheets: '+e.message,'error'));
-  } else {
-    // Fallback offline: simpan lokal saja
-    if(!APP.qurban[_qurbanTahun]) APP.qurban[_qurbanTahun] = [];
-    APP.qurban[_qurbanTahun].push(item);
-    renderTabelQurban();
-    showToast('Tersimpan lokal (Sheets belum terhubung)');
-  }
-  ['q_nama','q_alamat','q_catatan'].forEach(id=>document.getElementById(id).value='');
-}
 
+  const editIndex = parseInt(document.getElementById('q_editIndex').value);
+  const namaLama  = document.getElementById('q_namaLama').value.trim();
+  const isEdit    = editIndex >= 0 && namaLama;
+
+  const item = {
+    nama    : nama,
+    alamat  : document.getElementById('q_alamat').value.trim(),
+    hewan   : document.getElementById('q_hewan').value,
+    catatan : document.getElementById('q_catatan').value.trim(),
+    tgl     : isEdit
+                ? (APP.qurban[_qurbanTahun]?.[editIndex]?.tgl || new Date().toISOString())
+                : new Date().toISOString()
+  };
+
+  closeModal('modalTambahQurban');
+  resetFormQurban();
+
+  if(APP.sheetsUrl){
+    if(isEdit){
+      // --- MODE EDIT: hapus baris lama, tambah baris baru ---
+      showToast('Memperbarui data di Google Sheets...');
+      syncActionToSheets('deleteQurban', 'qurban', namaLama, {tahun: _qurbanTahun})
+        .then(()=> syncToSheets('qurban', {
+          tahun   : _qurbanTahun,
+          nama    : item.nama,
+          alamat  : item.alamat,
+          hewan   : item.hewan,
+          catatan : item.catatan,
+          tgl     : item.tgl
+        }))
+        .then(()=>{
+          showToast('✅ ' + item.nama + ' berhasil diperbarui!');
+          setTimeout(()=> loadQurbanFromSheets(), 800);
+        })
+        .catch(e=> showToast('Gagal update: ' + e.message, 'error'));
+    } else {
+      // --- MODE TAMBAH BARU ---
+      showToast('Menyimpan ke Google Sheets...');
+      syncToSheets('qurban', {
+        tahun   : _qurbanTahun,
+        nama    : item.nama,
+        alamat  : item.alamat,
+        hewan   : item.hewan,
+        catatan : item.catatan,
+        tgl     : item.tgl
+      }).then(()=>{
+        showToast('✅ ' + item.nama + ' tersimpan!');
+        setTimeout(()=> loadQurbanFromSheets(), 800);
+      }).catch(e=> showToast('Gagal simpan: ' + e.message, 'error'));
+    }
+  } else {
+    // Fallback offline
+    if(!APP.qurban[_qurbanTahun]) APP.qurban[_qurbanTahun] = [];
+    if(isEdit) APP.qurban[_qurbanTahun][editIndex] = item;
+    else APP.qurban[_qurbanTahun].push(item);
+    renderTabelQurban();
+    showToast(isEdit ? 'Data diperbarui (lokal)' : 'Tersimpan lokal (Sheets belum terhubung)');
+  }
+
+  ['q_nama','q_alamat','q_catatan'].forEach(id=> document.getElementById(id).value='');
+}
 function hapusQurban(i){
   if(!APP.qurban[_qurbanTahun]) return;
   const nama = APP.qurban[_qurbanTahun][i]?.nama;
