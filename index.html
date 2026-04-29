@@ -2298,23 +2298,35 @@ function tambahAnggotaKeAbsensi(){
 }
 
 async function simpanAbsensi(){
-  const key = `${_absensiTahun}_${_absensiBulan}`;
+  const key  = `${_absensiTahun}_${_absensiBulan}`;
   const data = APP.absensi[key] || [];
+  if(!data.length){ showToast('Belum ada anggota di daftar ini','error'); return; }
   showToast('Menyimpan absensi...');
-  if(APP.sheetsUrl){
-    try {
-      await syncToSheets('absensi', {
-        tahun: _absensiTahun,
-        bulan: _absensiBulan,
-        data: JSON.stringify(data),
-        tglSimpan: new Date().toISOString()
-      });
-      showToast(`Absensi ${_absensiBulan} ${_absensiTahun} berhasil disimpan!`);
-    } catch(e) {
-      showToast('Gagal menyimpan absensi','error');
-    }
-  } else {
+  if(!APP.sheetsUrl){
     showToast('Absensi tersimpan lokal (Sheets belum terhubung)');
+    return;
+  }
+  try {
+    // Langkah 1: Hapus baris lama untuk tahun+bulan yang sama agar tidak duplikat
+    await syncActionToSheets('deleteAbsensi', 'absensi', `${_absensiTahun}_${_absensiBulan}`);
+  } catch(e) {
+    // Tidak masalah jika belum ada data sebelumnya
+  }
+  try {
+    // Langkah 2: Simpan tiap anggota sebagai baris terpisah di sheet
+    const tglSimpan = new Date().toLocaleString('id-ID');
+    for(const item of data){
+      await syncToSheets('absensi', {
+        tahun    : _absensiTahun,
+        bulan    : _absensiBulan,
+        nama     : item.nama,
+        kehadiran: item.hadir || 'Belum diisi',
+        tglSimpan: tglSimpan
+      });
+    }
+    showToast(`✅ Absensi ${_absensiBulan} ${_absensiTahun} tersimpan (${data.length} anggota)!`);
+  } catch(e) {
+    showToast('Gagal menyimpan absensi: ' + e.message, 'error');
   }
 }
 
@@ -2381,7 +2393,7 @@ function simpanQurban(){
       hewan: item.hewan,
       catatan: item.catatan,
       tgl: item.tgl
-    }).then(()=> showToast('Data qurban tersimpan ke Sheets!')).catch(()=>{});
+    }).then(()=> showToast('✅ ' + item.nama + ' tersimpan ke Google Sheets!')).catch(e=> showToast('Gagal simpan Sheets: '+e.message,'error'));
   }
   ['q_nama','q_alamat','q_catatan'].forEach(id=>document.getElementById(id).value='');
 }
@@ -2389,10 +2401,16 @@ function simpanQurban(){
 function hapusQurban(i){
   if(!APP.qurban[_qurbanTahun]) return;
   const nama = APP.qurban[_qurbanTahun][i]?.nama;
-  if(!confirm(`Hapus muqorib "${nama}"?`)) return;
+  if(!confirm(`Hapus muqorib "${nama}" dari daftar Qurban ${_qurbanTahun}?`)) return;
   APP.qurban[_qurbanTahun].splice(i,1);
   renderTabelQurban();
-  showToast(nama + ' berhasil dihapus');
+  showToast(nama + ' dihapus dari daftar');
+  // Hapus juga dari Google Sheets
+  if(APP.sheetsUrl){
+    syncActionToSheets('deleteQurban', 'qurban', nama, {tahun: _qurbanTahun})
+      .then(()=> showToast('✅ ' + nama + ' dihapus dari Google Sheets!'))
+      .catch(()=> showToast('Gagal hapus dari Sheets, hapus manual','error'));
+  }
 }
 
 // ========== GANTI LOGO ==========
