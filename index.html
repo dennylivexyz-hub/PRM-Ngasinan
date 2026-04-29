@@ -1584,6 +1584,18 @@ const APP = {
 APP.absensi = {};  // { "2025_Januari": [{nama, hadir}, ...], ... }
 APP.qurban  = {};  // { 2025: [{nama, alamat, hewan, catatan, tgl}, ...], ... }
 
+// ========== SIMPAN & MUAT QURBAN KE LOCALSTORAGE ==========
+function saveQurban(){
+  try { localStorage.setItem('prm_qurban', JSON.stringify(APP.qurban)); } catch(e) {}
+}
+function loadQurban(){
+  try {
+    const raw = localStorage.getItem('prm_qurban');
+    if(raw){ const data = JSON.parse(raw); if(data && typeof data === 'object') APP.qurban = data; }
+  } catch(e) {}
+}
+loadQurban();
+
 
 // ========== SINKRONISASI GOOGLE SHEETS (BACA DATA) ==========
 async function syncFromSheets(){
@@ -2382,6 +2394,7 @@ function simpanQurban(){
   };
   if(!APP.qurban[_qurbanTahun]) APP.qurban[_qurbanTahun] = [];
   APP.qurban[_qurbanTahun].push(item);
+  saveQurban();
   closeModal('modalTambahQurban');
   renderTabelQurban();
   showToast('Muqorib berhasil ditambahkan!');
@@ -2403,6 +2416,7 @@ function hapusQurban(i){
   const nama = APP.qurban[_qurbanTahun][i]?.nama;
   if(!confirm(`Hapus muqorib "${nama}" dari daftar Qurban ${_qurbanTahun}?`)) return;
   APP.qurban[_qurbanTahun].splice(i,1);
+  saveQurban();
   renderTabelQurban();
   showToast(nama + ' dihapus dari daftar');
   // Hapus juga dari Google Sheets
