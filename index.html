@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <style>
+/* ... (semua CSS tetap sama, tanpa perubahan) ... */
 :root {
   --bg-deep: #0a0e1a;
   --bg-card: #111827;
@@ -1644,6 +1645,8 @@ async function syncFromSheets(){
       const cfg = await cfgRes.json().catch(()=>null);
       if(cfg && cfg.logo) applyLogo(cfg.logo);
     }
+    // Muat data absensi dari Google Sheets
+    await loadAbsensiFromSheets();
     showSyncStatus('Data berhasil dimuat', 'ok');
     updateStats(); loadInfoTerbaru(); updateKasBanner();
     loadAnggota(); loadKas(); loadNBM(); updateLaporan();
@@ -1651,6 +1654,31 @@ async function syncFromSheets(){
     showSyncStatus('Gagal memuat data: ' + err.message, 'error');
   }
   APP.syncing = false;
+}
+
+// Fungsi baru: loadAbsensiFromSheets
+async function loadAbsensiFromSheets(){
+  if(!APP.sheetsUrl) return;
+  try {
+    const url = APP.sheetsUrl + '?action=getData&sheet=absensi';
+    const res = await fetch(url);
+    const json = await res.json();
+    if(json.status === 'ok' && Array.isArray(json.data)){
+      APP.absensi = {};
+      json.data.forEach(row => {
+        const tahun = row['Tahun'] || row['tahun'];
+        const bulan = row['Bulan'] || row['bulan'];
+        const nama = row['Nama'] || row['nama'];
+        const hadir = row['Kehadiran'] || row['kehadiran'] || 'Belum diisi';
+        if(!tahun || !bulan || !nama) return;
+        const key = `${tahun}_${bulan}`;
+        if(!APP.absensi[key]) APP.absensi[key] = [];
+        APP.absensi[key].push({ nama, hadir });
+      });
+    }
+  } catch(e) {
+    console.warn('Gagal load Absensi dari Sheets:', e);
+  }
 }
 
 function normalizeRow(sheet, row){
