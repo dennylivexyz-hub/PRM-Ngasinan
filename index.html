@@ -700,8 +700,8 @@ body {
   <div class="login-box">
     <div class="login-header">
       <div class="logo-wrap" onclick="gantiLogo()" title="Klik untuk ganti logo">
-        <img id="logoImg" src="https://i.ibb.co.com/tTfCRqYZ/Logo-Muh-Ngasinan.png" alt="Logo Muh Ngasinan" border="0">
-        <div class="logo-placeholder" id="logoDefault" style="display:none">☽</div>
+        <img id="logoImg" src="https://i.ibb.co.com/tTfCRqYZ/Logo-Muh-Ngasinan.png" alt="Logo Muh Ngasinan" border="0"></a>
+		  <div class="logo-placeholder" id="logoDefault" style="display:none">☽</div>
       </div>
     
       <input type="file" id="logoInput" accept="image/*" style="display:none" onchange="loadLogo(this)">
@@ -1386,32 +1386,33 @@ body {
 
 <!-- MODAL: Tabel Absensi -->
 <div class="modal-overlay" id="modalTabelAbsensi">
-  <div class="modal-sheet">
+  <div class="modal-sheet" style="padding-bottom:24px">
     <div class="modal-handle"></div>
-    <div class="modal-title" id="titleTabelAbsensi"><i class="fa fa-list-check" style="color:#fbbf24"></i>Daftar Absensi</div>
-    <div style="display:flex;gap:8px;margin-bottom:12px">
-      <button class="btn-primary" style="margin-top:0;flex:2" onclick="tambahAnggotaKeAbsensi()">
-        <i class="fa fa-user-plus"></i> Tambah Anggota
-      </button>
-      <button class="btn-secondary" style="margin-top:0;flex:1" onclick="simpanAbsensi()">
-        <i class="fa fa-save"></i> Simpan
-      </button>
+    <div class="modal-title" id="titleTabelAbsensi"><i class="fa fa-clipboard-list" style="color:#fbbf24"></i>Daftar Absensi</div>
+    <div id="absensiStats" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px">
+      <div style="background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.25);border-radius:10px;padding:10px;text-align:center">
+        <div style="font-size:20px;font-weight:800;color:#22c55e" id="statHadir">0</div>
+        <div style="font-size:10px;color:var(--text-muted);font-weight:700;margin-top:2px">HADIR</div>
+      </div>
+      <div style="background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.25);border-radius:10px;padding:10px;text-align:center">
+        <div style="font-size:20px;font-weight:800;color:#ef4444" id="statTidakHadir">0</div>
+        <div style="font-size:10px;color:var(--text-muted);font-weight:700;margin-top:2px">TDK HADIR</div>
+      </div>
+      <div style="background:rgba(148,163,184,0.1);border:1px solid rgba(148,163,184,0.2);border-radius:10px;padding:10px;text-align:center">
+        <div style="font-size:20px;font-weight:800;color:var(--text-secondary)" id="statBelum">0</div>
+        <div style="font-size:10px;color:var(--text-muted);font-weight:700;margin-top:2px">BELUM</div>
+      </div>
     </div>
-    <div style="overflow-x:auto">
-      <table class="data-table" id="tabelAbsensi">
-        <thead>
-          <tr>
-            <th style="width:40px">No</th>
-            <th>Nama</th>
-            <th style="width:120px;text-align:center">Kehadiran</th>
-          </tr>
-        </thead>
-        <tbody id="bodyAbsensi">
-          <tr><td colspan="3" style="text-align:center;color:var(--text-muted);padding:20px">Belum ada data</td></tr>
-        </tbody>
-      </table>
+    <div style="display:flex;gap:8px;margin-bottom:14px">
+      <button onclick="tambahAnggotaKeAbsensi()" style="flex:1;padding:10px;background:rgba(0,212,255,0.12);border:1px solid rgba(0,212,255,0.3);border-radius:10px;color:#67e8f9;font-size:12px;font-weight:700;font-family:Nunito,sans-serif;cursor:pointer"><i class="fa fa-user-plus"></i> Tambah Anggota</button>
+      <button onclick="refreshAbsensi()" style="padding:10px 14px;background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.3);border-radius:10px;color:#c084fc;font-size:12px;font-weight:700;font-family:Nunito,sans-serif;cursor:pointer"><i class="fa fa-sync-alt" id="iconRefreshAbsensi"></i></button>
     </div>
-    <button class="btn-secondary" onclick="closeModal('modalTabelAbsensi'); openModal('modalAbsensiBulan')">← Kembali</button>
+    <div id="absensiSaveNotice" style="display:none;align-items:center;gap:8px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:8px;padding:8px 12px;margin-bottom:10px;font-size:12px;color:#86efac">
+      <i class="fa fa-cloud-upload-alt" style="font-size:13px"></i>
+      <span id="absensiSaveMsg">Menyimpan...</span>
+    </div>
+    <div id="absensiCardList" style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px;max-height:55vh;overflow-y:auto;padding-right:2px"></div>
+    <button class="btn-secondary" style="margin-top:0" onclick="closeModal('modalTabelAbsensi'); openModal('modalAbsensiBulan')">← Kembali</button>
   </div>
 </div>
 
@@ -1656,50 +1657,33 @@ async function syncFromSheets(){
   APP.syncing = false;
 }
 
-// Fungsi baru: loadAbsensiFromSheets dengan fallback localStorage
+// Fungsi: loadAbsensiFromSheets — selalu baca segar dari GAS
 async function loadAbsensiFromSheets(){
-  let success = false;
-  if(APP.sheetsUrl){
-    try {
-      const url = APP.sheetsUrl + '?action=getData&sheet=absensi';
-      const res = await fetch(url);
-      const json = await res.json();
-      if(json.status === 'ok' && Array.isArray(json.data)){
-        APP.absensi = {};
-        json.data.forEach(row => {
-          const tahun = row['Tahun'] || row['tahun'];
-          const bulan = row['Bulan'] || row['bulan'];
-          const nama = row['Nama'] || row['nama'];
-          const hadir = row['Kehadiran'] || row['kehadiran'] || 'Belum diisi';
-          if(!tahun || !bulan || !nama) return;
-          const key = `${tahun}_${bulan}`;
-          if(!APP.absensi[key]) APP.absensi[key] = [];
-          APP.absensi[key].push({ nama, hadir });
-        });
-        success = true;
-      }
-    } catch(e) {
-      console.warn('Gagal load Absensi dari Sheets:', e);
-    }
-  }
-  // Fallback ke localStorage jika gagal fetch atau tidak ada koneksi
-  if(!success){
-    try {
-      const cached = localStorage.getItem('prm_absensi');
-      if(cached){
-        APP.absensi = JSON.parse(cached);
-      }
-    } catch(e){}
-  }
-  // Simpan ke localStorage setelah berhasil load (sebagai cache)
-  saveAbsensiLocal();
-}
-
-// Simpan state absensi ke localStorage
-function saveAbsensiLocal(){
+  if(!APP.sheetsUrl) return;
   try {
-    localStorage.setItem('prm_absensi', JSON.stringify(APP.absensi));
-  } catch(e){}
+    const url = APP.sheetsUrl + '?action=getData&sheet=absensi&t=' + Date.now();
+    const res = await fetch(url, { cache: 'no-store' });
+    const json = await res.json();
+    if(json.status === 'ok' && Array.isArray(json.data)){
+      APP.absensi = {};
+      json.data.forEach(row => {
+        // Normalisasi key: case-insensitive, trim spasi
+        const r = {};
+        Object.keys(row).forEach(k => { r[k.toLowerCase().trim()] = row[k]; });
+        const tahun = String(r['tahun'] || '').trim();
+        const bulan = String(r['bulan'] || '').trim();
+        // Cocokkan 'Nama Anggota' (sheet) → 'nama' (app), case-insensitive
+        const nama  = String(r['nama anggota'] || r['nama'] || '').trim();
+        const hadir = String(r['kehadiran'] || r['hadir'] || 'Belum diisi').trim();
+        if(!tahun || !bulan || !nama) return;
+        const key = tahun + '_' + bulan;
+        if(!APP.absensi[key]) APP.absensi[key] = [];
+        APP.absensi[key].push({ nama, hadir: hadir || 'Belum diisi' });
+      });
+    }
+  } catch(e) {
+    console.warn('Gagal load Absensi dari Sheets:', e);
+  }
 }
 
 function normalizeRow(sheet, row){
@@ -1810,11 +1794,6 @@ function showDashboard(){
     document.getElementById('sheetsConfig').innerHTML = `<i class="fa fa-exclamation-circle" style="color:var(--accent-gold)"></i> <strong style="color:var(--accent-gold)">Google Sheets belum terhubung</strong> — data tidak akan tersimpan permanen. <a href="#" onclick="openSheetsSetup()" style="color:var(--accent-cyan);margin-left:4px;font-weight:700">Hubungkan sekarang →</a>`;
     updateStats(); loadInfoTerbaru(); updateKasBanner();
     loadAnggota(); loadKas(); loadNBM(); updateLaporan();
-    // Muat absensi dari localStorage jika ada
-    try {
-      const cached = localStorage.getItem('prm_absensi');
-      if(cached) APP.absensi = JSON.parse(cached);
-    } catch(e){}
   }
 }
 
@@ -2303,120 +2282,231 @@ const BULAN = ['Januari','Februari','Maret','April','Mei','Juni',
                'Juli','Agustus','September','Oktober','November','Desember'];
 let _absensiTahun = 2025;
 let _absensiBulan = '';
+let _absensiSaving = false; // flag anti-double-save
 
+// --- PILIH TAHUN: load fresh dari Sheets, tampil grid bulan ---
 function pilihTahunAbsensi(tahun){
   _absensiTahun = tahun;
   document.getElementById('titleAbsensiBulan').innerHTML =
-    `<i class="fa fa-calendar" style="color:#fbbf24"></i> Absensi ${tahun}`;
-  const grid = document.getElementById('gridBulanAbsensi');
-  grid.innerHTML = BULAN.map(b => {
-    const key = `${tahun}_${b}`;
-    const ada = APP.absensi[key] && APP.absensi[key].length > 0;
-    return `<div class="shortcut-card" onclick="pilihBulanAbsensi('${b}')"
-      style="flex-direction:column;align-items:center;justify-content:center;padding:14px 8px;text-align:center">
-      <i class="fa fa-calendar-day" style="font-size:20px;color:${ada?'#2dd4bf':'#475569'};margin-bottom:6px"></i>
-      <span style="font-size:12px;font-weight:700">${b}</span>
-      ${ada ? `<span style="font-size:9px;color:#2dd4bf;margin-top:2px">${APP.absensi[key].length} orang</span>` : ''}
-    </div>`;
-  }).join('');
+    '<i class="fa fa-calendar" style="color:#fbbf24"></i> Absensi ' + tahun;
   closeModal('modalAbsensi');
   openModal('modalAbsensiBulan');
+  // Loading sementara
+  document.getElementById('gridBulanAbsensi').innerHTML =
+    '<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--text-muted)">' +
+    '<div class="spinner" style="margin:0 auto 8px"></div>Memuat data...</div>';
+  const doRender = () => _renderGridBulan(tahun);
+  if(APP.sheetsUrl) loadAbsensiFromSheets().then(doRender).catch(doRender);
+  else doRender();
 }
 
+function _renderGridBulan(tahun){
+  const grid = document.getElementById('gridBulanAbsensi');
+  grid.innerHTML = BULAN.map(b => {
+    const key = tahun + '_' + b;
+    const rows = APP.absensi[key] || [];
+    const hadir = rows.filter(r => r.hadir === 'Hadir').length;
+    const total = rows.length;
+    const ada   = total > 0;
+    return '<div class="shortcut-card" onclick="pilihBulanAbsensi('' + b + '')" ' +
+      'style="flex-direction:column;align-items:center;justify-content:center;padding:14px 8px;text-align:center;position:relative">' +
+      (ada ? '<span style="position:absolute;top:6px;right:6px;width:8px;height:8px;border-radius:50%;background:#22c55e"></span>' : '') +
+      '<i class="fa fa-calendar-day" style="font-size:20px;color:' + (ada ? '#2dd4bf' : '#475569') + ';margin-bottom:6px"></i>' +
+      '<span style="font-size:12px;font-weight:700">' + b + '</span>' +
+      (ada ? '<span style="font-size:9px;color:#22c55e;margin-top:3px">' + hadir + '/' + total + ' hadir</span>' : '') +
+    '</div>';
+  }).join('');
+}
+
+// --- PILIH BULAN: load fresh, render kartu absensi ---
 function pilihBulanAbsensi(bulan){
   _absensiBulan = bulan;
-  const key = `${_absensiTahun}_${bulan}`;
+  const key = _absensiTahun + '_' + bulan;
   document.getElementById('titleTabelAbsensi').innerHTML =
-    `<i class="fa fa-list-check" style="color:#fbbf24"></i> Absensi ${bulan} ${_absensiTahun}`;
-  if(!APP.absensi[key]){
-    APP.absensi[key] = APP.anggota.map(a => ({nama: a.nama, hadir: false}));
-    saveAbsensiLocal(); // simpan inisialisasi
-  }
-  renderTabelAbsensi(key);
+    '<i class="fa fa-clipboard-list" style="color:#fbbf24"></i> Absensi ' + bulan + ' ' + _absensiTahun;
   closeModal('modalAbsensiBulan');
   openModal('modalTabelAbsensi');
+  _showAbsensiLoading();
+  const doRender = () => {
+    if(!APP.absensi[key] || APP.absensi[key].length === 0){
+      APP.absensi[key] = APP.anggota.map(a => ({nama: a.nama, hadir: 'Belum diisi'}));
+    }
+    renderTabelAbsensi(key);
+  };
+  if(APP.sheetsUrl) loadAbsensiFromSheets().then(doRender).catch(doRender);
+  else doRender();
 }
 
+function _showAbsensiLoading(){
+  const el = document.getElementById('absensiCardList');
+  if(el) el.innerHTML =
+    '<div style="text-align:center;padding:30px;color:var(--text-muted)">' +
+    '<div class="spinner" style="margin:0 auto 10px"></div>Memuat data absensi dari Google Sheets...</div>';
+  _updateAbsensiStats([]);
+}
+
+// --- RENDER kartu absensi (Solusi A: toggle card per anggota) ---
 function renderTabelAbsensi(key){
   const data = APP.absensi[key] || [];
-  const b = document.getElementById('bodyAbsensi');
+  const el   = document.getElementById('absensiCardList');
   if(!data.length){
-    b.innerHTML = '<tr><td colspan="3" style="text-align:center;color:var(--text-muted);padding:20px">Belum ada data. Tambah anggota dulu.</td></tr>';
+    el.innerHTML = '<div style="text-align:center;padding:24px;color:var(--text-muted);font-size:13px">' +
+      '<i class="fa fa-users" style="font-size:24px;display:block;margin-bottom:10px"></i>' +
+      'Belum ada anggota. Tekan "+ Tambah Anggota".</div>';
+    _updateAbsensiStats([]);
     return;
   }
-  b.innerHTML = data.map((d,i) => `
-    <tr>
-      <td>${i+1}</td>
-      <td style="font-weight:600">${d.nama}</td>
-      <td style="text-align:center">
-        <div style="display:flex;gap:6px;justify-content:center">
-          <button onclick="setKehadiran(${i},'Hadir')"
-            style="padding:4px 10px;border-radius:8px;border:none;cursor:pointer;font-size:11px;font-weight:700;
-            background:${d.hadir==='Hadir'?'#22c55e':'rgba(34,197,94,0.15)'};
-            color:${d.hadir==='Hadir'?'#fff':'#86efac'}">Hadir</button>
-          <button onclick="setKehadiran(${i},'Tidak Hadir')"
-            style="padding:4px 12px;border-radius:8px;border:none;cursor:pointer;font-size:11px;font-weight:700;
-            background:${d.hadir==='Tidak Hadir'?'#ef4444':'rgba(239,68,68,0.15)'};
-            color:${d.hadir==='Tidak Hadir'?'#fff':'#fca5a5'}">TIDAK HADIR</button>
-        </div>
-      </td>
-    </tr>`).join('');
+  el.innerHTML = data.map((d, i) => {
+    const hv = (!d.hadir || d.hadir === false) ? 'Belum diisi' : String(d.hadir);
+    const isHadir  = hv === 'Hadir';
+    const isTidak  = hv === 'Tidak Hadir';
+    const inisial  = d.nama.trim().split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+    const avatarBg = isHadir ? 'rgba(34,197,94,0.18)' : isTidak ? 'rgba(239,68,68,0.15)' : 'rgba(148,163,184,0.12)';
+    const avatarCl = isHadir ? '#22c55e' : isTidak ? '#ef4444' : '#64748b';
+    const cardBorder= isHadir ? 'rgba(34,197,94,0.3)' : isTidak ? 'rgba(239,68,68,0.25)' : 'rgba(255,255,255,0.06)';
+    const cardBg   = isHadir ? 'rgba(34,197,94,0.06)' : isTidak ? 'rgba(239,68,68,0.05)' : 'rgba(255,255,255,0.03)';
+    return '<div style="display:flex;align-items:center;gap:12px;padding:10px 12px;' +
+      'background:' + cardBg + ';border:1px solid ' + cardBorder + ';border-radius:12px;transition:all .2s">' +
+      // Avatar
+      '<div style="width:38px;height:38px;border-radius:50%;background:' + avatarBg + ';' +
+        'display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;' +
+        'color:' + avatarCl + ';flex-shrink:0">' + inisial + '</div>' +
+      // Nama & status text
+      '<div style="flex:1;min-width:0">' +
+        '<div style="font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">' + d.nama + '</div>' +
+        '<div style="font-size:11px;color:' + avatarCl + ';margin-top:1px">' +
+          (isHadir ? '✓ Hadir' : isTidak ? '✗ Tidak Hadir' : '○ Belum diisi') +
+        '</div>' +
+      '</div>' +
+      // Tombol Hadir
+      '<button onclick="setKehadiran(' + i + ','Hadir')" ' +
+        'style="padding:6px 12px;border-radius:8px;border:none;cursor:pointer;font-size:11px;font-weight:800;' +
+        'background:' + (isHadir ? '#22c55e' : 'rgba(34,197,94,0.15)') + ';' +
+        'color:' + (isHadir ? '#fff' : '#86efac') + ';' +
+        'box-shadow:' + (isHadir ? '0 2px 8px rgba(34,197,94,0.35)' : 'none') + ';' +
+        'transition:all .2s;font-family:Nunito,sans-serif">Hadir</button>' +
+      // Tombol Tidak Hadir
+      '<button onclick="setKehadiran(' + i + ','Tidak Hadir')" ' +
+        'style="padding:6px 10px;border-radius:8px;border:none;cursor:pointer;font-size:10px;font-weight:800;' +
+        'background:' + (isTidak ? '#ef4444' : 'rgba(239,68,68,0.15)') + ';' +
+        'color:' + (isTidak ? '#fff' : '#fca5a5') + ';' +
+        'box-shadow:' + (isTidak ? '0 2px 8px rgba(239,68,68,0.35)' : 'none') + ';' +
+        'transition:all .2s;font-family:Nunito,sans-serif">TDK<br>HADIR</button>' +
+    '</div>';
+  }).join('');
+  _updateAbsensiStats(data);
 }
 
+function _updateAbsensiStats(data){
+  const h  = data.filter(d => d.hadir === 'Hadir').length;
+  const t  = data.filter(d => d.hadir === 'Tidak Hadir').length;
+  const b  = data.filter(d => !d.hadir || d.hadir === 'Belum diisi' || d.hadir === false).length;
+  const sh = document.getElementById('statHadir');
+  const st = document.getElementById('statTidakHadir');
+  const sb = document.getElementById('statBelum');
+  if(sh) sh.textContent = h;
+  if(st) st.textContent = t;
+  if(sb) sb.textContent = b;
+}
+
+// --- SET KEHADIRAN: update lokal + auto-save ke Sheets ---
 function setKehadiran(idx, status){
-  const key = `${_absensiTahun}_${_absensiBulan}`;
-  if(APP.absensi[key] && APP.absensi[key][idx]){
-    APP.absensi[key][idx].hadir = status;
-    renderTabelAbsensi(key);
-    saveAbsensiLocal(); // simpan setiap perubahan
+  const key = _absensiTahun + '_' + _absensiBulan;
+  if(!APP.absensi[key] || !APP.absensi[key][idx]) return;
+  APP.absensi[key][idx].hadir = status;
+  renderTabelAbsensi(key);
+  // Auto-save ke Sheets (debounced)
+  _scheduleAbsensiSave(key);
+}
+
+let _absensiSaveTimer = null;
+function _scheduleAbsensiSave(key){
+  // Tampil notifikasi "Akan disimpan..."
+  _showSaveNotice('Menyimpan otomatis...', false);
+  // Debounce 1.5 detik agar tidak spam saat klik cepat bergantian
+  clearTimeout(_absensiSaveTimer);
+  _absensiSaveTimer = setTimeout(() => { _doSaveAbsensi(key); }, 1500);
+}
+
+function _showSaveNotice(msg, done){
+  const el  = document.getElementById('absensiSaveNotice');
+  const msg_el = document.getElementById('absensiSaveMsg');
+  if(!el || !msg_el) return;
+  el.style.display = 'flex';
+  el.style.background = done ? 'rgba(34,197,94,0.12)' : 'rgba(0,212,255,0.08)';
+  el.style.borderColor = done ? 'rgba(34,197,94,0.3)' : 'rgba(0,212,255,0.2)';
+  el.style.color = done ? '#86efac' : '#67e8f9';
+  msg_el.textContent = msg;
+  if(done) setTimeout(() => { el.style.display = 'none'; }, 2500);
+}
+
+async function _doSaveAbsensi(key){
+  if(!APP.sheetsUrl){ _showSaveNotice('Sheets belum terhubung', true); return; }
+  if(_absensiSaving) return;
+  _absensiSaving = true;
+  const data = APP.absensi[key] || [];
+  if(!data.length){ _absensiSaving = false; return; }
+  try {
+    const rows = data.map(d => ({
+      nama : d.nama,
+      hadir: (!d.hadir || d.hadir === false || d.hadir === '') ? 'Belum diisi' : String(d.hadir)
+    }));
+    const res = await fetch(APP.sheetsUrl, {
+      method : 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body   : JSON.stringify({
+        action: 'saveAbsensiBatch',
+        tahun : String(_absensiTahun),
+        bulan : String(_absensiBulan),
+        rows
+      })
+    });
+    // GAS kadang redirect — baca text dulu baru parse
+    const text = await res.text();
+    let json;
+    try { json = JSON.parse(text); } catch(_){ json = { status:'error', message: text.slice(0,80) }; }
+    if(json.status === 'ok'){
+      _showSaveNotice('✓ Tersimpan ' + rows.length + ' anggota ke Google Sheets', true);
+    } else {
+      _showSaveNotice('Gagal: ' + (json.message || 'Cek GAS log'), true);
+    }
+  } catch(e){
+    _showSaveNotice('Gagal simpan: ' + (e.message||'network error'), true);
   }
+  _absensiSaving = false;
+}
+
+// Tetap ada untuk backward-compat jika dipanggil dari tempat lain
+async function simpanAbsensi(){
+  const key = _absensiTahun + '_' + _absensiBulan;
+  clearTimeout(_absensiSaveTimer);
+  await _doSaveAbsensi(key);
 }
 
 function tambahAnggotaKeAbsensi(){
-  const key = `${_absensiTahun}_${_absensiBulan}`;
+  const key = _absensiTahun + '_' + _absensiBulan;
   const sudahAda = (APP.absensi[key]||[]).map(x=>x.nama);
-  const baru = APP.anggota.filter(a=>!sudahAda.includes(a.nama)).map(a=>({nama:a.nama,hadir:false}));
+  const baru = APP.anggota.filter(a=>!sudahAda.includes(a.nama)).map(a=>({nama:a.nama,hadir:'Belum diisi'}));
   if(!APP.absensi[key]) APP.absensi[key] = [];
   APP.absensi[key] = [...APP.absensi[key], ...baru];
   renderTabelAbsensi(key);
-  saveAbsensiLocal(); // simpan setelah tambah
-  if(baru.length) showToast(`${baru.length} anggota baru ditambahkan`);
+  if(baru.length){ showToast(baru.length + ' anggota ditambahkan'); _scheduleAbsensiSave(key); }
   else showToast('Semua anggota sudah ada di daftar');
 }
 
-async function simpanAbsensi(){
-  const key  = `${_absensiTahun}_${_absensiBulan}`;
-  const data = APP.absensi[key] || [];
-  if(!data.length){ showToast('Belum ada anggota di daftar ini','error'); return; }
-  showToast('Menyimpan absensi...');
-  // Simpan ke localStorage dulu agar tetap ada meskipun gagal sinkron
-  saveAbsensiLocal();
-  if(!APP.sheetsUrl){
-    showToast('Absensi tersimpan lokal (Sheets belum terhubung)');
-    return;
-  }
-  try {
-    // Langkah 1: Hapus baris lama untuk tahun+bulan yang sama agar tidak duplikat
-    await syncActionToSheets('deleteAbsensi', 'absensi', `${_absensiTahun}_${_absensiBulan}`);
-  } catch(e) {
-    // Tidak masalah jika belum ada data sebelumnya
-  }
-  try {
-    // Langkah 2: Simpan tiap anggota sebagai baris terpisah di sheet
-    const tglSimpan = new Date().toLocaleString('id-ID');
-    for(const item of data){
-      await syncToSheets('absensi', {
-        'Tahun'     : _absensiTahun,
-        'Bulan'     : _absensiBulan,
-        'Nama'      : item.nama,
-        'Kehadiran' : item.hadir || 'Belum diisi',
-        'Tanggal Simpan': tglSimpan
-      });
-    }
-    showToast(`✅ Absensi ${_absensiBulan} ${_absensiTahun} tersimpan (${data.length} anggota)!`);
-  } catch(e) {
-    showToast('Gagal menyimpan absensi: ' + e.message, 'error');
-  }
+function refreshAbsensi(){
+  const icon = document.getElementById('iconRefreshAbsensi');
+  if(icon) icon.style.animation = 'spin .6s linear infinite';
+  _showAbsensiLoading();
+  loadAbsensiFromSheets().then(() => {
+    const key = _absensiTahun + '_' + _absensiBulan;
+    if(icon) icon.style.animation = '';
+    renderTabelAbsensi(key);
+    showToast('Data absensi diperbarui!');
+  }).catch(() => {
+    if(icon) icon.style.animation = '';
+    showToast('Gagal memuat dari Sheets','error');
+  });
 }
 
 // ========== QURBAN ==========
