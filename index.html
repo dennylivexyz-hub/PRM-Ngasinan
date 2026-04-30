@@ -7,7 +7,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <style>
-/* ... (semua CSS tetap sama, tanpa perubahan) ... */
 :root {
   --bg-deep: #0a0e1a;
   --bg-card: #111827;
@@ -26,9 +25,7 @@
   --shadow: 0 8px 32px rgba(0,0,0,0.4);
   --gradient-header: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 50%, #0891b2 100%);
 }
-
 * { margin:0; padding:0; box-sizing:border-box; }
-
 body {
   font-family: 'Nunito', sans-serif;
   background: var(--bg-deep);
@@ -36,8 +33,6 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
 }
-
-/* ========== PARTICLES BG ========== */
 #particles { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; }
 .particle {
   position:absolute;
@@ -53,8 +48,6 @@ body {
   90% { opacity:0.4; }
   100% { transform: translateY(-10px) translateX(40px); opacity:0; }
 }
-
-/* ========== LOGIN PAGE ========== */
 #loginPage {
   min-height:100vh;
   display:flex;
@@ -64,7 +57,6 @@ body {
   z-index:1;
   padding:20px;
 }
-
 .login-bg {
   position:absolute; inset:0;
   background:
@@ -72,20 +64,16 @@ body {
     radial-gradient(ellipse at 80% 20%, rgba(0,180,160,0.15) 0%, transparent 50%),
     radial-gradient(ellipse at 50% 90%, rgba(168,85,247,0.10) 0%, transparent 50%);
 }
-
 .login-box {
   width:100%;
   max-width:400px;
   position:relative;
   z-index:2;
 }
-
 .login-header {
   text-align:center;
   margin-bottom:28px;
 }
-
-/* LOGO — tampil dari localStorage atau placeholder */
 .logo-wrap {
   width:110px; height:110px;
   margin:0 auto 14px;
@@ -116,7 +104,6 @@ body {
   margin-top:6px;
   letter-spacing:1px;
 }
-
 .login-org {
   display:inline-block;
   background: rgba(0,212,255,0.12);
@@ -130,7 +117,6 @@ body {
   margin-bottom:10px;
   font-weight:700;
 }
-
 .login-subtitle {
   font-size:11px;
   letter-spacing:4px;
@@ -138,7 +124,6 @@ body {
   text-transform:uppercase;
   margin-bottom:6px;
 }
-
 .login-title {
   font-family:'Cinzel', serif;
   font-size:28px;
@@ -147,15 +132,12 @@ body {
   letter-spacing:2px;
   text-shadow: 0 0 30px rgba(0,212,255,0.3);
 }
-
 .login-desc {
   font-size:13px;
   color:#cbd5e1;
   margin-top:8px;
   font-weight:500;
 }
-
-/* CARD — lebih terang dan kontras */
 .login-card {
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.15);
@@ -164,8 +146,6 @@ body {
   box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
   backdrop-filter: blur(20px);
 }
-
-/* TAB ROLE */
 .role-tabs {
   display:flex;
   background:rgba(255,255,255,0.06);
@@ -193,8 +173,6 @@ body {
   box-shadow: 0 4px 12px rgba(0,212,255,0.3);
 }
 .role-tab:not(.active):hover { color:#e2e8f0; background:rgba(255,255,255,0.06); }
-
-/* FORM INPUT */
 .form-group {
   margin-bottom:16px;
   position:relative;
@@ -226,8 +204,6 @@ body {
   box-shadow:0 0 0 3px rgba(0,212,255,0.15);
   color:#ffffff;
 }
-
-/* TOMBOL LOGIN */
 .btn-login {
   width:100%;
   padding:15px;
@@ -250,7 +226,6 @@ body {
   filter:brightness(1.05);
 }
 .btn-login:active { transform:translateY(0); }
-
 .login-switch {
   text-align:center;
   margin-top:18px;
@@ -260,8 +235,6 @@ body {
 }
 .login-switch span { color:#00d4ff; font-weight:700; }
 .login-switch:hover { color:#cbd5e1; }
-
-/* INFO LOGIN ANGGOTA */
 .login-info-box {
   background:rgba(0,212,255,0.08);
   border:1px solid rgba(0,212,255,0.2);
@@ -273,7 +246,6 @@ body {
   line-height:1.7;
 }
 .login-info-box strong { color:#67e8f9; }
-
 .byline {
   text-align:center;
   margin-top:24px;
@@ -282,7 +254,6 @@ body {
   font-style:italic;
   letter-spacing:1px;
 }
-
 .error-msg {
   background:rgba(239,68,68,0.12);
   border:1px solid rgba(239,68,68,0.35);
@@ -295,11 +266,7 @@ body {
   align-items:center;
   gap:8px;
 }
-
-/* ========== DASHBOARD ========== */
 #dashboardPage { display:none; min-height:100vh; position:relative; z-index:1; }
-
-/* TOP NAV */
 .topnav {
   background:var(--bg-card);
   border-bottom:1px solid var(--border);
@@ -309,11 +276,9 @@ body {
   justify-content:space-between;
   position:sticky; top:0; z-index:100;
 }
-
 .nav-user {
   display:flex; align-items:center; gap:12px;
 }
-
 .nav-avatar {
   width:40px; height:40px;
   border-radius:50%;
@@ -321,12 +286,9 @@ body {
   display:flex; align-items:center; justify-content:center;
   font-weight:700; font-size:15px; color:#fff;
 }
-
 .nav-info small { font-size:11px; color:var(--text-secondary); display:block; }
 .nav-info strong { font-size:14px; font-weight:700; }
-
 .nav-actions { display:flex; gap:10px; }
-
 .nav-btn {
   width:36px; height:36px;
   border-radius:50%;
@@ -344,8 +306,6 @@ body {
   border-radius:50%;
   border:2px solid var(--bg-card);
 }
-
-/* KAS BANNER */
 .kas-banner {
   background: var(--gradient-header);
   padding:20px 24px;
@@ -385,10 +345,7 @@ body {
 }
 .kas-bottom div small { font-size:11px; opacity:.7; }
 .kas-bottom div p { font-size:15px; font-weight:700; }
-
-/* MAIN CONTENT */
 .main-content { padding:0 16px 100px; }
-
 .section-title {
   font-size:11px;
   letter-spacing:2px;
@@ -397,21 +354,17 @@ body {
   font-weight:700;
   margin:20px 0 14px;
 }
-
-/* MENU GRID */
 .menu-grid {
   display:grid;
   grid-template-columns: repeat(4, 1fr);
   gap:12px;
   margin-bottom:4px;
 }
-
 .menu-item {
   display:flex; flex-direction:column;
   align-items:center; gap:8px;
   cursor:pointer;
 }
-
 .menu-icon {
   width:60px; height:60px;
   border-radius:16px;
@@ -420,17 +373,13 @@ body {
   transition: transform .2s, box-shadow .2s;
 }
 .menu-item:hover .menu-icon { transform:translateY(-3px); box-shadow:0 8px 20px rgba(0,0,0,0.3); }
-
 .menu-label { font-size:11px; font-weight:600; color:var(--text-secondary); text-align:center; }
-
 .icon-blue   { background:rgba(59,130,246,0.2); color:#60a5fa; }
 .icon-teal   { background:rgba(20,184,166,0.2); color:#2dd4bf; }
 .icon-gold   { background:rgba(245,158,11,0.2); color:#fbbf24; }
 .icon-purple { background:rgba(168,85,247,0.2); color:#c084fc; }
 .icon-red    { background:rgba(239,68,68,0.2);  color:#f87171; }
 .icon-cyan   { background:rgba(0,212,255,0.2);  color:#67e8f9; }
-
-/* SHORTCUT CARDS */
 .shortcut-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:4px; }
 .shortcut-card {
   background:var(--bg-card);
@@ -448,8 +397,6 @@ body {
 }
 .shortcut-text small { font-size:10px; color:var(--text-muted); display:block; }
 .shortcut-text strong { font-size:13px; font-weight:700; }
-
-/* ADMIN MENU */
 .admin-section {
   background:var(--bg-card);
   border:1px solid var(--border);
@@ -466,7 +413,6 @@ body {
 }
 .admin-header span { font-size:13px; font-weight:700; color:var(--accent-purple); }
 .admin-header i { color:var(--text-muted); }
-
 .admin-grid {
   display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
   background:var(--border);
@@ -481,8 +427,6 @@ body {
 .admin-btn:hover { background:var(--bg-card2); }
 .admin-btn i { font-size:20px; }
 .admin-btn span { font-size:11px; color:var(--text-secondary); font-weight:600; text-align:center; }
-
-/* INFO SECTION */
 .info-card {
   background:var(--bg-card);
   border:1px solid var(--border);
@@ -500,8 +444,6 @@ body {
   margin:0 auto 8px;
 }
 @keyframes spin { to { transform:rotate(360deg); } }
-
-/* BOTTOM NAV */
 .bottom-nav {
   position:fixed; bottom:0; left:0; right:0;
   background:var(--bg-card);
@@ -527,8 +469,6 @@ body {
   box-shadow:0 4px 16px rgba(0,212,255,0.4);
   margin-top:-20px;
 }
-
-/* ========== MODALS ========== */
 .modal-overlay {
   position:fixed; inset:0;
   background:rgba(0,0,0,0.7);
@@ -538,7 +478,6 @@ body {
   justify-content:center;
 }
 .modal-overlay.active { display:flex; }
-
 .modal-sheet {
   background:var(--bg-card);
   border-radius:20px 20px 0 0;
@@ -553,22 +492,18 @@ body {
   from { transform:translateY(100%); }
   to { transform:translateY(0); }
 }
-
 .modal-handle {
   width:40px; height:4px;
   background:var(--border);
   border-radius:2px;
   margin:0 auto 20px;
 }
-
 .modal-title {
   font-size:18px; font-weight:800;
   margin-bottom:20px;
   display:flex; align-items:center; gap:10px;
 }
-
 .form-label { font-size:12px; font-weight:700; color:var(--text-secondary); margin-bottom:6px; display:block; letter-spacing:.5px; }
-
 .form-select {
   width:100%;
   padding:12px 14px;
@@ -582,9 +517,7 @@ body {
   appearance:none;
 }
 .form-select:focus { border-color:var(--accent-cyan); }
-
 .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-
 .badge {
   display:inline-flex; align-items:center;
   padding:3px 10px; border-radius:20px; font-size:11px; font-weight:700;
@@ -593,7 +526,6 @@ body {
 .badge-yellow { background:rgba(245,158,11,0.15); color:#fde68a; }
 .badge-red    { background:rgba(239,68,68,0.15);  color:#fca5a5; }
 .badge-blue   { background:rgba(59,130,246,0.15); color:#93c5fd; }
-
 .btn-primary {
   width:100%; padding:14px;
   background: linear-gradient(135deg, var(--accent-cyan), var(--accent-teal));
@@ -603,7 +535,6 @@ body {
   transition:opacity .2s;
 }
 .btn-primary:hover { opacity:.9; }
-
 .btn-secondary {
   width:100%; padding:13px;
   background:transparent;
@@ -611,8 +542,6 @@ body {
   font-size:14px; font-weight:700; font-family:'Nunito',sans-serif;
   cursor:pointer; margin-top:8px;
 }
-
-/* TABLE */
 .data-table { width:100%; border-collapse:collapse; font-size:13px; }
 .data-table th {
   background:var(--bg-input); color:var(--text-secondary);
@@ -625,8 +554,6 @@ body {
   border-bottom:1px solid rgba(255,255,255,0.04);
 }
 .data-table tr:hover td { background:var(--bg-card2); }
-
-/* SEARCH */
 .search-wrap { position:relative; margin-bottom:16px; }
 .search-wrap i { position:absolute; left:12px; top:50%; transform:translateY(-50%); color:var(--text-muted); font-size:13px; }
 .search-input {
@@ -636,8 +563,6 @@ body {
   font-family:'Nunito',sans-serif; outline:none;
 }
 .search-input:focus { border-color:var(--accent-cyan); }
-
-/* STATS ROW */
 .stats-row { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:16px; }
 .stat-card {
   background:var(--bg-card);
@@ -648,8 +573,6 @@ body {
 }
 .stat-card .stat-num { font-size:22px; font-weight:800; }
 .stat-card .stat-lbl { font-size:10px; color:var(--text-muted); margin-top:2px; font-weight:600; }
-
-/* GOOGLE SHEETS config */
 .sheets-config {
   background:var(--bg-card2);
   border:1px solid var(--border);
@@ -660,8 +583,6 @@ body {
   color:var(--text-secondary);
 }
 .sheets-config strong { color:var(--accent-cyan); }
-
-/* TOAST */
 .toast {
   position:fixed; top:70px; right:16px;
   background:var(--bg-card2);
@@ -676,13 +597,9 @@ body {
 }
 .toast.show { transform:translateX(0); }
 .toast.error { border-color:var(--accent-red); color:#fca5a5; }
-
-/* SCROLLBAR */
 ::-webkit-scrollbar { width:4px; }
 ::-webkit-scrollbar-track { background:transparent; }
 ::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
-
-/* RESPONSIVE */
 @media(max-width:400px) {
   .menu-grid { grid-template-columns:repeat(4,1fr); gap:8px; }
   .menu-icon { width:52px; height:52px; font-size:20px; }
@@ -690,272 +607,99 @@ body {
 </style>
 </head>
 <body>
-
-<!-- PARTICLES -->
 <canvas id="particles"></canvas>
-
-<!-- ======= LOGIN PAGE ======= -->
 <div id="loginPage">
   <div class="login-bg"></div>
   <div class="login-box">
     <div class="login-header">
       <div class="logo-wrap" onclick="gantiLogo()" title="Klik untuk ganti logo">
-        <img id="logoImg" src="https://i.ibb.co.com/tTfCRqYZ/Logo-Muh-Ngasinan.png" alt="Logo Muh Ngasinan" border="0"></a>
-		  <div class="logo-placeholder" id="logoDefault" style="display:none">☽</div>
+        <img id="logoImg" src="https://i.ibb.co.com/tTfCRqYZ/Logo-Muh-Ngasinan.png" alt="Logo Muh Ngasinan">
+        <div class="logo-placeholder" id="logoDefault" style="display:none">☽</div>
       </div>
-    
       <input type="file" id="logoInput" accept="image/*" style="display:none" onchange="loadLogo(this)">
-    
       <p class="login-subtitle">Portal Digital</p>
       <h1 class="login-title">PRM NGASINAN</h1>
       <p class="login-desc" id="loginDesc">Akses Khusus Pengurus</p>
     </div>
-
     <div class="login-card">
       <div class="role-tabs">
         <div class="role-tab active" onclick="switchRole('pengurus')" id="tabPengurus">Pengurus</div>
         <div class="role-tab" onclick="switchRole('anggota')" id="tabAnggota">Anggota</div>
         <div class="role-tab" onclick="switchRole('admin')" id="tabAdmin">Admin</div>
       </div>
-
       <div class="error-msg" id="errorMsg"><i class="fa fa-exclamation-circle"></i> <span id="errorText"></span></div>
-
-      <div class="form-group">
-        <i class="fa fa-user"></i>
-        <input type="text" class="form-control" id="username" placeholder="Username">
-      </div>
-      <div class="form-group">
-        <i class="fa fa-lock"></i>
-        <input type="password" class="form-control" id="password" placeholder="Password">
-      </div>
-
-      <button class="btn-login" onclick="doLogin()" id="btnLogin">
-        <span id="btnLoginText">Login Pengurus</span>
-      </button>
-
-      <div class="login-switch" id="loginSwitch" onclick="switchRole('anggota')">
-        ← Kembali ke Login <span>Anggota</span>
-      </div>
-      <div class="login-info-box" id="infoBoxAnggota" style="display:none">
-        <i class="fa fa-info-circle" style="color:#67e8f9"></i>
-      
-        <span style="font-size:11px;color:#64748b">Hubungi pengurus untuk akun pribadi</span>
-      </div>
+      <div class="form-group"><i class="fa fa-user"></i><input type="text" class="form-control" id="username" placeholder="Username"></div>
+      <div class="form-group"><i class="fa fa-lock"></i><input type="password" class="form-control" id="password" placeholder="Password"></div>
+      <button class="btn-login" onclick="doLogin()" id="btnLogin"><span id="btnLoginText">Login Pengurus</span></button>
+      <div class="login-switch" id="loginSwitch" onclick="switchRole('anggota')">← Kembali ke Login <span>Anggota</span></div>
+      <div class="login-info-box" id="infoBoxAnggota" style="display:none"><i class="fa fa-info-circle" style="color:#67e8f9"></i> <span style="font-size:11px;color:#64748b">Hubungi pengurus untuk akun pribadi</span></div>
     </div>
-
-    <div class="byline" >by Denny</div>
+    <div class="byline">by Denny</div>
   </div>
 </div>
-
-<!-- ======= DASHBOARD PAGE ======= -->
 <div id="dashboardPage">
-
-  <!-- TOP NAV -->
   <div class="topnav">
-    <div class="nav-user">
-      <div class="nav-avatar" id="navAvatar">K</div>
-      <div class="nav-info">
-        <small>Selamat datang,</small>
-        <strong id="navRole">Ketua PRM</strong>
-      </div>
-    </div>
-    <div class="nav-actions">
-      <div class="nav-btn" onclick="showNotif()">
-        <i class="fa fa-bell"></i>
-        <div class="notif-dot"></div>
-      </div>
-      <div class="nav-btn" onclick="doLogout()">
-        <i class="fa fa-sign-out-alt"></i>
-      </div>
-    </div>
+    <div class="nav-user"><div class="nav-avatar" id="navAvatar">K</div><div class="nav-info"><small>Selamat datang,</small><strong id="navRole">Ketua PRM</strong></div></div>
+    <div class="nav-actions"><div class="nav-btn" onclick="showNotif()"><i class="fa fa-bell"></i><div class="notif-dot"></div></div><div class="nav-btn" onclick="doLogout()"><i class="fa fa-sign-out-alt"></i></div></div>
   </div>
-
-  <!-- KAS BANNER -->
   <div class="kas-banner">
     <div class="kas-label">Kas Ranting Bulan Ini</div>
-    <div class="kas-amount">
-      <span id="kasTotal">Rp ••••••••</span>
-      <div class="kas-eye" onclick="toggleKas()"><i class="fa fa-eye" id="kasEyeIcon"></i></div>
-    </div>
-    <div class="kas-bottom">
-      <div>
-        <small>Pemasukan</small>
-        <p id="kasIn">Rp -</p>
-      </div>
-      <div style="text-align:right">
-        <small>Pengeluaran</small>
-        <p id="kasOut">Rp -</p>
-      </div>
-    </div>
+    <div class="kas-amount"><span id="kasTotal">Rp ••••••••</span><div class="kas-eye" onclick="toggleKas()"><i class="fa fa-eye" id="kasEyeIcon"></i></div></div>
+    <div class="kas-bottom"><div><small>Pemasukan</small><p id="kasIn">Rp -</p></div><div style="text-align:right"><small>Pengeluaran</small><p id="kasOut">Rp -</p></div></div>
   </div>
-
-  <!-- MAIN CONTENT -->
   <div class="main-content">
-
-    <!-- CONFIG SHEETS -->
-    <div class="sheets-config" id="sheetsConfig">
-      <i class="fa fa-table" style="color:var(--accent-green)"></i>
-      <strong>Google Sheets belum terhubung.</strong>
-      <a href="#" onclick="openSheetsSetup()" style="color:var(--accent-cyan);margin-left:4px;font-weight:700">Konfigurasi sekarang →</a>
-    </div>
-
-    <!-- STATS -->
+    <div class="sheets-config" id="sheetsConfig"><i class="fa fa-table" style="color:var(--accent-green)"></i><strong>Google Sheets belum terhubung.</strong><a href="#" onclick="openSheetsSetup()" style="color:var(--accent-cyan);margin-left:4px;font-weight:700">Konfigurasi sekarang →</a></div>
     <div class="stats-row" id="statsRow">
-      <div class="stat-card">
-        <div class="stat-num" style="color:var(--accent-cyan)" id="statTotal">-</div>
-        <div class="stat-lbl">Total Anggota</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num" style="color:var(--accent-green)" id="statAktif">-</div>
-        <div class="stat-lbl">Aktif</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num" style="color:var(--accent-red)" id="statTidak">-</div>
-        <div class="stat-lbl">Tidak Aktif</div>
-      </div>
+      <div class="stat-card"><div class="stat-num" style="color:var(--accent-cyan)" id="statTotal">-</div><div class="stat-lbl">Total Anggota</div></div>
+      <div class="stat-card"><div class="stat-num" style="color:var(--accent-green)" id="statAktif">-</div><div class="stat-lbl">Aktif</div></div>
+      <div class="stat-card"><div class="stat-num" style="color:var(--accent-red)" id="statTidak">-</div><div class="stat-lbl">Tidak Aktif</div></div>
     </div>
-
-    <!-- MENU UTAMA -->
     <p class="section-title">Menu Utama</p>
     <div class="menu-grid">
-      <div class="menu-item" onclick="openModal('modalAnggota')">
-        <div class="menu-icon icon-blue"><i class="fa fa-users"></i></div>
-        <span class="menu-label">Data Anggota</span>
-      </div>
-      <div class="menu-item" onclick="openModal('modalKas')">
-        <div class="menu-icon icon-teal"><i class="fa fa-wallet"></i></div>
-        <span class="menu-label">Kas Ranting</span>
-      </div>
-      <div class="menu-item" onclick="openModal('modalPertemuan')">
-        <div class="menu-icon icon-gold"><i class="fa fa-calendar-alt"></i></div>
-        <span class="menu-label">Pertemuan</span>
-      </div>
-      <div class="menu-item" onclick="openModal('modalSurat')">
-        <div class="menu-icon icon-purple"><i class="fa fa-file-alt"></i></div>
-        <span class="menu-label">Surat</span>
-      </div>
-      <div class="menu-item" onclick="openModal('modalLaporan')">
-        <div class="menu-icon icon-red"><i class="fa fa-chart-bar"></i></div>
-        <span class="menu-label">Laporan</span>
-      </div>
-      <div class="menu-item" onclick="openModal('modalNBM')">
-        <div class="menu-icon icon-cyan"><i class="fa fa-id-card"></i></div>
-        <span class="menu-label">NBM</span>
-      </div>
-	<div class="menu-item" onclick="openModal('modalAbsensi')">
-        <div class="menu-icon icon-red"><i class="fa fa-pen-to-square"></i></div>
-        <span class="menu-label">Absensi</span>
-      </div>
-      <div class="menu-item" onclick="openModal('modalQurban')">
-        <div class="menu-icon icon-cyan"><i class="fa fa-solid fa-cow"></i></div>
-        <span class="menu-label">Qurban</span>
-      </div>
-
+      <div class="menu-item" onclick="openModal('modalAnggota')"><div class="menu-icon icon-blue"><i class="fa fa-users"></i></div><span class="menu-label">Data Anggota</span></div>
+      <div class="menu-item" onclick="openModal('modalKas')"><div class="menu-icon icon-teal"><i class="fa fa-wallet"></i></div><span class="menu-label">Kas Ranting</span></div>
+      <div class="menu-item" onclick="openModal('modalPertemuan')"><div class="menu-icon icon-gold"><i class="fa fa-calendar-alt"></i></div><span class="menu-label">Pertemuan</span></div>
+      <div class="menu-item" onclick="openModal('modalSurat')"><div class="menu-icon icon-purple"><i class="fa fa-file-alt"></i></div><span class="menu-label">Surat</span></div>
+      <div class="menu-item" onclick="openModal('modalLaporan')"><div class="menu-icon icon-red"><i class="fa fa-chart-bar"></i></div><span class="menu-label">Laporan</span></div>
+      <div class="menu-item" onclick="openModal('modalNBM')"><div class="menu-icon icon-cyan"><i class="fa fa-id-card"></i></div><span class="menu-label">NBM</span></div>
+      <div class="menu-item" onclick="openModal('modalAbsensi')"><div class="menu-icon icon-red"><i class="fa fa-pen-to-square"></i></div><span class="menu-label">Absensi</span></div>
+      <div class="menu-item" onclick="openModal('modalQurban')"><div class="menu-icon icon-cyan"><i class="fa fa-solid fa-cow"></i></div><span class="menu-label">Qurban</span></div>
     </div>
-
-    <!-- SHORTCUTS -->
     <p class="section-title" style="margin-top:20px">Direktori & Dokumen</p>
     <div class="shortcut-grid">
-      <div class="shortcut-card" onclick="openModal('modalAnggota')">
-        <div class="shortcut-icon icon-blue"><i class="fa fa-address-book"></i></div>
-        <div class="shortcut-text">
-          <small>Direktori</small>
-          <strong>Data Anggota</strong>
-        </div>
-      </div>
-      <div class="shortcut-card" onclick="showToast('Membuka dokumen surat selesai...')">
-        <div class="shortcut-icon icon-purple"><i class="fa fa-check-circle"></i></div>
-        <div class="shortcut-text">
-          <small>Cek Dokumen</small>
-          <strong>Surat Selesai</strong>
-        </div>
-      </div>
+      <div class="shortcut-card" onclick="openModal('modalAnggota')"><div class="shortcut-icon icon-blue"><i class="fa fa-address-book"></i></div><div class="shortcut-text"><small>Direktori</small><strong>Data Anggota</strong></div></div>
+      <div class="shortcut-card" onclick="showToast('Membuka dokumen surat selesai...')"><div class="shortcut-icon icon-purple"><i class="fa fa-check-circle"></i></div><div class="shortcut-text"><small>Cek Dokumen</small><strong>Surat Selesai</strong></div></div>
     </div>
-
-    <!-- ADMIN MENU -->
     <div class="admin-section" id="adminSection">
-      <div class="admin-header" onclick="toggleAdmin()">
-        <span><i class="fa fa-shield-alt" style="margin-right:8px"></i>Menu Pengurus & Admin</span>
-        <i class="fa fa-chevron-up" id="adminChevron"></i>
-      </div>
+      <div class="admin-header" onclick="toggleAdmin()"><span><i class="fa fa-shield-alt" style="margin-right:8px"></i>Menu Pengurus & Admin</span><i class="fa fa-chevron-up" id="adminChevron"></i></div>
       <div id="adminGrid" class="admin-grid">
-        <div class="admin-btn" onclick="openModal('modalTambahAnggota')">
-          <i class="fa fa-user-plus" style="color:#60a5fa"></i>
-          <span>Tambah Anggota</span>
-        </div>
-        <div class="admin-btn" onclick="openModal('modalInputKas')">
-          <i class="fa fa-money-bill-wave" style="color:#2dd4bf"></i>
-          <span>Input Kas</span>
-        </div>
-        <div class="admin-btn" onclick="openModal('modalJadwal')">
-          <i class="fa fa-calendar-plus" style="color:#fbbf24"></i>
-          <span>Jadwal Pertemuan</span>
-        </div>
-        <div class="admin-btn" onclick="openModal('modalBuatSurat')">
-          <i class="fa fa-pen" style="color:#c084fc"></i>
-          <span>Buat Surat</span>
-        </div>
-        <div class="admin-btn" onclick="openModal('modalKirimLaporan')">
-          <i class="fa fa-paper-plane" style="color:#f87171"></i>
-          <span>Kirim Laporan</span>
-        </div>
-        <div class="admin-btn" onclick="openModal('modalProfil')">
-          <i class="fa fa-cog" style="color:#94a3b8"></i>
-          <span>Profil</span>
-        </div>
+        <div class="admin-btn" onclick="openModal('modalTambahAnggota')"><i class="fa fa-user-plus" style="color:#60a5fa"></i><span>Tambah Anggota</span></div>
+        <div class="admin-btn" onclick="openModal('modalInputKas')"><i class="fa fa-money-bill-wave" style="color:#2dd4bf"></i><span>Input Kas</span></div>
+        <div class="admin-btn" onclick="openModal('modalJadwal')"><i class="fa fa-calendar-plus" style="color:#fbbf24"></i><span>Jadwal Pertemuan</span></div>
+        <div class="admin-btn" onclick="openModal('modalBuatSurat')"><i class="fa fa-pen" style="color:#c084fc"></i><span>Buat Surat</span></div>
+        <div class="admin-btn" onclick="openModal('modalKirimLaporan')"><i class="fa fa-paper-plane" style="color:#f87171"></i><span>Kirim Laporan</span></div>
+        <div class="admin-btn" onclick="openModal('modalProfil')"><i class="fa fa-cog" style="color:#94a3b8"></i><span>Profil</span></div>
       </div>
     </div>
-
-    <!-- INFO TERBARU -->
     <p class="section-title">Info & Laporan Terbaru</p>
-    <div class="info-card" id="infoCard">
-      <div class="info-loading">
-        <div class="spinner"></div>
-        Memuat data...
-      </div>
-    </div>
-
-  </div><!-- end main-content -->
-
-  <!-- BOTTOM NAV -->
-  <div class="bottom-nav">
-    <div class="bnav-item active" onclick="setTab(0)">
-      <i class="fa fa-home"></i>
-      <span>Beranda</span>
-    </div>
-    <div class="bnav-item" onclick="setTab(1); openModal('modalKas')">
-      <i class="fa fa-wallet"></i>
-      <span>Kas</span>
-    </div>
-    <div class="bnav-item" onclick="setTab(2); openModal('modalAnggota')">
-      <div class="bnav-fab"><i class="fa fa-users"></i></div>
-      <span style="margin-top:6px">Anggota</span>
-    </div>
-    <div class="bnav-item" onclick="setTab(3); openModal('modalPertemuan')">
-      <i class="fa fa-calendar"></i>
-      <span>Jadwal</span>
-    </div>
-    <div class="bnav-item" onclick="setTab(4); openModal('modalProfil')">
-      <i class="fa fa-user"></i>
-      <span>Profil</span>
-    </div>
+    <div class="info-card" id="infoCard"><div class="info-loading"><div class="spinner"></div>Memuat data...</div></div>
   </div>
-
-</div><!-- end dashboardPage -->
-
-<!-- TOAST -->
+  <div class="bottom-nav">
+    <div class="bnav-item active" onclick="setTab(0)"><i class="fa fa-home"></i><span>Beranda</span></div>
+    <div class="bnav-item" onclick="setTab(1); openModal('modalKas')"><i class="fa fa-wallet"></i><span>Kas</span></div>
+    <div class="bnav-item" onclick="setTab(2); openModal('modalAnggota')"><div class="bnav-fab"><i class="fa fa-users"></i></div><span style="margin-top:6px">Anggota</span></div>
+    <div class="bnav-item" onclick="setTab(3); openModal('modalPertemuan')"><i class="fa fa-calendar"></i><span>Jadwal</span></div>
+    <div class="bnav-item" onclick="setTab(4); openModal('modalProfil')"><i class="fa fa-user"></i><span>Profil</span></div>
+  </div>
+</div>
 <div class="toast" id="toast"><i class="fa fa-check-circle"></i><span id="toastMsg"></span></div>
 
-<!-- ============ MODALS ============ -->
-
-<!-- MODAL: Google Sheets Setup -->
+<!-- MODAL SHEETS -->
 <div class="modal-overlay" id="modalSheets">
   <div class="modal-sheet">
     <div class="modal-handle"></div>
     <div class="modal-title"><i class="fa fa-table" style="color:var(--accent-green)"></i>Konfigurasi Google Sheets</div>
-    <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px;line-height:1.6">
-      Hubungkan dengan Google Sheets agar data anggota, kas, dan laporan tersimpan & terupdate otomatis. Ikuti langkah berikut:
-    </p>
+    <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px;line-height:1.6">Hubungkan dengan Google Sheets agar data anggota, kas, dan laporan tersimpan & terupdate otomatis. Ikuti langkah berikut:</p>
     <div class="sheets-config" style="margin-bottom:12px;font-size:12px;line-height:1.8">
       1. Buka <strong>Google Sheets</strong> → Buat spreadsheet baru<br>
       2. Klik <strong>Extensions → Apps Script</strong><br>
@@ -964,776 +708,277 @@ body {
       5. Salin URL di bawah ke kolom ini
     </div>
     <label class="form-label">URL Google Apps Script (Web App)</label>
-    <div class="form-group">
-      <i class="fa fa-link"></i>
-      <input type="url" class="form-control" id="sheetsUrl" placeholder="https://script.google.com/macros/s/...">
-    </div>
+    <div class="form-group"><i class="fa fa-link"></i><input type="url" class="form-control" id="sheetsUrl" placeholder="https://script.google.com/macros/s/..."></div>
     <label class="form-label">ID Spreadsheet</label>
-    <div class="form-group">
-      <i class="fa fa-key"></i>
-      <input type="text" class="form-control" id="sheetsId" placeholder="1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms">
-    </div>
+    <div class="form-group"><i class="fa fa-key"></i><input type="text" class="form-control" id="sheetsId" placeholder="1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms"></div>
     <button class="btn-primary" onclick="saveSheetsConfig()"><i class="fa fa-save"></i> Simpan & Hubungkan</button>
     <button class="btn-secondary" onclick="closeModal('modalSheets')">Tutup</button>
   </div>
 </div>
 
-<!-- MODAL: Data Anggota -->
+<!-- MODAL ANGGOTA (list) -->
 <div class="modal-overlay" id="modalAnggota">
   <div class="modal-sheet">
     <div class="modal-handle"></div>
     <div class="modal-title"><i class="fa fa-users" style="color:#60a5fa"></i>Data Anggota</div>
-    <div class="search-wrap">
-      <i class="fa fa-search"></i>
-      <input type="text" class="search-input" id="searchAnggota" placeholder="Cari nama anggota..." oninput="filterAnggota()">
-    </div>
+    <div class="search-wrap"><i class="fa fa-search"></i><input type="text" class="search-input" id="searchAnggota" placeholder="Cari nama anggota..." oninput="filterAnggota()"></div>
     <div style="overflow-x:auto">
-      <table class="data-table" id="tabelAnggota">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Nama</th>
-            <th>NBM</th>
-            <th>Jabatan</th>
-            <th>Keaktifan</th>
-            <th>Aksi</th>
-          </tr>
-        </thead>
-        <tbody id="bodyAnggota">
-          <tr><td colspan="6" style="text-align:center;color:var(--text-muted);padding:20px"><div class="spinner"></div><br>Memuat...</td></tr>
-        </tbody>
+      <table class="data-table">
+        <thead><tr><th>No</th><th>Nama</th><th>NBM</th><th>Jabatan</th><th>Keaktifan</th><th>Aksi</th></tr></thead>
+        <tbody id="bodyAnggota"><tr><td colspan="6" style="text-align:center;color:var(--text-muted);padding:20px"><div class="spinner"></div><br>Memuat...</td></tr></tbody>
       </table>
     </div>
-    <div style="display:flex;gap:8px;margin-top:16px">
-      <button class="btn-primary" style="flex:2" onclick="closeModal('modalAnggota'); openModal('modalTambahAnggota')"><i class="fa fa-plus"></i> Tambah Anggota</button>
-      <button class="btn-secondary" style="flex:1;margin-top:0" onclick="refreshData()"><i class="fa fa-sync-alt"></i> Refresh</button>
-    </div>
+    <div style="display:flex;gap:8px;margin-top:16px"><button class="btn-primary" style="flex:2" onclick="closeModal('modalAnggota'); openModal('modalTambahAnggota')"><i class="fa fa-plus"></i> Tambah Anggota</button><button class="btn-secondary" style="flex:1;margin-top:0" onclick="refreshData()"><i class="fa fa-sync-alt"></i> Refresh</button></div>
     <button class="btn-secondary" onclick="closeModal('modalAnggota')">Tutup</button>
   </div>
 </div>
 
-<!-- MODAL: Tambah Anggota -->
+<!-- MODAL TAMBAH/EDIT ANGGOTA -->
 <div class="modal-overlay" id="modalTambahAnggota">
   <div class="modal-sheet">
     <div class="modal-handle"></div>
     <div class="modal-title" id="titleFormAnggota"><i class="fa fa-user-plus" style="color:#60a5fa"></i>Tambah Anggota</div>
     <input type="hidden" id="f_editIndex" value="-1">
     <div class="form-row">
-      <div>
-        <label class="form-label">Nama Lengkap *</label>
-        <div class="form-group"><i class="fa fa-user"></i><input class="form-control" id="f_nama" placeholder="Nama lengkap"></div>
-      </div>
-      <div>
-        <label class="form-label">Nomor NBM</label>
-        <div class="form-group"><i class="fa fa-id-card"></i><input class="form-control" id="f_nbm" placeholder="Nomor NBM"></div>
-      </div>
+      <div><label class="form-label">Nama Lengkap *</label><div class="form-group"><i class="fa fa-user"></i><input class="form-control" id="f_nama" placeholder="Nama lengkap"></div></div>
+      <div><label class="form-label">Nomor NBM</label><div class="form-group"><i class="fa fa-id-card"></i><input class="form-control" id="f_nbm" placeholder="Nomor NBM"></div></div>
     </div>
-    <label class="form-label">NIK (KTP)</label>
-    <div class="form-group"><i class="fa fa-fingerprint"></i><input class="form-control" id="f_nik" placeholder="16 digit NIK"></div>
+    <label class="form-label">NIK (KTP)</label><div class="form-group"><i class="fa fa-fingerprint"></i><input class="form-control" id="f_nik" placeholder="16 digit NIK"></div>
     <div class="form-row">
-      <div>
-        <label class="form-label">Tempat Lahir</label>
-        <div class="form-group"><i class="fa fa-map-pin"></i><input class="form-control" id="f_ttl" placeholder="Kota"></div>
-      </div>
-      <div>
-        <label class="form-label">Tanggal Lahir</label>
-        <div class="form-group"><i class="fa fa-calendar"></i><input type="date" class="form-control" id="f_tgl"></div>
-      </div>
+      <div><label class="form-label">Tempat Lahir</label><div class="form-group"><i class="fa fa-map-pin"></i><input class="form-control" id="f_ttl" placeholder="Kota"></div></div>
+      <div><label class="form-label">Tanggal Lahir</label><div class="form-group"><i class="fa fa-calendar"></i><input type="date" class="form-control" id="f_tgl"></div></div>
     </div>
-    <label class="form-label">Alamat</label>
-    <div class="form-group"><i class="fa fa-home"></i><input class="form-control" id="f_alamat" placeholder="Alamat lengkap"></div>
+    <label class="form-label">Alamat</label><div class="form-group"><i class="fa fa-home"></i><input class="form-control" id="f_alamat" placeholder="Alamat lengkap"></div>
     <div class="form-row">
-      <div>
-        <label class="form-label">No. HP / WA</label>
-        <div class="form-group"><i class="fa fa-phone"></i><input class="form-control" id="f_hp" placeholder="08xxx"></div>
-      </div>
-      <div>
-        <label class="form-label">Jabatan</label>
-        <select class="form-select" id="f_jabatan">
-          <option>Ketua</option>
-          <option>Wakil Ketua</option>
-          <option>Sekretaris</option>
-          <option>Bendahara</option>
-          <option selected>Anggota</option>
-          <option>Bidang</option>
-        </select>
-      </div>
+      <div><label class="form-label">No. HP / WA</label><div class="form-group"><i class="fa fa-phone"></i><input class="form-control" id="f_hp" placeholder="08xxx"></div></div>
+      <div><label class="form-label">Jabatan</label><select class="form-select" id="f_jabatan"><option>Ketua</option><option>Wakil Ketua</option><option>Sekretaris</option><option>Bendahara</option><option selected>Anggota</option><option>Bidang</option></select></div>
     </div>
     <div class="form-row">
-      <div>
-        <label class="form-label">Pendidikan Terakhir</label>
-        <select class="form-select" id="f_pendidikan">
-          <option>SD</option>
-          <option>SMP</option>
-          <option selected>SMA/SMK</option>
-          <option>D3</option>
-          <option>S1</option>
-          <option>S2/S3</option>
-        </select>
-      </div>
-      <div>
-        <label class="form-label">Pekerjaan</label>
-        <div class="form-group"><i class="fa fa-briefcase"></i><input class="form-control" id="f_pekerjaan" placeholder="Pekerjaan"></div>
-      </div>
+      <div><label class="form-label">Pendidikan Terakhir</label><select class="form-select" id="f_pendidikan"><option>SD</option><option>SMP</option><option selected>SMA/SMK</option><option>D3</option><option>S1</option><option>S2/S3</option></select></div>
+      <div><label class="form-label">Pekerjaan</label><div class="form-group"><i class="fa fa-briefcase"></i><input class="form-control" id="f_pekerjaan" placeholder="Pekerjaan"></div></div>
     </div>
     <div class="form-row">
-      <div>
-        <label class="form-label">Keaktifan</label>
-        <select class="form-select" id="f_keaktifan">
-          <option>Aktif</option>
-          <option>Kurang Aktif</option>
-          <option>Tidak Aktif</option>
-        </select>
-      </div>
-      <div>
-        <label class="form-label">Status Iuran</label>
-        <select class="form-select" id="f_iuran">
-          <option>Lunas</option>
-          <option>Tunggak 1 Bulan</option>
-          <option>Tunggak 2 Bulan</option>
-          <option>Tunggak 3+ Bulan</option>
-        </select>
-      </div>
+      <div><label class="form-label">Keaktifan</label><select class="form-select" id="f_keaktifan"><option>Aktif</option><option>Kurang Aktif</option><option>Tidak Aktif</option></select></div>
+      <div><label class="form-label">Status Iuran</label><select class="form-select" id="f_iuran"><option>Lunas</option><option>Tunggak 1 Bulan</option><option>Tunggak 2 Bulan</option><option>Tunggak 3+ Bulan</option></select></div>
     </div>
-    <label class="form-label">Catatan</label>
-    <div class="form-group"><i class="fa fa-sticky-note"></i><input class="form-control" id="f_catatan" placeholder="Catatan tambahan (opsional)"></div>
+    <label class="form-label">Catatan</label><div class="form-group"><i class="fa fa-sticky-note"></i><input class="form-control" id="f_catatan" placeholder="Catatan tambahan (opsional)"></div>
     <button class="btn-primary" id="btnSimpanAnggota" onclick="simpanAnggota()"><i class="fa fa-save"></i> Simpan ke Google Sheets</button>
     <button class="btn-secondary" onclick="closeModal('modalTambahAnggota'); resetFormAnggota()">Batal</button>
   </div>
 </div>
 
-<!-- MODAL: Konfirmasi Hapus Anggota -->
+<!-- MODAL HAPUS ANGGOTA -->
 <div class="modal-overlay" id="modalHapusAnggota">
   <div class="modal-sheet" style="max-height:300px">
     <div class="modal-handle"></div>
     <div class="modal-title" style="color:var(--accent-red)"><i class="fa fa-trash-alt"></i> Hapus Anggota</div>
     <p style="font-size:14px;color:var(--text-secondary);margin-bottom:8px">Yakin ingin menghapus anggota:</p>
     <p style="font-size:16px;font-weight:800;color:var(--text-primary);margin-bottom:20px" id="namaHapus">-</p>
-    <p style="font-size:12px;color:var(--accent-gold);background:rgba(245,158,11,0.1);border-radius:8px;padding:10px;margin-bottom:16px">
-      <i class="fa fa-exclamation-triangle"></i> Data akan dihapus dari Google Sheets dan tidak bisa dikembalikan.
-    </p>
-    <div style="display:flex;gap:8px">
-      <button class="btn-secondary" style="flex:1;margin-top:0" onclick="closeModal('modalHapusAnggota')">Batal</button>
-      <button style="flex:1;padding:13px;background:var(--accent-red);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:800;font-family:Nunito,sans-serif;cursor:pointer" onclick="konfirmasiHapus()">
-        <i class="fa fa-trash-alt"></i> Ya, Hapus
-      </button>
-    </div>
+    <p style="font-size:12px;color:var(--accent-gold);background:rgba(245,158,11,0.1);border-radius:8px;padding:10px;margin-bottom:16px"><i class="fa fa-exclamation-triangle"></i> Data akan dihapus dari Google Sheets dan tidak bisa dikembalikan.</p>
+    <div style="display:flex;gap:8px"><button class="btn-secondary" style="flex:1;margin-top:0" onclick="closeModal('modalHapusAnggota')">Batal</button><button style="flex:1;padding:13px;background:var(--accent-red);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:800;font-family:Nunito,sans-serif;cursor:pointer" onclick="konfirmasiHapus()"><i class="fa fa-trash-alt"></i> Ya, Hapus</button></div>
   </div>
 </div>
 
-<!-- MODAL: Kas -->
+<!-- MODAL KAS -->
 <div class="modal-overlay" id="modalKas">
   <div class="modal-sheet">
     <div class="modal-handle"></div>
     <div class="modal-title"><i class="fa fa-wallet" style="color:#2dd4bf"></i>Kas Ranting</div>
-    <div class="stats-row">
-      <div class="stat-card"><div class="stat-num" style="color:var(--accent-cyan)" id="kasSaldo">Rp 0</div><div class="stat-lbl">Saldo</div></div>
-      <div class="stat-card"><div class="stat-num" style="color:var(--accent-green)" id="kasTotalIn">Rp 0</div><div class="stat-lbl">Pemasukan</div></div>
-      <div class="stat-card"><div class="stat-num" style="color:var(--accent-red)" id="kasTotalOut">Rp 0</div><div class="stat-lbl">Pengeluaran</div></div>
-    </div>
-    <div style="overflow-x:auto">
-      <table class="data-table">
-        <thead><tr><th>Tgl</th><th>Keterangan</th><th>Jenis</th><th>Jumlah</th></tr></thead>
-        <tbody id="bodyKas">
-          <tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:20px">Belum ada data kas</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <button class="btn-primary" onclick="closeModal('modalKas'); openModal('modalInputKas')"><i class="fa fa-plus"></i> Input Kas Baru</button>
-    <button class="btn-secondary" onclick="closeModal('modalKas')">Tutup</button>
+    <div class="stats-row"><div class="stat-card"><div class="stat-num" style="color:var(--accent-cyan)" id="kasSaldo">Rp 0</div><div class="stat-lbl">Saldo</div></div><div class="stat-card"><div class="stat-num" style="color:var(--accent-green)" id="kasTotalIn">Rp 0</div><div class="stat-lbl">Pemasukan</div></div><div class="stat-card"><div class="stat-num" style="color:var(--accent-red)" id="kasTotalOut">Rp 0</div><div class="stat-lbl">Pengeluaran</div></div></div>
+    <div style="overflow-x:auto"><table class="data-table"><thead><tr><th>Tgl</th><th>Keterangan</th><th>Jenis</th><th>Jumlah</th></tr></thead><tbody id="bodyKas"><tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:20px">Belum ada data kas</td></tr></tbody></table></div>
+    <button class="btn-primary" onclick="closeModal('modalKas'); openModal('modalInputKas')"><i class="fa fa-plus"></i> Input Kas Baru</button><button class="btn-secondary" onclick="closeModal('modalKas')">Tutup</button>
   </div>
 </div>
 
-<!-- MODAL: Input Kas -->
+<!-- MODAL INPUT KAS -->
 <div class="modal-overlay" id="modalInputKas">
   <div class="modal-sheet">
     <div class="modal-handle"></div>
     <div class="modal-title"><i class="fa fa-money-bill-wave" style="color:#2dd4bf"></i>Input Kas</div>
-    <div class="form-row">
-      <div>
-        <label class="form-label">Tanggal</label>
-        <div class="form-group"><i class="fa fa-calendar"></i><input type="date" class="form-control" id="k_tgl"></div>
-      </div>
-      <div>
-        <label class="form-label">Jenis</label>
-        <select class="form-select" id="k_jenis">
-          <option value="masuk">Pemasukan</option>
-          <option value="keluar">Pengeluaran</option>
-        </select>
-      </div>
-    </div>
-    <label class="form-label">Kategori</label>
-    <select class="form-select" id="k_kategori" style="margin-bottom:12px">
-      <option>Iuran Anggota</option>
-      <option>Infaq</option>
-      <option>Donasi</option>
-      <option>Operasional</option>
-      <option>Konsumsi</option>
-      <option>Sosial</option>
-      <option>Lain-lain</option>
-    </select>
-    <label class="form-label">Keterangan</label>
-    <div class="form-group"><i class="fa fa-align-left"></i><input class="form-control" id="k_ket" placeholder="Keterangan transaksi"></div>
-    <label class="form-label">Jumlah (Rp)</label>
-    <div class="form-group"><i class="fa fa-rupiah-sign"></i><input type="number" class="form-control" id="k_jumlah" placeholder="0"></div>
-    <label class="form-label">Sumber/Penerima</label>
-    <div class="form-group"><i class="fa fa-user"></i><input class="form-control" id="k_sumber" placeholder="Nama sumber atau penerima dana"></div>
-    <button class="btn-primary" onclick="simpanKas()"><i class="fa fa-save"></i> Simpan Transaksi</button>
-    <button class="btn-secondary" onclick="closeModal('modalInputKas')">Batal</button>
+    <div class="form-row"><div><label class="form-label">Tanggal</label><div class="form-group"><i class="fa fa-calendar"></i><input type="date" class="form-control" id="k_tgl"></div></div><div><label class="form-label">Jenis</label><select class="form-select" id="k_jenis"><option value="masuk">Pemasukan</option><option value="keluar">Pengeluaran</option></select></div></div>
+    <label class="form-label">Kategori</label><select class="form-select" id="k_kategori" style="margin-bottom:12px"><option>Iuran Anggota</option><option>Infaq</option><option>Donasi</option><option>Operasional</option><option>Konsumsi</option><option>Sosial</option><option>Lain-lain</option></select>
+    <label class="form-label">Keterangan</label><div class="form-group"><i class="fa fa-align-left"></i><input class="form-control" id="k_ket" placeholder="Keterangan transaksi"></div>
+    <label class="form-label">Jumlah (Rp)</label><div class="form-group"><i class="fa fa-rupiah-sign"></i><input type="number" class="form-control" id="k_jumlah" placeholder="0"></div>
+    <label class="form-label">Sumber/Penerima</label><div class="form-group"><i class="fa fa-user"></i><input class="form-control" id="k_sumber" placeholder="Nama sumber atau penerima dana"></div>
+    <button class="btn-primary" onclick="simpanKas()"><i class="fa fa-save"></i> Simpan Transaksi</button><button class="btn-secondary" onclick="closeModal('modalInputKas')">Batal</button>
   </div>
 </div>
 
-<!-- MODAL: Pertemuan -->
+<!-- MODAL PERTEMUAN (list) -->
 <div class="modal-overlay" id="modalPertemuan">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
-    <div class="modal-title"><i class="fa fa-calendar-alt" style="color:#fbbf24"></i>Jadwal Pertemuan</div>
-    <div id="listPertemuan" style="margin-bottom:12px">
-      <div style="text-align:center;color:var(--text-muted);padding:20px">Belum ada jadwal</div>
-    </div>
-    <button class="btn-primary" onclick="closeModal('modalPertemuan'); openModal('modalJadwal')"><i class="fa fa-plus"></i> Tambah Jadwal</button>
-    <button class="btn-secondary" onclick="closeModal('modalPertemuan')">Tutup</button>
-  </div>
+  <div class="modal-sheet"><div class="modal-handle"></div><div class="modal-title"><i class="fa fa-calendar-alt" style="color:#fbbf24"></i>Jadwal Pertemuan</div><div id="listPertemuan" style="margin-bottom:12px"><div style="text-align:center;color:var(--text-muted);padding:20px">Belum ada jadwal</div></div><button class="btn-primary" onclick="closeModal('modalPertemuan'); openModal('modalJadwal')"><i class="fa fa-plus"></i> Tambah Jadwal</button><button class="btn-secondary" onclick="closeModal('modalPertemuan')">Tutup</button></div>
 </div>
 
-<!-- MODAL: Tambah Jadwal -->
+<!-- MODAL JADWAL -->
 <div class="modal-overlay" id="modalJadwal">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
-    <div class="modal-title"><i class="fa fa-calendar-plus" style="color:#fbbf24"></i>Jadwal Pertemuan</div>
-    <label class="form-label">Nama Pertemuan</label>
-    <div class="form-group"><i class="fa fa-tag"></i><input class="form-control" id="j_nama" placeholder="Contoh: Rapat Bulanan"></div>
-    <div class="form-row">
-      <div>
-        <label class="form-label">Tanggal</label>
-        <div class="form-group"><i class="fa fa-calendar"></i><input type="date" class="form-control" id="j_tgl"></div>
-      </div>
-      <div>
-        <label class="form-label">Waktu</label>
-        <div class="form-group"><i class="fa fa-clock"></i><input type="time" class="form-control" id="j_waktu"></div>
-      </div>
-    </div>
-    <label class="form-label">Lokasi</label>
-    <div class="form-group"><i class="fa fa-map-marker-alt"></i><input class="form-control" id="j_lokasi" placeholder="Tempat pertemuan"></div>
-    <label class="form-label">Agenda</label>
-    <div class="form-group"><i class="fa fa-list"></i><input class="form-control" id="j_agenda" placeholder="Agenda pertemuan"></div>
-    <label class="form-label">Jenis Pertemuan</label>
-    <select class="form-select" id="j_jenis" style="margin-bottom:12px">
-      <option>Rapat Rutin</option>
-      <option>Rapat Khusus</option>
-      <option>Pengajian</option>
-      <option>Bakti Sosial</option>
-      <option>Lain-lain</option>
-    </select>
-    <button class="btn-primary" onclick="simpanJadwal()"><i class="fa fa-save"></i> Simpan Jadwal</button>
-    <button class="btn-secondary" onclick="closeModal('modalJadwal')">Batal</button>
+  <div class="modal-sheet"><div class="modal-handle"></div><div class="modal-title"><i class="fa fa-calendar-plus" style="color:#fbbf24"></i>Jadwal Pertemuan</div>
+    <label class="form-label">Nama Pertemuan</label><div class="form-group"><i class="fa fa-tag"></i><input class="form-control" id="j_nama" placeholder="Contoh: Rapat Bulanan"></div>
+    <div class="form-row"><div><label class="form-label">Tanggal</label><div class="form-group"><i class="fa fa-calendar"></i><input type="date" class="form-control" id="j_tgl"></div></div><div><label class="form-label">Waktu</label><div class="form-group"><i class="fa fa-clock"></i><input type="time" class="form-control" id="j_waktu"></div></div></div>
+    <label class="form-label">Lokasi</label><div class="form-group"><i class="fa fa-map-marker-alt"></i><input class="form-control" id="j_lokasi" placeholder="Tempat pertemuan"></div>
+    <label class="form-label">Agenda</label><div class="form-group"><i class="fa fa-list"></i><input class="form-control" id="j_agenda" placeholder="Agenda pertemuan"></div>
+    <label class="form-label">Jenis Pertemuan</label><select class="form-select" id="j_jenis" style="margin-bottom:12px"><option>Rapat Rutin</option><option>Rapat Khusus</option><option>Pengajian</option><option>Bakti Sosial</option><option>Lain-lain</option></select>
+    <button class="btn-primary" onclick="simpanJadwal()"><i class="fa fa-save"></i> Simpan Jadwal</button><button class="btn-secondary" onclick="closeModal('modalJadwal')">Batal</button>
   </div>
 </div>
 
-<!-- MODAL: Surat -->
+<!-- MODAL SURAT (list) -->
 <div class="modal-overlay" id="modalSurat">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
-    <div class="modal-title"><i class="fa fa-file-alt" style="color:#c084fc"></i>Daftar Surat</div>
-    <div id="listSurat" style="margin-bottom:12px">
-      <div style="text-align:center;color:var(--text-muted);padding:20px">Belum ada surat</div>
-    </div>
-    <button class="btn-primary" onclick="closeModal('modalSurat'); openModal('modalBuatSurat')"><i class="fa fa-plus"></i> Buat Surat Baru</button>
-    <button class="btn-secondary" onclick="closeModal('modalSurat')">Tutup</button>
-  </div>
+  <div class="modal-sheet"><div class="modal-handle"></div><div class="modal-title"><i class="fa fa-file-alt" style="color:#c084fc"></i>Daftar Surat</div><div id="listSurat" style="margin-bottom:12px"><div style="text-align:center;color:var(--text-muted);padding:20px">Belum ada surat</div></div><button class="btn-primary" onclick="closeModal('modalSurat'); openModal('modalBuatSurat')"><i class="fa fa-plus"></i> Buat Surat Baru</button><button class="btn-secondary" onclick="closeModal('modalSurat')">Tutup</button></div>
 </div>
 
-<!-- MODAL: Buat Surat -->
+<!-- MODAL BUAT SURAT -->
 <div class="modal-overlay" id="modalBuatSurat">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
-    <div class="modal-title"><i class="fa fa-pen" style="color:#c084fc"></i>Buat Surat</div>
-    <div class="form-row">
-      <div>
-        <label class="form-label">No. Surat</label>
-        <div class="form-group"><i class="fa fa-hashtag"></i><input class="form-control" id="s_no" placeholder="001/PRM-NGS/I/2025"></div>
-      </div>
-      <div>
-        <label class="form-label">Tanggal</label>
-        <div class="form-group"><i class="fa fa-calendar"></i><input type="date" class="form-control" id="s_tgl"></div>
-      </div>
-    </div>
-    <label class="form-label">Jenis Surat</label>
-    <select class="form-select" id="s_jenis" style="margin-bottom:12px">
-      <option>Undangan</option>
-      <option>Pemberitahuan</option>
-      <option>Keterangan</option>
-      <option>Permohonan</option>
-      <option>Rekomendasi</option>
-      <option>Lain-lain</option>
-    </select>
-    <label class="form-label">Perihal</label>
-    <div class="form-group"><i class="fa fa-heading"></i><input class="form-control" id="s_perihal" placeholder="Perihal surat"></div>
-    <label class="form-label">Kepada</label>
-    <div class="form-group"><i class="fa fa-user"></i><input class="form-control" id="s_kepada" placeholder="Nama/Instansi penerima"></div>
-    <label class="form-label">Isi Singkat</label>
-    <div class="form-group"><i class="fa fa-align-left"></i><input class="form-control" id="s_isi" placeholder="Ringkasan isi surat"></div>
-    <label class="form-label">Status</label>
-    <select class="form-select" id="s_status" style="margin-bottom:12px">
-      <option>Draft</option>
-      <option>Selesai</option>
-      <option>Terkirim</option>
-    </select>
-    <button class="btn-primary" onclick="simpanSurat()"><i class="fa fa-save"></i> Simpan Surat</button>
-    <button class="btn-secondary" onclick="closeModal('modalBuatSurat')">Batal</button>
+  <div class="modal-sheet"><div class="modal-handle"></div><div class="modal-title"><i class="fa fa-pen" style="color:#c084fc"></i>Buat Surat</div>
+    <div class="form-row"><div><label class="form-label">No. Surat</label><div class="form-group"><i class="fa fa-hashtag"></i><input class="form-control" id="s_no" placeholder="001/PRM-NGS/I/2025"></div></div><div><label class="form-label">Tanggal</label><div class="form-group"><i class="fa fa-calendar"></i><input type="date" class="form-control" id="s_tgl"></div></div></div>
+    <label class="form-label">Jenis Surat</label><select class="form-select" id="s_jenis" style="margin-bottom:12px"><option>Undangan</option><option>Pemberitahuan</option><option>Keterangan</option><option>Permohonan</option><option>Rekomendasi</option><option>Lain-lain</option></select>
+    <label class="form-label">Perihal</label><div class="form-group"><i class="fa fa-heading"></i><input class="form-control" id="s_perihal" placeholder="Perihal surat"></div>
+    <label class="form-label">Kepada</label><div class="form-group"><i class="fa fa-user"></i><input class="form-control" id="s_kepada" placeholder="Nama/Instansi penerima"></div>
+    <label class="form-label">Isi Singkat</label><div class="form-group"><i class="fa fa-align-left"></i><input class="form-control" id="s_isi" placeholder="Ringkasan isi surat"></div>
+    <label class="form-label">Status</label><select class="form-select" id="s_status" style="margin-bottom:12px"><option>Draft</option><option>Selesai</option><option>Terkirim</option></select>
+    <button class="btn-primary" onclick="simpanSurat()"><i class="fa fa-save"></i> Simpan Surat</button><button class="btn-secondary" onclick="closeModal('modalBuatSurat')">Batal</button>
   </div>
 </div>
 
-<!-- MODAL: Laporan -->
+<!-- MODAL LAPORAN -->
 <div class="modal-overlay" id="modalLaporan">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
-    <div class="modal-title"><i class="fa fa-chart-bar" style="color:#f87171"></i>Laporan</div>
+  <div class="modal-sheet"><div class="modal-handle"></div><div class="modal-title"><i class="fa fa-chart-bar" style="color:#f87171"></i>Laporan</div>
     <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px">Ringkasan data PRM Ngasinan</p>
-    <div id="isiLaporan">
-      <div class="info-card" style="margin-bottom:10px">
-        <div style="font-size:12px;color:var(--text-muted);margin-bottom:4px">Total Anggota</div>
-        <div style="font-size:20px;font-weight:800;color:var(--accent-cyan)" id="lap_anggota">-</div>
-      </div>
-      <div class="info-card" style="margin-bottom:10px">
-        <div style="font-size:12px;color:var(--text-muted);margin-bottom:4px">Kas Bulan Ini</div>
-        <div style="font-size:20px;font-weight:800;color:var(--accent-green)" id="lap_kas">-</div>
-      </div>
-      <div class="info-card">
-        <div style="font-size:12px;color:var(--text-muted);margin-bottom:4px">Pertemuan Bulan Ini</div>
-        <div style="font-size:20px;font-weight:800;color:var(--accent-gold)" id="lap_pertemuan">-</div>
-      </div>
-    </div>
-    <button class="btn-primary" onclick="closeModal('modalLaporan'); openModal('modalKirimLaporan')"><i class="fa fa-paper-plane"></i> Kirim Laporan</button>
-    <button class="btn-secondary" onclick="closeModal('modalLaporan')">Tutup</button>
+    <div id="isiLaporan"><div class="info-card" style="margin-bottom:10px"><div style="font-size:12px;color:var(--text-muted);margin-bottom:4px">Total Anggota</div><div style="font-size:20px;font-weight:800;color:var(--accent-cyan)" id="lap_anggota">-</div></div><div class="info-card" style="margin-bottom:10px"><div style="font-size:12px;color:var(--text-muted);margin-bottom:4px">Kas Bulan Ini</div><div style="font-size:20px;font-weight:800;color:var(--accent-green)" id="lap_kas">-</div></div><div class="info-card"><div style="font-size:12px;color:var(--text-muted);margin-bottom:4px">Pertemuan Bulan Ini</div><div style="font-size:20px;font-weight:800;color:var(--accent-gold)" id="lap_pertemuan">-</div></div></div>
+    <button class="btn-primary" onclick="closeModal('modalLaporan'); openModal('modalKirimLaporan')"><i class="fa fa-paper-plane"></i> Kirim Laporan</button><button class="btn-secondary" onclick="closeModal('modalLaporan')">Tutup</button>
   </div>
 </div>
 
-<!-- MODAL: Kirim Laporan -->
+<!-- MODAL KIRIM LAPORAN -->
 <div class="modal-overlay" id="modalKirimLaporan">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
-    <div class="modal-title"><i class="fa fa-paper-plane" style="color:#f87171"></i>Kirim Laporan</div>
-    <div class="form-row">
-      <div>
-        <label class="form-label">Bulan</label>
-        <select class="form-select" id="lr_bulan">
-          <option>Januari</option><option>Februari</option><option>Maret</option>
-          <option>April</option><option>Mei</option><option>Juni</option>
-          <option>Juli</option><option>Agustus</option><option>September</option>
-          <option>Oktober</option><option>November</option><option>Desember</option>
-        </select>
-      </div>
-      <div>
-        <label class="form-label">Tahun</label>
-        <div class="form-group"><i class="fa fa-calendar"></i><input type="number" class="form-control" id="lr_tahun" value="2025"></div>
-      </div>
-    </div>
-    <label class="form-label">Kirim ke (Email/WA)</label>
-    <div class="form-group"><i class="fa fa-envelope"></i><input class="form-control" id="lr_tujuan" placeholder="Email pimpinan cabang"></div>
-    <label class="form-label">Catatan Laporan</label>
-    <div class="form-group"><i class="fa fa-sticky-note"></i><input class="form-control" id="lr_catatan" placeholder="Catatan tambahan..."></div>
-    <button class="btn-primary" onclick="kirimLaporan()"><i class="fa fa-paper-plane"></i> Kirim Laporan</button>
-    <button class="btn-secondary" onclick="closeModal('modalKirimLaporan')">Batal</button>
+  <div class="modal-sheet"><div class="modal-handle"></div><div class="modal-title"><i class="fa fa-paper-plane" style="color:#f87171"></i>Kirim Laporan</div>
+    <div class="form-row"><div><label class="form-label">Bulan</label><select class="form-select" id="lr_bulan"><option>Januari</option><option>Februari</option><option>Maret</option><option>April</option><option>Mei</option><option>Juni</option><option>Juli</option><option>Agustus</option><option>September</option><option>Oktober</option><option>November</option><option>Desember</option></select></div><div><label class="form-label">Tahun</label><div class="form-group"><i class="fa fa-calendar"></i><input type="number" class="form-control" id="lr_tahun" value="2025"></div></div></div>
+    <label class="form-label">Kirim ke (Email/WA)</label><div class="form-group"><i class="fa fa-envelope"></i><input class="form-control" id="lr_tujuan" placeholder="Email pimpinan cabang"></div>
+    <label class="form-label">Catatan Laporan</label><div class="form-group"><i class="fa fa-sticky-note"></i><input class="form-control" id="lr_catatan" placeholder="Catatan tambahan..."></div>
+    <button class="btn-primary" onclick="kirimLaporan()"><i class="fa fa-paper-plane"></i> Kirim Laporan</button><button class="btn-secondary" onclick="closeModal('modalKirimLaporan')">Batal</button>
   </div>
 </div>
 
-<!-- MODAL: NBM -->
+<!-- MODAL NBM -->
 <div class="modal-overlay" id="modalNBM">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
-    <div class="modal-title"><i class="fa fa-id-card" style="color:#67e8f9"></i>Nomor Baku Muhammadiyah (NBM)</div>
-    <div class="search-wrap">
-      <i class="fa fa-search"></i>
-      <input type="text" class="search-input" placeholder="Cari berdasarkan nama atau NBM..." oninput="filterNBM(this.value)">
-    </div>
-    <div id="listNBM">
-      <div style="text-align:center;color:var(--text-muted);padding:20px">Memuat data NBM...</div>
-    </div>
-    <button class="btn-secondary" onclick="closeModal('modalNBM')">Tutup</button>
-  </div>
+  <div class="modal-sheet"><div class="modal-handle"></div><div class="modal-title"><i class="fa fa-id-card" style="color:#67e8f9"></i>Nomor Baku Muhammadiyah (NBM)</div><div class="search-wrap"><i class="fa fa-search"></i><input type="text" class="search-input" placeholder="Cari berdasarkan nama atau NBM..." oninput="filterNBM(this.value)"></div><div id="listNBM"><div style="text-align:center;color:var(--text-muted);padding:20px">Memuat data NBM...</div></div><button class="btn-secondary" onclick="closeModal('modalNBM')">Tutup</button></div>
 </div>
 
-<!-- MODAL: Absensi -->
+<!-- MODAL ABSENSI (pilih tahun) -->
 <div class="modal-overlay" id="modalAbsensi">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
-    <div class="modal-title"><i class="fa fa-clipboard-check" style="color:#fbbf24"></i>Absensi Pertemuan</div>
+  <div class="modal-sheet"><div class="modal-handle"></div><div class="modal-title"><i class="fa fa-clipboard-check" style="color:#fbbf24"></i>Absensi Pertemuan</div>
     <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px">Pilih tahun absensi:</p>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px">
-      <div class="shortcut-card" onclick="pilihTahunAbsensi(2025)" style="justify-content:center;flex-direction:column;text-align:center;padding:20px 12px">
-        <i class="fa fa-calendar-alt" style="font-size:28px;color:#fbbf24;margin-bottom:8px"></i>
-        <strong style="font-size:15px">Absensi 2025</strong>
-      </div>
-      <div class="shortcut-card" onclick="pilihTahunAbsensi(2026)" style="justify-content:center;flex-direction:column;text-align:center;padding:20px 12px">
-        <i class="fa fa-calendar-alt" style="font-size:28px;color:#fbbf24;margin-bottom:8px"></i>
-        <strong style="font-size:15px">Absensi 2026</strong>
-      </div>
+      <div class="shortcut-card" onclick="pilihTahunAbsensi(2025)" style="justify-content:center;flex-direction:column;text-align:center;padding:20px 12px"><i class="fa fa-calendar-alt" style="font-size:28px;color:#fbbf24;margin-bottom:8px"></i><strong style="font-size:15px">Absensi 2025</strong></div>
+      <div class="shortcut-card" onclick="pilihTahunAbsensi(2026)" style="justify-content:center;flex-direction:column;text-align:center;padding:20px 12px"><i class="fa fa-calendar-alt" style="font-size:28px;color:#fbbf24;margin-bottom:8px"></i><strong style="font-size:15px">Absensi 2026</strong></div>
     </div>
     <button class="btn-secondary" onclick="closeModal('modalAbsensi')">Tutup</button>
   </div>
 </div>
 
-<!-- MODAL: Absensi Bulan -->
+<!-- MODAL ABSENSI BULAN (grid bulan) -->
 <div class="modal-overlay" id="modalAbsensiBulan">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
-    <div class="modal-title" id="titleAbsensiBulan"><i class="fa fa-calendar" style="color:#fbbf24"></i>Pilih Bulan</div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px" id="gridBulanAbsensi"></div>
-    <button class="btn-secondary" onclick="closeModal('modalAbsensiBulan'); openModal('modalAbsensi')">← Kembali</button>
-  </div>
+  <div class="modal-sheet"><div class="modal-handle"></div><div class="modal-title" id="titleAbsensiBulan"><i class="fa fa-calendar" style="color:#fbbf24"></i>Pilih Bulan</div><div id="gridBulanAbsensi" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px"></div><button class="btn-secondary" onclick="closeModal('modalAbsensiBulan'); openModal('modalAbsensi')">← Kembali</button></div>
 </div>
 
-<!-- MODAL: Tabel Absensi -->
+<!-- MODAL TABEL ABSENSI (daftar anggota + status) -->
 <div class="modal-overlay" id="modalTabelAbsensi">
-  <div class="modal-sheet" style="padding-bottom:24px">
-    <div class="modal-handle"></div>
-    <div class="modal-title" id="titleTabelAbsensi"><i class="fa fa-clipboard-list" style="color:#fbbf24"></i>Daftar Absensi</div>
+  <div class="modal-sheet" style="padding-bottom:24px"><div class="modal-handle"></div><div class="modal-title" id="titleTabelAbsensi"><i class="fa fa-clipboard-list" style="color:#fbbf24"></i>Daftar Absensi</div>
     <div id="absensiStats" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px">
-      <div style="background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.25);border-radius:10px;padding:10px;text-align:center">
-        <div style="font-size:20px;font-weight:800;color:#22c55e" id="statHadir">0</div>
-        <div style="font-size:10px;color:var(--text-muted);font-weight:700;margin-top:2px">HADIR</div>
-      </div>
-      <div style="background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.25);border-radius:10px;padding:10px;text-align:center">
-        <div style="font-size:20px;font-weight:800;color:#ef4444" id="statTidakHadir">0</div>
-        <div style="font-size:10px;color:var(--text-muted);font-weight:700;margin-top:2px">TDK HADIR</div>
-      </div>
-      <div style="background:rgba(148,163,184,0.1);border:1px solid rgba(148,163,184,0.2);border-radius:10px;padding:10px;text-align:center">
-        <div style="font-size:20px;font-weight:800;color:var(--text-secondary)" id="statBelum">0</div>
-        <div style="font-size:10px;color:var(--text-muted);font-weight:700;margin-top:2px">BELUM</div>
-      </div>
+      <div style="background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.25);border-radius:10px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:800;color:#22c55e" id="statHadir">0</div><div style="font-size:10px;color:var(--text-muted);font-weight:700;margin-top:2px">HADIR</div></div>
+      <div style="background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.25);border-radius:10px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:800;color:#ef4444" id="statTidakHadir">0</div><div style="font-size:10px;color:var(--text-muted);font-weight:700;margin-top:2px">TDK HADIR</div></div>
+      <div style="background:rgba(148,163,184,0.1);border:1px solid rgba(148,163,184,0.2);border-radius:10px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:800;color:var(--text-secondary)" id="statBelum">0</div><div style="font-size:10px;color:var(--text-muted);font-weight:700;margin-top:2px">BELUM</div></div>
     </div>
-    <div style="display:flex;gap:8px;margin-bottom:14px">
-      <button onclick="tambahAnggotaKeAbsensi()" style="flex:1;padding:10px;background:rgba(0,212,255,0.12);border:1px solid rgba(0,212,255,0.3);border-radius:10px;color:#67e8f9;font-size:12px;font-weight:700;font-family:Nunito,sans-serif;cursor:pointer"><i class="fa fa-user-plus"></i> Tambah Anggota</button>
-      <button onclick="refreshAbsensi()" style="padding:10px 14px;background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.3);border-radius:10px;color:#c084fc;font-size:12px;font-weight:700;font-family:Nunito,sans-serif;cursor:pointer"><i class="fa fa-sync-alt" id="iconRefreshAbsensi"></i></button>
-    </div>
-    <div id="absensiSaveNotice" style="display:none;align-items:center;gap:8px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:8px;padding:8px 12px;margin-bottom:10px;font-size:12px;color:#86efac">
-      <i class="fa fa-cloud-upload-alt" style="font-size:13px"></i>
-      <span id="absensiSaveMsg">Menyimpan...</span>
-    </div>
+    <div style="display:flex;gap:8px;margin-bottom:14px"><button onclick="tambahAnggotaKeAbsensi()" style="flex:1;padding:10px;background:rgba(0,212,255,0.12);border:1px solid rgba(0,212,255,0.3);border-radius:10px;color:#67e8f9;font-size:12px;font-weight:700;font-family:Nunito,sans-serif;cursor:pointer"><i class="fa fa-user-plus"></i> Tambah Anggota</button><button onclick="refreshAbsensi()" style="padding:10px 14px;background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.3);border-radius:10px;color:#c084fc;font-size:12px;font-weight:700;font-family:Nunito,sans-serif;cursor:pointer"><i class="fa fa-sync-alt" id="iconRefreshAbsensi"></i></button></div>
+    <div id="absensiSaveNotice" style="display:none;align-items:center;gap:8px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:8px;padding:8px 12px;margin-bottom:10px;font-size:12px;color:#86efac"><i class="fa fa-cloud-upload-alt" style="font-size:13px"></i><span id="absensiSaveMsg">Menyimpan...</span></div>
     <div id="absensiCardList" style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px;max-height:55vh;overflow-y:auto;padding-right:2px"></div>
     <button class="btn-secondary" style="margin-top:0" onclick="closeModal('modalTabelAbsensi'); openModal('modalAbsensiBulan')">← Kembali</button>
   </div>
 </div>
 
-<!-- MODAL: Qurban -->
+<!-- MODAL QURBAN (pilih tahun) -->
 <div class="modal-overlay" id="modalQurban">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
-    <div class="modal-title"><i class="fa fa-moon" style="color:#2dd4bf"></i>Data Qurban</div>
+  <div class="modal-sheet"><div class="modal-handle"></div><div class="modal-title"><i class="fa fa-moon" style="color:#2dd4bf"></i>Data Qurban</div>
     <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px">Pilih tahun qurban:</p>
     <div style="display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:8px">
-      <div class="shortcut-card" onclick="pilihTahunQurban(2025)" style="justify-content:center;padding:16px 20px">
-        <i class="fa fa-moon" style="font-size:24px;color:#2dd4ff;margin-right:14px"></i>
-        <div>
-          <strong style="font-size:15px;display:block">Qurban Tahun 2025</strong>
-          <small style="color:var(--text-muted)">Iduladha 1446 H</small>
-        </div>
-      </div>
-      <div class="shortcut-card" onclick="pilihTahunQurban(2026)" style="justify-content:center;padding:16px 20px">
-        <i class="fa fa-moon" style="font-size:24px;color:#2dd4bf;margin-right:14px"></i>
-        <div>
-          <strong style="font-size:15px;display:block">Qurban Tahun 2026</strong>
-          <small style="color:var(--text-muted)">Iduladha 1447 H</small>
-        </div>
-      </div>
-      <div class="shortcut-card" onclick="pilihTahunQurban(2027)" style="justify-content:center;padding:16px 20px">
-        <i class="fa fa-moon" style="font-size:24px;color:#2dd4bf;margin-right:14px"></i>
-        <div>
-          <strong style="font-size:15px;display:block">Qurban Tahun 2027</strong>
-          <small style="color:var(--text-muted)">Iduladha 1448 H</small>
-        </div>
-      </div>
+      <div class="shortcut-card" onclick="pilihTahunQurban(2025)" style="justify-content:center;padding:16px 20px"><i class="fa fa-moon" style="font-size:24px;color:#2dd4ff;margin-right:14px"></i><div><strong style="font-size:15px;display:block">Qurban Tahun 2025</strong><small style="color:var(--text-muted)">Iduladha 1446 H</small></div></div>
+      <div class="shortcut-card" onclick="pilihTahunQurban(2026)" style="justify-content:center;padding:16px 20px"><i class="fa fa-moon" style="font-size:24px;color:#2dd4bf;margin-right:14px"></i><div><strong style="font-size:15px;display:block">Qurban Tahun 2026</strong><small style="color:var(--text-muted)">Iduladha 1447 H</small></div></div>
+      <div class="shortcut-card" onclick="pilihTahunQurban(2027)" style="justify-content:center;padding:16px 20px"><i class="fa fa-moon" style="font-size:24px;color:#2dd4bf;margin-right:14px"></i><div><strong style="font-size:15px;display:block">Qurban Tahun 2027</strong><small style="color:var(--text-muted)">Iduladha 1448 H</small></div></div>
     </div>
     <button class="btn-secondary" onclick="closeModal('modalQurban')">Tutup</button>
   </div>
 </div>
 
-<!-- MODAL: Tabel Qurban -->
+<!-- MODAL TABEL QURBAN (list muqorib) -->
 <div class="modal-overlay" id="modalTabelQurban">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
-    <div class="modal-title" id="titleTabelQurban"><i class="fa fa-moon" style="color:#2dd4bf"></i>Data Qurban</div>
-    <div style="display:flex;gap:8px;margin-bottom:12px">
-      <button class="btn-primary" style="margin-top:0;flex:2" onclick="openModal('modalTambahQurban')">
-        <i class="fa fa-plus"></i> Tambah Muqorib
-      </button>
-      <button class="btn-secondary" style="margin-top:0;flex:1" onclick="refreshQurban()">
-        <i class="fa fa-sync-alt"></i> Refresh
-      </button>
-    </div>
-    <div style="overflow-x:auto">
-      <table class="data-table" id="tabelQurban">
-        <thead>
-          <tr>
-            <th style="width:40px">No</th>
-            <th>Nama Muqorib</th>
-            <th>Alamat</th>
-            <th style="width:60px">Aksi</th>
-          </tr>
-        </thead>
-        <tbody id="bodyQurban">
-          <tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:20px">Belum ada data muqorib</td></tr>
-        </tbody>
-      </table>
-    </div>
+  <div class="modal-sheet"><div class="modal-handle"></div><div class="modal-title" id="titleTabelQurban"><i class="fa fa-moon" style="color:#2dd4bf"></i>Data Qurban</div>
+    <div style="display:flex;gap:8px;margin-bottom:12px"><button class="btn-primary" style="margin-top:0;flex:2" onclick="openModal('modalTambahQurban')"><i class="fa fa-plus"></i> Tambah Muqorib</button><button class="btn-secondary" style="margin-top:0;flex:1" onclick="refreshQurban()"><i class="fa fa-sync-alt"></i> Refresh</button></div>
+    <div style="overflow-x:auto"><table class="data-table" id="tabelQurban"><thead><tr><th style="width:40px">No</th><th>Nama Muqorib</th><th>Alamat</th><th style="width:60px">Aksi</th></tr></thead><tbody id="bodyQurban"><tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:20px">Belum ada data muqorib</td></tr></tbody></table></div>
     <button class="btn-secondary" onclick="closeModal('modalTabelQurban'); openModal('modalQurban')">← Kembali</button>
   </div>
 </div>
 
-<!-- MODAL: Tambah / Edit Muqorib -->
+<!-- MODAL TAMBAH/EDIT QURBAN -->
 <div class="modal-overlay" id="modalTambahQurban">
-  <div class="modal-sheet" style="max-height:70vh">
-    <div class="modal-handle"></div>
-    <div class="modal-title" id="titleFormQurban"><i class="fa fa-plus" style="color:#2dd4bf"></i> Tambah Muqorib</div>
-    <input type="hidden" id="q_editIndex" value="-1">
-    <input type="hidden" id="q_namaLama" value="">
-    <label class="form-label">Nama Muqorib *</label>
-    <div class="form-group"><i class="fa fa-user"></i><input class="form-control" id="q_nama" placeholder="Nama muqorib / shohibul qurban"></div>
-    <label class="form-label">Alamat</label>
-    <div class="form-group"><i class="fa fa-home"></i><input class="form-control" id="q_alamat" placeholder="Alamat muqorib"></div>
-    <label class="form-label">Jenis Hewan</label>
-    <select class="form-select" id="q_hewan" style="margin-bottom:12px">
-      <option>Kambing</option>
-      <option>Sapi (1/7)</option>
-      <option>Sapi (penuh)</option>
-    </select>
-    <label class="form-label">Catatan</label>
-    <div class="form-group"><i class="fa fa-sticky-note"></i><input class="form-control" id="q_catatan" placeholder="Catatan (opsional)"></div>
-    <button class="btn-primary" id="btnSimpanQurban" onclick="simpanQurban()"><i class="fa fa-save"></i> Simpan</button>
-    <button class="btn-secondary" onclick="resetFormQurban(); closeModal('modalTambahQurban')">Batal</button>
+  <div class="modal-sheet" style="max-height:70vh"><div class="modal-handle"></div><div class="modal-title" id="titleFormQurban"><i class="fa fa-plus" style="color:#2dd4bf"></i> Tambah Muqorib</div>
+    <input type="hidden" id="q_editIndex" value="-1"><input type="hidden" id="q_namaLama" value="">
+    <label class="form-label">Nama Muqorib *</label><div class="form-group"><i class="fa fa-user"></i><input class="form-control" id="q_nama" placeholder="Nama muqorib / shohibul qurban"></div>
+    <label class="form-label">Alamat</label><div class="form-group"><i class="fa fa-home"></i><input class="form-control" id="q_alamat" placeholder="Alamat muqorib"></div>
+    <label class="form-label">Jenis Hewan</label><select class="form-select" id="q_hewan" style="margin-bottom:12px"><option>Kambing</option><option>Sapi (1/7)</option><option>Sapi (penuh)</option></select>
+    <label class="form-label">Catatan</label><div class="form-group"><i class="fa fa-sticky-note"></i><input class="form-control" id="q_catatan" placeholder="Catatan (opsional)"></div>
+    <button class="btn-primary" id="btnSimpanQurban" onclick="simpanQurban()"><i class="fa fa-save"></i> Simpan</button><button class="btn-secondary" onclick="resetFormQurban(); closeModal('modalTambahQurban')">Batal</button>
   </div>
 </div>
-<!-- MODAL: Profil -->
+
+<!-- MODAL PROFIL -->
 <div class="modal-overlay" id="modalProfil">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
-    <div class="modal-title"><i class="fa fa-cog" style="color:#94a3b8"></i>Profil & Pengaturan</div>
-    <div style="text-align:center;margin-bottom:24px">
-      <div class="nav-avatar" style="width:64px;height:64px;font-size:24px;margin:0 auto 10px" id="profilAvatar">K</div>
-      <div style="font-size:16px;font-weight:800" id="profilNama">-</div>
-      <div style="font-size:12px;color:var(--text-muted)" id="profilRole">-</div>
-    </div>
-    <label class="form-label">Nama Tampil</label>
-    <div class="form-group"><i class="fa fa-user"></i><input class="form-control" id="p_nama" placeholder="Nama Anda"></div>
-    <label class="form-label">Jabatan</label>
-    <div class="form-group"><i class="fa fa-star"></i><input class="form-control" id="p_jabatan" placeholder="Jabatan"></div>
-    <label class="form-label">Ganti Password</label>
-    <div class="form-group"><i class="fa fa-lock"></i><input type="password" class="form-control" id="p_pass" placeholder="Password baru (kosongkan jika tidak ganti)"></div>
-    <label class="form-label" style="margin-top:8px">Google Sheets URL</label>
-    <div class="form-group"><i class="fa fa-link"></i><input class="form-control" id="p_sheets" placeholder="URL Apps Script"></div>
-    <button class="btn-primary" onclick="simpanProfil()"><i class="fa fa-save"></i> Simpan Perubahan</button>
-    <button class="btn-secondary" style="color:var(--accent-red);border-color:rgba(239,68,68,0.3)" onclick="doLogout()"><i class="fa fa-sign-out-alt"></i> Keluar</button>
+  <div class="modal-sheet"><div class="modal-handle"></div><div class="modal-title"><i class="fa fa-cog" style="color:#94a3b8"></i>Profil & Pengaturan</div>
+    <div style="text-align:center;margin-bottom:24px"><div class="nav-avatar" style="width:64px;height:64px;font-size:24px;margin:0 auto 10px" id="profilAvatar">K</div><div style="font-size:16px;font-weight:800" id="profilNama">-</div><div style="font-size:12px;color:var(--text-muted)" id="profilRole">-</div></div>
+    <label class="form-label">Nama Tampil</label><div class="form-group"><i class="fa fa-user"></i><input class="form-control" id="p_nama" placeholder="Nama Anda"></div>
+    <label class="form-label">Jabatan</label><div class="form-group"><i class="fa fa-star"></i><input class="form-control" id="p_jabatan" placeholder="Jabatan"></div>
+    <label class="form-label">Ganti Password</label><div class="form-group"><i class="fa fa-lock"></i><input type="password" class="form-control" id="p_pass" placeholder="Password baru (kosongkan jika tidak ganti)"></div>
+    <label class="form-label" style="margin-top:8px">Google Sheets URL</label><div class="form-group"><i class="fa fa-link"></i><input class="form-control" id="p_sheets" placeholder="URL Apps Script"></div>
+    <button class="btn-primary" onclick="simpanProfil()"><i class="fa fa-save"></i> Simpan Perubahan</button><button class="btn-secondary" style="color:var(--accent-red);border-color:rgba(239,68,68,0.3)" onclick="doLogout()"><i class="fa fa-sign-out-alt"></i> Keluar</button>
   </div>
 </div>
 
 <script>
-// ========== PARTICLES ==========
+// PARTICLES
 (function(){
   const c = document.getElementById('particles');
   const ctx = c.getContext('2d');
   c.width = window.innerWidth;
   c.height = window.innerHeight;
   const pts = [];
-  for(let i=0;i<40;i++){
-    pts.push({
-      x: Math.random()*c.width,
-      y: Math.random()*c.height,
-      r: Math.random()*1.5+0.5,
-      s: Math.random()*0.3+0.1,
-      o: Math.random()*0.5+0.1
-    });
-  }
+  for(let i=0;i<40;i++){ pts.push({ x: Math.random()*c.width, y: Math.random()*c.height, r: Math.random()*1.5+0.5, s: Math.random()*0.3+0.1, o: Math.random()*0.5+0.1 }); }
   function draw(){
     ctx.clearRect(0,0,c.width,c.height);
-    pts.forEach(p=>{
-      p.y -= p.s;
-      if(p.y < -5) p.y = c.height+5;
-      ctx.beginPath();
-      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle = `rgba(0,212,255,${p.o})`;
-      ctx.fill();
-    });
+    pts.forEach(p=>{ p.y -= p.s; if(p.y < -5) p.y = c.height+5; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle = `rgba(0,212,255,${p.o})`; ctx.fill(); });
     requestAnimationFrame(draw);
   }
   draw();
-  window.addEventListener('resize',()=>{c.width=window.innerWidth;c.height=window.innerHeight;});
+  window.addEventListener('resize',()=>{ c.width=window.innerWidth; c.height=window.innerHeight; });
 })();
 
-// ========== KONFIGURASI TETAP ==========
-// PENTING: Ganti teks di bawah ini dengan URL Apps Script Google Sheets Anda.
-// Setelah diganti, upload ulang ke GitHub — semua perangkat langsung terhubung otomatis.
-const SHEETS_URL_TETAP = 'https://script.google.com/macros/s/AKfycby94b-0eyDLXfr1SueRIo7HIjVD8er5DSPdg0hKdHaOC2g7op_uCO2LfqjfcsA9gUWS/exec';
-// Contoh isi: 'https://script.google.com/macros/s/AKfycby.../exec'
+// KONFIGURASI (isi dengan URL Web App Anda nanti)
+const SHEETS_URL_TETAP = ''; // kosongkan dulu, nanti diisi via profil
 
-// ========== APP STATE ==========
+// APP STATE
 const APP = {
   role: 'pengurus',
   user: { nama:'Ketua PRM', jabatan:'Ketua', avatar:'K' },
-  // Gunakan URL tetap jika sudah diisi, fallback ke localStorage
-  sheetsUrl: (SHEETS_URL_TETAP && SHEETS_URL_TETAP !== 'GANTI_DENGAN_URL_APPS_SCRIPT_ANDA')
-              ? SHEETS_URL_TETAP
-              : (localStorage.getItem('prm_sheets_url') || ''),
+  sheetsUrl: localStorage.getItem('prm_sheets_url') || SHEETS_URL_TETAP,
   sheetsId: localStorage.getItem('prm_sheets_id') || '',
   kasVisible: false,
   anggota: [],
   kas: [],
   pertemuan: [],
   surat: [],
+  absensi: {},
+  qurban: {},
   syncing: false,
 };
 
-// ========== INISIALISASI STATE ABSENSI & QURBAN ==========
-APP.absensi = {};  // { "2025_Januari": [{nama, hadir}, ...], ... }
-APP.qurban  = {};  // { 2025: [{nama, alamat, hewan, catatan, tgl}, ...], ... }
-
-// ========== QURBAN: BACA DARI GOOGLE SHEETS ==========
-async function loadQurbanFromSheets(){
-  if(!APP.sheetsUrl){ renderTabelQurban(); return; }
-  try {
-    const url = APP.sheetsUrl + '?action=getData&sheet=qurban';
-    const res = await fetch(url);
-    const json = await res.json();
-    if(json.status === 'ok' && Array.isArray(json.data)){
-      // Reset dan isi ulang APP.qurban dari data Sheets
-      APP.qurban = {};
-      json.data.forEach(row => {
-        // Header sheet: No, Tahun, Nama Muqorib, Alamat, Jenis Hewan, Catatan, Tanggal Input
-        const tahun = parseInt(row['Tahun']) || row['tahun'];
-        if(!tahun) return;
-        if(!APP.qurban[tahun]) APP.qurban[tahun] = [];
-        APP.qurban[tahun].push({
-          nama    : row['Nama Muqorib'] || row['nama']    || '',
-          alamat  : row['Alamat']       || row['alamat']  || '',
-          hewan   : row['Jenis Hewan']  || row['hewan']   || '',
-          catatan : row['Catatan']      || row['catatan'] || '',
-          tgl     : row['Tanggal Input']|| row['tgl']     || ''
-        });
-      });
-    }
-  } catch(e) {
-    console.warn('Gagal load Qurban dari Sheets:', e);
-  }
-  renderTabelQurban();
-}
-
-// saveQurban sekarang TIDAK menyimpan ke localStorage
-// (data canonical ada di Google Sheets)
-function saveQurban(){ /* tidak perlu, data di Sheets */ }
-
-// ========== SINKRONISASI GOOGLE SHEETS (BACA DATA) ==========
-async function syncFromSheets(){
-  if(!APP.sheetsUrl) return;
-  APP.syncing = true;
-  showSyncStatus('Memuat data dari Google Sheets...', 'loading');
-  try {
-    const sheets = ['anggota','kas','pertemuan','surat'];
-    for(const s of sheets){
-      const url = APP.sheetsUrl + '?action=getData&sheet=' + s;
-      const res = await fetch(url);
-      const json = await res.json();
-      if(json.status==='ok' && Array.isArray(json.data)){
-        APP[s] = json.data.map(row => {
-          // Normalkan key dari header Google Sheets ke key yang dipakai app
-          return normalizeRow(s, row);
-        }).filter(r => r && (r.nama || r.ket || r.nama_pertemuan || r.perihal));
-      }
-    }
-    // Ambil juga logo jika tersimpan di Sheets config
-    const cfgUrl = APP.sheetsUrl + '?action=getConfig';
-    const cfgRes = await fetch(cfgUrl).catch(()=>null);
-    if(cfgRes){
-      const cfg = await cfgRes.json().catch(()=>null);
-      if(cfg && cfg.logo) applyLogo(cfg.logo);
-    }
-    // Muat data absensi dari Google Sheets
-    await loadAbsensiFromSheets();
-    showSyncStatus('Data berhasil dimuat', 'ok');
-    updateStats(); loadInfoTerbaru(); updateKasBanner();
-    loadAnggota(); loadKas(); loadNBM(); updateLaporan();
-  } catch(err){
-    showSyncStatus('Gagal memuat data: ' + err.message, 'error');
-  }
-  APP.syncing = false;
-}
-
-// Fungsi: loadAbsensiFromSheets — selalu baca segar dari GAS
-async function loadAbsensiFromSheets(){
-  if(!APP.sheetsUrl) return;
-  try {
-    const url = APP.sheetsUrl + '?action=getData&sheet=absensi&t=' + Date.now();
-    const res = await fetch(url, { cache: 'no-store' });
-    const json = await res.json();
-    if(json.status === 'ok' && Array.isArray(json.data)){
-      APP.absensi = {};
-      json.data.forEach(row => {
-        // Normalisasi key: case-insensitive, trim spasi
-        const r = {};
-        Object.keys(row).forEach(k => { r[k.toLowerCase().trim()] = row[k]; });
-        const tahun = String(r['tahun'] || '').trim();
-        const bulan = String(r['bulan'] || '').trim();
-        // Cocokkan 'Nama Anggota' (sheet) → 'nama' (app), case-insensitive
-        const nama  = String(r['nama anggota'] || r['nama'] || '').trim();
-        const hadir = String(r['kehadiran'] || r['hadir'] || 'Belum diisi').trim();
-        if(!tahun || !bulan || !nama) return;
-        const key = tahun + '_' + bulan;
-        if(!APP.absensi[key]) APP.absensi[key] = [];
-        APP.absensi[key].push({ nama, hadir: hadir || 'Belum diisi' });
-      });
-    }
-  } catch(e) {
-    console.warn('Gagal load Absensi dari Sheets:', e);
-  }
-}
-
-function normalizeRow(sheet, row){
-  // Map header Google Sheets → field yang dipakai app
-  const maps = {
-    anggota: {
-      'Nama Lengkap':'nama','Nomor NBM':'nbm','NIK':'nik',
-      'Tempat Lahir':'ttl','Tanggal Lahir':'tgl','Alamat':'alamat',
-      'No HP/WA':'hp','Jabatan':'jabatan','Pendidikan Terakhir':'pendidikan',
-      'Pekerjaan':'pekerjaan','Keaktifan':'keaktifan','Status Iuran':'iuran',
-      'Catatan':'catatan','Tanggal Daftar':'tglDaftar'
-    },
-    kas: {
-      'Tanggal':'tgl','Jenis':'jenis','Kategori':'kategori',
-      'Keterangan':'ket','Jumlah (Rp)':'jumlah','Sumber/Penerima':'sumber'
-    },
-    pertemuan: {
-      'Nama Pertemuan':'nama','Tanggal':'tgl','Waktu':'waktu',
-      'Lokasi':'lokasi','Agenda':'agenda','Jenis Pertemuan':'jenis'
-    },
-    surat: {
-      'Nomor Surat':'no','Tanggal':'tgl','Jenis Surat':'jenis',
-      'Perihal':'perihal','Kepada':'kepada','Isi Singkat':'isi','Status':'status'
-    }
-  };
-  const map = maps[sheet] || {};
-  const result = {};
-  Object.keys(row).forEach(k => {
-    const newKey = map[k] || k.toLowerCase().replace(/[^a-z]/g,'');
-    result[newKey] = row[k];
-  });
-  return result;
-}
-
-function showSyncStatus(msg, type){
-  const el = document.getElementById('sheetsConfig');
-  if(!el) return;
-  const icons = {loading:'fa-spinner fa-spin', ok:'fa-check-circle', error:'fa-exclamation-triangle'};
-  const colors = {loading:'var(--accent-cyan)', ok:'var(--accent-green)', error:'var(--accent-gold)'};
-  el.innerHTML = `<i class="fa ${icons[type]||icons.ok}" style="color:${colors[type]||colors.ok}"></i> <span style="color:${colors[type]||colors.ok};font-weight:700">${msg}</span>${type!=='loading'?` <a href="#" onclick="openSheetsSetup()" style="color:var(--accent-cyan);margin-left:8px;font-weight:700">Ubah →</a>`:''}`;
-}
-
-// Demo users
-const USERS = {
-  pengurus: [ {u:'ketua',p:'ketua@123',nama:'Ketua PRM',jabatan:'Ketua',avatar:'K'}, {u:'sekretaris',p:'sekre@123',nama:'Sekretaris',jabatan:'Sekretaris',avatar:'S'}, {u:'bendahara',p:'benda@123',nama:'Bendahara',jabatan:'Bendahara',avatar:'B'} ],
-  anggota:  [ {u:'anggota',p:'anggota@123',nama:'Anggota PRM',jabatan:'Anggota',avatar:'A'} ],
-  admin:    [ {u:'admin',p:'avara@123',nama:'Administrator',jabatan:'Admin',avatar:'AD'} ],
-};
-
-// ========== LOGIN ==========
+// ===================== FUNGSI LOGIN =====================
 function switchRole(role){
   APP.role = role;
   document.querySelectorAll('.role-tab').forEach(t=>t.classList.remove('active'));
@@ -1741,7 +986,6 @@ function switchRole(role){
   document.getElementById('btnLoginText').textContent = 'Login '+role.charAt(0).toUpperCase()+role.slice(1);
   document.getElementById('loginDesc').textContent = role==='pengurus' ? 'Akses Khusus Pengurus' : role==='admin' ? 'Akses Administrator' : 'Login sebagai Anggota';
   document.getElementById('loginSwitch').style.display = role==='pengurus' ? 'block' : 'none';
-  // Tampilkan info box username/password saat tab Anggota dipilih
   const infoBox = document.getElementById('infoBoxAnggota');
   if(infoBox) infoBox.style.display = role==='anggota' ? 'block' : 'none';
   hideError();
@@ -1751,26 +995,23 @@ function doLogin(){
   const u = document.getElementById('username').value.trim();
   const p = document.getElementById('password').value.trim();
   if(!u||!p){ showError('Username dan password wajib diisi.'); return; }
-
-  const list = USERS[APP.role] || [];
-  const found = list.find(x=>x.u===u&&x.p===p);
+  const USERS = {
+    pengurus: [ {u:'ketua',p:'ketua@123',nama:'Ketua PRM',jabatan:'Ketua',avatar:'K'}, {u:'sekretaris',p:'sekre@123',nama:'Sekretaris',jabatan:'Sekretaris',avatar:'S'}, {u:'bendahara',p:'benda@123',nama:'Bendahara',jabatan:'Bendahara',avatar:'B'} ],
+    anggota:  [ {u:'anggota',p:'anggota@123',nama:'Anggota PRM',jabatan:'Anggota',avatar:'A'} ],
+    admin:    [ {u:'admin',p:'avara@123',nama:'Administrator',jabatan:'Admin',avatar:'AD'} ],
+  };
+  const found = USERS[APP.role].find(x=>x.u===u&&x.p===p);
   if(!found){ showError('Username atau password salah.'); return; }
-
   APP.user = found;
   showDashboard();
 }
-
 function showError(msg){
   document.getElementById('errorText').textContent = msg;
   document.getElementById('errorMsg').style.display='flex';
 }
-function hideError(){
-  document.getElementById('errorMsg').style.display='none';
-}
-
+function hideError(){ document.getElementById('errorMsg').style.display='none'; }
 document.getElementById('password').addEventListener('keydown',e=>{ if(e.key==='Enter') doLogin(); });
 
-// ========== DASHBOARD ==========
 function showDashboard(){
   document.getElementById('loginPage').style.display='none';
   document.getElementById('dashboardPage').style.display='block';
@@ -1782,45 +1023,18 @@ function showDashboard(){
   document.getElementById('p_nama').value = APP.user.nama;
   document.getElementById('p_jabatan').value = APP.user.jabatan;
   document.getElementById('p_sheets').value = APP.sheetsUrl;
-
-  // Load logo tersimpan lokal (hanya logo, bukan data)
   const savedLogo = localStorage.getItem('prm_logo');
   if(savedLogo) applyLogo(savedLogo);
-
-  if(APP.sheetsUrl){
-    // Langsung ambil data terbaru dari Google Sheets
-    syncFromSheets();
-  } else {
+  if(APP.sheetsUrl) syncFromSheets();
+  else {
     document.getElementById('sheetsConfig').innerHTML = `<i class="fa fa-exclamation-circle" style="color:var(--accent-gold)"></i> <strong style="color:var(--accent-gold)">Google Sheets belum terhubung</strong> — data tidak akan tersimpan permanen. <a href="#" onclick="openSheetsSetup()" style="color:var(--accent-cyan);margin-left:4px;font-weight:700">Hubungkan sekarang →</a>`;
-    updateStats(); loadInfoTerbaru(); updateKasBanner();
-    loadAnggota(); loadKas(); loadNBM(); updateLaporan();
+    updateStats(); loadInfoTerbaru(); updateKasBanner(); loadAnggota(); loadKas(); loadNBM(); updateLaporan();
   }
 }
-
-function doLogout(){
-  closeAllModals();
-  document.getElementById('dashboardPage').style.display='none';
-  document.getElementById('loginPage').style.display='flex';
-  document.getElementById('username').value='';
-  document.getElementById('password').value='';
-}
-
-function setTab(i){
-  document.querySelectorAll('.bnav-item').forEach((b,idx)=>b.classList.toggle('active',idx===i));
-}
-
-function toggleAdmin(){
-  const g = document.getElementById('adminGrid');
-  const ch = document.getElementById('adminChevron');
-  g.style.display = g.style.display==='none' ? 'grid' : 'none';
-  ch.className = g.style.display==='none' ? 'fa fa-chevron-down' : 'fa fa-chevron-up';
-}
-
-function toggleKas(){
-  APP.kasVisible = !APP.kasVisible;
-  updateKasBanner();
-}
-
+function doLogout(){ closeAllModals(); document.getElementById('dashboardPage').style.display='none'; document.getElementById('loginPage').style.display='flex'; document.getElementById('username').value=''; document.getElementById('password').value=''; }
+function setTab(i){ document.querySelectorAll('.bnav-item').forEach((b,idx)=>b.classList.toggle('active',idx===i)); }
+function toggleAdmin(){ const g = document.getElementById('adminGrid'); const ch = document.getElementById('adminChevron'); g.style.display = g.style.display==='none' ? 'grid' : 'none'; ch.className = g.style.display==='none' ? 'fa fa-chevron-down' : 'fa fa-chevron-up'; }
+function toggleKas(){ APP.kasVisible = !APP.kasVisible; updateKasBanner(); }
 function updateKasBanner(){
   const tot = APP.kas.reduce((s,k)=>s+(k.jenis==='masuk'?+k.jumlah:-+k.jumlah),0);
   const inc = APP.kas.filter(k=>k.jenis==='masuk').reduce((s,k)=>s+ +k.jumlah,0);
@@ -1834,7 +1048,6 @@ function updateKasBanner(){
   document.getElementById('kasTotalIn').textContent = fmt(inc);
   document.getElementById('kasTotalOut').textContent = fmt(out);
 }
-
 function updateStats(){
   const total = APP.anggota.length;
   const aktif = APP.anggota.filter(a=>a.keaktifan==='Aktif').length;
@@ -1843,463 +1056,212 @@ function updateStats(){
   document.getElementById('statAktif').textContent = aktif||'-';
   document.getElementById('statTidak').textContent = tidak||'-';
 }
-
 function loadInfoTerbaru(){
   const card = document.getElementById('infoCard');
   if(!APP.anggota.length && !APP.kas.length){
-    card.innerHTML = '<div class="info-loading" style="color:var(--text-muted)"><i class="fa fa-info-circle"></i><br><br>Belum ada data. Mulai tambah anggota atau input kas.</div>';
-    return;
+    card.innerHTML = '<div class="info-loading" style="color:var(--text-muted)"><i class="fa fa-info-circle"></i><br><br>Belum ada data. Mulai tambah anggota atau input kas.</div>'; return;
   }
   let html = '';
   const recentAnggota = APP.anggota.slice(-3).reverse();
   recentAnggota.forEach(a=>{
-    const badge = a.keaktifan==='Aktif' ? 'badge-green' : a.keaktifan==='Kurang Aktif' ? 'badge-yellow' : 'badge-red';
-    html += `<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)">
-      <div><div style="font-size:13px;font-weight:700">${a.nama}</div><div style="font-size:11px;color:var(--text-muted)">${a.jabatan}</div></div>
-      <span class="badge ${badge}">${a.keaktifan}</span>
-    </div>`;
+    const badge = a.keaktifan==='Aktif'?'badge-green':a.keaktifan==='Kurang Aktif'?'badge-yellow':'badge-red';
+    html += `<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)"><div><div style="font-size:13px;font-weight:700">${a.nama}</div><div style="font-size:11px;color:var(--text-muted)">${a.jabatan}</div></div><span class="badge ${badge}">${a.keaktifan}</span></div>`;
   });
   if(!html) html = '<div style="text-align:center;color:var(--text-muted);padding:12px;font-size:13px">Belum ada data terbaru</div>';
   card.innerHTML = `<div style="font-size:11px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;font-weight:700">Anggota Terbaru</div>`+html;
 }
-
 function updateLaporan(){
   document.getElementById('lap_anggota').textContent = APP.anggota.length + ' orang';
   const tot = APP.kas.reduce((s,k)=>s+(k.jenis==='masuk'?+k.jumlah:-+k.jumlah),0);
   document.getElementById('lap_kas').textContent = 'Rp '+tot.toLocaleString('id-ID');
   document.getElementById('lap_pertemuan').textContent = APP.pertemuan.length + ' pertemuan';
 }
-
-// ========== ANGGOTA ==========
-function loadAnggota(){
-  renderAnggota(APP.anggota);
+// ===================== SYNC GOOGLE SHEETS =====================
+async function syncFromSheets(){
+  if(!APP.sheetsUrl) return;
+  APP.syncing = true;
+  showSyncStatus('Memuat data dari Google Sheets...', 'loading');
+  try {
+    const sheets = ['anggota','kas','pertemuan','surat'];
+    for(const s of sheets){
+      const url = APP.sheetsUrl + '?action=getData&sheet=' + s;
+      const res = await fetch(url);
+      const json = await res.json();
+      if(json.status==='ok' && Array.isArray(json.data)){
+        APP[s] = json.data.map(row => normalizeRow(s, row)).filter(r => r && (r.nama || r.ket || r.nama_pertemuan || r.perihal));
+      }
+    }
+    const cfgUrl = APP.sheetsUrl + '?action=getConfig';
+    const cfgRes = await fetch(cfgUrl).catch(()=>null);
+    if(cfgRes){ const cfg = await cfgRes.json(); if(cfg && cfg.logo) applyLogo(cfg.logo); }
+    await loadAbsensiFromSheets();
+    await loadQurbanFromSheets();
+    showSyncStatus('Data berhasil dimuat', 'ok');
+    updateStats(); loadInfoTerbaru(); updateKasBanner(); loadAnggota(); loadKas(); loadNBM(); updateLaporan();
+  } catch(err){ showSyncStatus('Gagal memuat data: ' + err.message, 'error'); }
+  APP.syncing = false;
 }
-function filterAnggota(){
-  const q = document.getElementById('searchAnggota').value.toLowerCase();
-  renderAnggota(APP.anggota.filter(a=>a.nama.toLowerCase().includes(q)||a.nbm.includes(q)));
+function normalizeRow(sheet, row){
+  const maps = {
+    anggota: { 'Nama Lengkap':'nama','Nomor NBM':'nbm','NIK':'nik','Tempat Lahir':'ttl','Tanggal Lahir':'tgl','Alamat':'alamat','No HP/WA':'hp','Jabatan':'jabatan','Pendidikan Terakhir':'pendidikan','Pekerjaan':'pekerjaan','Keaktifan':'keaktifan','Status Iuran':'iuran','Catatan':'catatan','Tanggal Daftar':'tglDaftar' },
+    kas: { 'Tanggal':'tgl','Jenis':'jenis','Kategori':'kategori','Keterangan':'ket','Jumlah (Rp)':'jumlah','Sumber/Penerima':'sumber' },
+    pertemuan: { 'Nama Pertemuan':'nama','Tanggal':'tgl','Waktu':'waktu','Lokasi':'lokasi','Agenda':'agenda','Jenis Pertemuan':'jenis' },
+    surat: { 'Nomor Surat':'no','Tanggal':'tgl','Jenis Surat':'jenis','Perihal':'perihal','Kepada':'kepada','Isi Singkat':'isi','Status':'status' }
+  };
+  const map = maps[sheet] || {};
+  const result = {};
+  Object.keys(row).forEach(k => { const newKey = map[k] || k.toLowerCase().replace(/[^a-z]/g,''); result[newKey] = row[k]; });
+  return result;
 }
+function showSyncStatus(msg, type){
+  const el = document.getElementById('sheetsConfig');
+  if(!el) return;
+  const icons = {loading:'fa-spinner fa-spin', ok:'fa-check-circle', error:'fa-exclamation-triangle'};
+  const colors = {loading:'var(--accent-cyan)', ok:'var(--accent-green)', error:'var(--accent-gold)'};
+  el.innerHTML = `<i class="fa ${icons[type]||icons.ok}" style="color:${colors[type]||colors.ok}"></i> <span style="color:${colors[type]||colors.ok};font-weight:700">${msg}</span>${type!=='loading'?` <a href="#" onclick="openSheetsSetup()" style="color:var(--accent-cyan);margin-left:8px;font-weight:700">Ubah →</a>`:''}`;
+}
+async function loadAbsensiFromSheets(){
+  if(!APP.sheetsUrl) return;
+  try {
+    const url = APP.sheetsUrl + '?action=getData&sheet=absensi&t=' + Date.now();
+    const res = await fetch(url, { cache: 'no-store' });
+    const json = await res.json();
+    if(json.status === 'ok' && Array.isArray(json.data)){
+      APP.absensi = {};
+      json.data.forEach(row => {
+        const r = {}; Object.keys(row).forEach(k => { r[k.toLowerCase().trim()] = row[k]; });
+        const tahun = String(r['tahun'] || '').trim();
+        const bulan = String(r['bulan'] || '').trim();
+        const nama  = String(r['nama anggota'] || r['nama'] || '').trim();
+        const hadir = String(r['kehadiran'] || r['hadir'] || 'Belum diisi').trim();
+        if(!tahun || !bulan || !nama) return;
+        const key = tahun + '_' + bulan;
+        if(!APP.absensi[key]) APP.absensi[key] = [];
+        APP.absensi[key].push({ nama, hadir: hadir || 'Belum diisi' });
+      });
+    }
+  } catch(e) { console.warn(e); }
+}
+async function loadQurbanFromSheets(){
+  if(!APP.sheetsUrl){ renderTabelQurban(); return; }
+  try {
+    const url = APP.sheetsUrl + '?action=getData&sheet=qurban';
+    const res = await fetch(url);
+    const json = await res.json();
+    if(json.status === 'ok' && Array.isArray(json.data)){
+      APP.qurban = {};
+      json.data.forEach(row => {
+        const tahun = parseInt(row['Tahun']) || row['tahun'];
+        if(!tahun) return;
+        if(!APP.qurban[tahun]) APP.qurban[tahun] = [];
+        APP.qurban[tahun].push({
+          nama    : row['Nama Muqorib'] || row['nama']    || '',
+          alamat  : row['Alamat']       || row['alamat']  || '',
+          hewan   : row['Jenis Hewan']  || row['hewan']   || '',
+          catatan : row['Catatan']      || row['catatan'] || '',
+          tgl     : row['Tanggal Input']|| row['tgl']     || ''
+        });
+      });
+    }
+  } catch(e) { console.warn(e); }
+  renderTabelQurban();
+}
+// ===================== ANGGOTA =====================
+function loadAnggota(){ renderAnggota(APP.anggota); }
+function filterAnggota(){ const q = document.getElementById('searchAnggota').value.toLowerCase(); renderAnggota(APP.anggota.filter(a=>a.nama.toLowerCase().includes(q)||a.nbm.includes(q))); }
 function renderAnggota(list){
   const b = document.getElementById('bodyAnggota');
   if(!list.length){ b.innerHTML='<tr><td colspan="6" style="text-align:center;color:var(--text-muted);padding:20px">Belum ada data anggota</td></tr>'; return; }
   b.innerHTML = list.map((a,i)=>{
     const realIdx = APP.anggota.indexOf(a);
     const bClass = a.keaktifan==='Aktif'?'badge-green':a.keaktifan==='Kurang Aktif'?'badge-yellow':'badge-red';
-    return `<tr>
-      <td>${i+1}</td>
-      <td><div style="font-weight:700">${a.nama}</div><div style="font-size:10px;color:var(--text-muted)">${a.hp||'-'}</div></td>
-      <td style="font-size:12px">${a.nbm||'-'}</td>
-      <td style="font-size:12px">${a.jabatan||'-'}</td>
-      <td><span class="badge ${bClass}">${a.keaktifan||'-'}</span></td>
-      <td style="white-space:nowrap">
-        <span style="cursor:pointer;color:var(--accent-cyan);font-size:13px;margin-right:10px" onclick="editAnggota(${realIdx})" title="Edit"><i class="fa fa-edit"></i></span>
-        <span style="cursor:pointer;color:var(--accent-red);font-size:13px" onclick="hapusAnggota(${realIdx})" title="Hapus"><i class="fa fa-trash-alt"></i></span>
-      </td>
-    </tr>`;
+    return `<tr><td>${i+1}</td><td><div style="font-weight:700">${a.nama}</div><div style="font-size:10px;color:var(--text-muted)">${a.hp||'-'}</div></td><td style="font-size:12px">${a.nbm||'-'}</td><td style="font-size:12px">${a.jabatan||'-'}</td><td><span class="badge ${bClass}">${a.keaktifan||'-'}</span></td><td style="white-space:nowrap"><span style="cursor:pointer;color:var(--accent-cyan);font-size:13px;margin-right:10px" onclick="editAnggota(${realIdx})" title="Edit"><i class="fa fa-edit"></i></span><span style="cursor:pointer;color:var(--accent-red);font-size:13px" onclick="hapusAnggota(${realIdx})" title="Hapus"><i class="fa fa-trash-alt"></i></span></td></tr>`;
   }).join('');
 }
-
-// Index anggota yang sedang diedit/dihapus
 let _editIdx = -1;
-
-function editAnggota(i){
-  const a = APP.anggota[i];
-  if(!a) return;
-  _editIdx = i;
-  // Isi form dengan data anggota yang dipilih
-  document.getElementById('f_editIndex').value = i;
-  document.getElementById('f_nama').value     = a.nama     || '';
-  document.getElementById('f_nbm').value      = a.nbm      || '';
-  document.getElementById('f_nik').value      = a.nik      || '';
-  document.getElementById('f_ttl').value      = a.ttl      || '';
-  document.getElementById('f_tgl').value      = a.tgl      || '';
-  document.getElementById('f_alamat').value   = a.alamat   || '';
-  document.getElementById('f_hp').value       = a.hp       || '';
-  document.getElementById('f_pekerjaan').value= a.pekerjaan|| '';
-  document.getElementById('f_catatan').value  = a.catatan  || '';
-  // Dropdown
-  ['f_jabatan','f_pendidikan','f_keaktifan','f_iuran'].forEach(id=>{
-    const el = document.getElementById(id);
-    const key = id.replace('f_','');
-    if(a[key]) el.value = a[key];
-  });
-  // Ubah judul & tombol
-  document.getElementById('titleFormAnggota').innerHTML = '<i class="fa fa-edit" style="color:#fbbf24"></i> Edit Anggota';
-  document.getElementById('btnSimpanAnggota').innerHTML = '<i class="fa fa-save"></i> Simpan Perubahan';
-  closeModal('modalAnggota');
-  openModal('modalTambahAnggota');
-}
-
-function hapusAnggota(i){
-  const a = APP.anggota[i];
-  if(!a) return;
-  _editIdx = i;
-  document.getElementById('namaHapus').textContent = a.nama;
-  closeModal('modalAnggota');
-  openModal('modalHapusAnggota');
-}
-
-function konfirmasiHapus(){
-  const i = _editIdx;
-  if(i < 0 || !APP.anggota[i]) return;
-  const nama = APP.anggota[i].nama;
-  // Hapus dari array lokal
-  APP.anggota.splice(i, 1);
-  closeModal('modalHapusAnggota');
-  showToast('Menghapus data dari Google Sheets...');
-  updateStats(); loadAnggota(); loadInfoTerbaru(); updateLaporan();
-  // Hapus dari Google Sheets
-  if(APP.sheetsUrl){
-    syncActionToSheets('deleteByName', 'anggota', nama).then(()=>{
-      showToast(nama + ' berhasil dihapus!');
-      setTimeout(()=> syncFromSheets(), 1500);
-    }).catch(()=>{
-      showToast('Gagal hapus dari Sheets. Hapus manual di Sheet.', 'error');
-    });
-  }
-  _editIdx = -1;
-}
-
-function resetFormAnggota(){
-  _editIdx = -1;
-  document.getElementById('f_editIndex').value = -1;
-  document.getElementById('titleFormAnggota').innerHTML = '<i class="fa fa-user-plus" style="color:#60a5fa"></i> Tambah Anggota';
-  document.getElementById('btnSimpanAnggota').innerHTML = '<i class="fa fa-save"></i> Simpan ke Google Sheets';
-  ['f_nama','f_nbm','f_nik','f_ttl','f_alamat','f_hp','f_pekerjaan','f_catatan'].forEach(id=>document.getElementById(id).value='');
-}
-
-function refreshData(){
-  showToast('Memuat ulang data dari Google Sheets...');
-  syncFromSheets();
-}
-
+function editAnggota(i){ const a = APP.anggota[i]; if(!a) return; _editIdx = i; document.getElementById('f_editIndex').value = i; ['f_nama','f_nbm','f_nik','f_ttl','f_tgl','f_alamat','f_hp','f_pekerjaan','f_catatan'].forEach(id=>document.getElementById(id).value = a[id.replace('f_','')]||''); ['f_jabatan','f_pendidikan','f_keaktifan','f_iuran'].forEach(id=>{ const v = a[id.replace('f_','')]; if(v) document.getElementById(id).value = v; }); document.getElementById('titleFormAnggota').innerHTML = '<i class="fa fa-edit" style="color:#fbbf24"></i> Edit Anggota'; document.getElementById('btnSimpanAnggota').innerHTML = '<i class="fa fa-save"></i> Simpan Perubahan'; closeModal('modalAnggota'); openModal('modalTambahAnggota'); }
+function hapusAnggota(i){ const a = APP.anggota[i]; if(!a) return; _editIdx = i; document.getElementById('namaHapus').textContent = a.nama; closeModal('modalAnggota'); openModal('modalHapusAnggota'); }
+function konfirmasiHapus(){ const i = _editIdx; if(i<0 || !APP.anggota[i]) return; const nama = APP.anggota[i].nama; APP.anggota.splice(i,1); closeModal('modalHapusAnggota'); showToast('Menghapus data dari Google Sheets...'); updateStats(); loadAnggota(); loadInfoTerbaru(); updateLaporan(); if(APP.sheetsUrl){ syncActionToSheets('deleteByName', 'anggota', nama).then(()=>{ showToast(nama+' berhasil dihapus!'); setTimeout(()=> syncFromSheets(),1500); }).catch(()=>{ showToast('Gagal hapus dari Sheets. Hapus manual di Sheet.','error'); }); } _editIdx = -1; }
+function resetFormAnggota(){ _editIdx = -1; document.getElementById('f_editIndex').value = -1; document.getElementById('titleFormAnggota').innerHTML = '<i class="fa fa-user-plus" style="color:#60a5fa"></i> Tambah Anggota'; document.getElementById('btnSimpanAnggota').innerHTML = '<i class="fa fa-save"></i> Simpan ke Google Sheets'; ['f_nama','f_nbm','f_nik','f_ttl','f_alamat','f_hp','f_pekerjaan','f_catatan'].forEach(id=>document.getElementById(id).value=''); }
+function refreshData(){ showToast('Memuat ulang data dari Google Sheets...'); syncFromSheets(); }
 function simpanAnggota(){
   const editIdx = parseInt(document.getElementById('f_editIndex').value);
-  const a = {
-    nama:       document.getElementById('f_nama').value.trim(),
-    nbm:        document.getElementById('f_nbm').value.trim(),
-    nik:        document.getElementById('f_nik').value.trim(),
-    ttl:        document.getElementById('f_ttl').value.trim(),
-    tgl:        document.getElementById('f_tgl').value,
-    alamat:     document.getElementById('f_alamat').value.trim(),
-    hp:         document.getElementById('f_hp').value.trim(),
-    jabatan:    document.getElementById('f_jabatan').value,
-    pendidikan: document.getElementById('f_pendidikan').value,
-    pekerjaan:  document.getElementById('f_pekerjaan').value.trim(),
-    keaktifan:  document.getElementById('f_keaktifan').value,
-    iuran:      document.getElementById('f_iuran').value,
-    catatan:    document.getElementById('f_catatan').value.trim(),
-    tglDaftar:  editIdx >= 0 ? (APP.anggota[editIdx].tglDaftar || new Date().toISOString()) : new Date().toISOString()
-  };
+  const a = { nama: document.getElementById('f_nama').value.trim(), nbm: document.getElementById('f_nbm').value.trim(), nik: document.getElementById('f_nik').value.trim(), ttl: document.getElementById('f_ttl').value.trim(), tgl: document.getElementById('f_tgl').value, alamat: document.getElementById('f_alamat').value.trim(), hp: document.getElementById('f_hp').value.trim(), jabatan: document.getElementById('f_jabatan').value, pendidikan: document.getElementById('f_pendidikan').value, pekerjaan: document.getElementById('f_pekerjaan').value.trim(), keaktifan: document.getElementById('f_keaktifan').value, iuran: document.getElementById('f_iuran').value, catatan: document.getElementById('f_catatan').value.trim(), tglDaftar: editIdx >=0 ? (APP.anggota[editIdx].tglDaftar||new Date().toISOString()) : new Date().toISOString() };
   if(!a.nama){ showToast('Nama wajib diisi!','error'); return; }
-
-  const isEdit = editIdx >= 0;
-  if(isEdit){
-    // Update array lokal
-    const namaLama = APP.anggota[editIdx].nama;
-    APP.anggota[editIdx] = a;
-    closeModal('modalTambahAnggota');
-    resetFormAnggota();
-    showToast('Menyimpan perubahan...');
-    updateStats(); loadAnggota(); loadInfoTerbaru(); updateLaporan();
-    if(APP.sheetsUrl){
-      syncActionToSheets('updateByName', 'anggota', namaLama, a).then(()=>{
-        showToast('Data anggota berhasil diperbarui!');
-        setTimeout(()=> syncFromSheets(), 1500);
-      });
-    }
-  } else {
-    // Tambah baru
-    APP.anggota.push(a);
-    closeModal('modalTambahAnggota');
-    resetFormAnggota();
-    showToast('Menyimpan data anggota...');
-    updateStats(); loadAnggota(); loadInfoTerbaru(); updateLaporan();
-    if(APP.sheetsUrl){
-      syncToSheets('anggota', a).then(()=>{
-        showToast('Anggota berhasil disimpan ke Google Sheets!');
-        setTimeout(()=> syncFromSheets(), 1500);
-      });
-    } else {
-      showToast('Anggota disimpan (belum terhubung ke Sheets)');
-    }
-  }
+  const isEdit = editIdx>=0;
+  if(isEdit){ const namaLama = APP.anggota[editIdx].nama; APP.anggota[editIdx]=a; closeModal('modalTambahAnggota'); resetFormAnggota(); showToast('Menyimpan perubahan...'); updateStats(); loadAnggota(); loadInfoTerbaru(); updateLaporan(); if(APP.sheetsUrl){ syncActionToSheets('updateByName','anggota',namaLama,a).then(()=>{ showToast('Data anggota berhasil diperbarui!'); setTimeout(()=> syncFromSheets(),1500); }); } }
+  else { APP.anggota.push(a); closeModal('modalTambahAnggota'); resetFormAnggota(); showToast('Menyimpan data anggota...'); updateStats(); loadAnggota(); loadInfoTerbaru(); updateLaporan(); if(APP.sheetsUrl){ syncToSheets('anggota',a).then(()=>{ showToast('Anggota berhasil disimpan ke Google Sheets!'); setTimeout(()=> syncFromSheets(),1500); }); } else { showToast('Anggota disimpan (belum terhubung ke Sheets)'); } }
 }
-
-// ========== KAS ==========
+// ===================== KAS =====================
 function loadKas(){
   const b = document.getElementById('bodyKas');
   if(!APP.kas.length){ b.innerHTML='<tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:20px">Belum ada data kas</td></tr>'; return; }
-  b.innerHTML = APP.kas.slice().reverse().map(k=>{
-    const cls = k.jenis==='masuk'?'badge-green':'badge-red';
-    const sign = k.jenis==='masuk' ? '+' : '-';
-    return `<tr>
-      <td style="font-size:11px">${k.tgl}</td>
-      <td><div style="font-size:12px;font-weight:600">${k.ket}</div><div style="font-size:10px;color:var(--text-muted)">${k.kategori}</div></td>
-      <td><span class="badge ${cls}" style="font-size:10px">${k.jenis}</span></td>
-      <td style="font-size:12px;font-weight:700;color:${k.jenis==='masuk'?'#86efac':'#fca5a5'}">${sign}Rp ${(+k.jumlah).toLocaleString('id-ID')}</td>
-    </tr>`;
-  }).join('');
+  b.innerHTML = APP.kas.slice().reverse().map(k=>{ const cls = k.jenis==='masuk'?'badge-green':'badge-red'; const sign = k.jenis==='masuk'?'+':'-'; return `<tr><td style="font-size:11px">${k.tgl}</td><td><div style="font-size:12px;font-weight:600">${k.ket}</div><div style="font-size:10px;color:var(--text-muted)">${k.kategori}</div></td><td><span class="badge ${cls}" style="font-size:10px">${k.jenis}</span></td><td style="font-size:12px;font-weight:700;color:${k.jenis==='masuk'?'#86efac':'#fca5a5'}">${sign}Rp ${(+k.jumlah).toLocaleString('id-ID')}</td></tr>`; }).join('');
 }
-
 function simpanKas(){
-  const k = {
-    tgl: document.getElementById('k_tgl').value || new Date().toLocaleDateString('id-ID'),
-    jenis: document.getElementById('k_jenis').value,
-    kategori: document.getElementById('k_kategori').value,
-    ket: document.getElementById('k_ket').value.trim(),
-    jumlah: document.getElementById('k_jumlah').value,
-    sumber: document.getElementById('k_sumber').value.trim(),
-    ts: new Date().toISOString()
-  };
+  const k = { tgl: document.getElementById('k_tgl').value || new Date().toLocaleDateString('id-ID'), jenis: document.getElementById('k_jenis').value, kategori: document.getElementById('k_kategori').value, ket: document.getElementById('k_ket').value.trim(), jumlah: document.getElementById('k_jumlah').value, sumber: document.getElementById('k_sumber').value.trim(), ts: new Date().toISOString() };
   if(!k.ket || !k.jumlah){ showToast('Keterangan dan jumlah wajib diisi!','error'); return; }
-  APP.kas.push(k);
-  closeModal('modalInputKas');
-  showToast('Menyimpan transaksi...');
-  loadKas(); updateKasBanner(); updateLaporan();
-  if(APP.sheetsUrl){
-    syncToSheets('kas', k).then(()=>{
-      showToast('Kas berhasil disimpan ke Google Sheets!');
-      setTimeout(()=> syncFromSheets(), 1500);
-    });
-  }
+  APP.kas.push(k); closeModal('modalInputKas'); showToast('Menyimpan transaksi...'); loadKas(); updateKasBanner(); updateLaporan();
+  if(APP.sheetsUrl){ syncToSheets('kas',k).then(()=>{ showToast('Kas berhasil disimpan ke Google Sheets!'); setTimeout(()=> syncFromSheets(),1500); }); }
   ['k_ket','k_jumlah','k_sumber'].forEach(id=>document.getElementById(id).value='');
 }
-
-// ========== PERTEMUAN ==========
+// ===================== PERTEMUAN =====================
 function simpanJadwal(){
-  const j = {
-    nama: document.getElementById('j_nama').value.trim(),
-    tgl: document.getElementById('j_tgl').value,
-    waktu: document.getElementById('j_waktu').value,
-    lokasi: document.getElementById('j_lokasi').value.trim(),
-    agenda: document.getElementById('j_agenda').value.trim(),
-    jenis: document.getElementById('j_jenis').value
-  };
+  const j = { nama: document.getElementById('j_nama').value.trim(), tgl: document.getElementById('j_tgl').value, waktu: document.getElementById('j_waktu').value, lokasi: document.getElementById('j_lokasi').value.trim(), agenda: document.getElementById('j_agenda').value.trim(), jenis: document.getElementById('j_jenis').value };
   if(!j.nama){ showToast('Nama pertemuan wajib!','error'); return; }
-  APP.pertemuan.push(j);
-  closeModal('modalJadwal');
-  showToast('Menyimpan jadwal...');
-  loadPertemuan(); updateLaporan();
-  if(APP.sheetsUrl){
-    syncToSheets('pertemuan', j).then(()=>{
-      showToast('Jadwal berhasil disimpan ke Google Sheets!');
-      setTimeout(()=> syncFromSheets(), 1500);
-    });
-  }
+  APP.pertemuan.push(j); closeModal('modalJadwal'); showToast('Menyimpan jadwal...'); loadPertemuan(); updateLaporan();
+  if(APP.sheetsUrl){ syncToSheets('pertemuan',j).then(()=>{ showToast('Jadwal berhasil disimpan ke Google Sheets!'); setTimeout(()=> syncFromSheets(),1500); }); }
 }
-
 function loadPertemuan(){
   const el = document.getElementById('listPertemuan');
   if(!APP.pertemuan.length){ el.innerHTML='<div style="text-align:center;color:var(--text-muted);padding:20px">Belum ada jadwal</div>'; return; }
-  el.innerHTML = APP.pertemuan.map(p=>`
-    <div class="info-card" style="margin-bottom:10px">
-      <div style="display:flex;align-items:center;justify-content:space-between">
-        <div style="font-weight:800;font-size:14px">${p.nama}</div>
-        <span class="badge badge-gold" style="font-size:10px;background:rgba(245,158,11,0.15);color:#fde68a">${p.jenis}</span>
-      </div>
-      <div style="font-size:12px;color:var(--text-secondary);margin-top:6px">
-        <i class="fa fa-calendar" style="width:16px"></i> ${p.tgl} ${p.waktu||''}<br>
-        <i class="fa fa-map-marker-alt" style="width:16px"></i> ${p.lokasi||'-'}<br>
-        <i class="fa fa-list" style="width:16px"></i> ${p.agenda||'-'}
-      </div>
-    </div>`).join('');
+  el.innerHTML = APP.pertemuan.map(p=>`<div class="info-card" style="margin-bottom:10px"><div style="display:flex;align-items:center;justify-content:space-between"><div style="font-weight:800;font-size:14px">${p.nama}</div><span class="badge badge-gold" style="font-size:10px;background:rgba(245,158,11,0.15);color:#fde68a">${p.jenis}</span></div><div style="font-size:12px;color:var(--text-secondary);margin-top:6px"><i class="fa fa-calendar" style="width:16px"></i> ${p.tgl} ${p.waktu||''}<br><i class="fa fa-map-marker-alt" style="width:16px"></i> ${p.lokasi||'-'}<br><i class="fa fa-list" style="width:16px"></i> ${p.agenda||'-'}</div></div>`).join('');
 }
-
-// ========== SURAT ==========
+// ===================== SURAT =====================
 function simpanSurat(){
-  const s = {
-    no: document.getElementById('s_no').value.trim(),
-    tgl: document.getElementById('s_tgl').value,
-    jenis: document.getElementById('s_jenis').value,
-    perihal: document.getElementById('s_perihal').value.trim(),
-    kepada: document.getElementById('s_kepada').value.trim(),
-    isi: document.getElementById('s_isi').value.trim(),
-    status: document.getElementById('s_status').value
-  };
+  const s = { no: document.getElementById('s_no').value.trim(), tgl: document.getElementById('s_tgl').value, jenis: document.getElementById('s_jenis').value, perihal: document.getElementById('s_perihal').value.trim(), kepada: document.getElementById('s_kepada').value.trim(), isi: document.getElementById('s_isi').value.trim(), status: document.getElementById('s_status').value };
   if(!s.perihal){ showToast('Perihal surat wajib diisi!','error'); return; }
-  APP.surat.push(s);
-  closeModal('modalBuatSurat');
-  showToast('Menyimpan surat...');
-  loadSurat();
-  if(APP.sheetsUrl){
-    syncToSheets('surat', s).then(()=>{
-      showToast('Surat berhasil disimpan ke Google Sheets!');
-      setTimeout(()=> syncFromSheets(), 1500);
-    });
-  }
+  APP.surat.push(s); closeModal('modalBuatSurat'); showToast('Menyimpan surat...'); loadSurat();
+  if(APP.sheetsUrl){ syncToSheets('surat',s).then(()=>{ showToast('Surat berhasil disimpan ke Google Sheets!'); setTimeout(()=> syncFromSheets(),1500); }); }
 }
-
 function loadSurat(){
   const el = document.getElementById('listSurat');
   if(!APP.surat.length){ el.innerHTML='<div style="text-align:center;color:var(--text-muted);padding:20px">Belum ada surat</div>'; return; }
-  el.innerHTML = APP.surat.map(s=>{
-    const cls = s.status==='Selesai'?'badge-green':s.status==='Terkirim'?'badge-blue':'badge-yellow';
-    return `<div class="info-card" style="margin-bottom:10px">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start">
-        <div>
-          <div style="font-size:11px;color:var(--text-muted)">${s.no} · ${s.tgl}</div>
-          <div style="font-weight:700;font-size:14px;margin:4px 0">${s.perihal}</div>
-          <div style="font-size:12px;color:var(--text-secondary)">Kepada: ${s.kepada}</div>
-        </div>
-        <span class="badge ${cls}">${s.status}</span>
-      </div>
-    </div>`;
-  }).join('');
+  el.innerHTML = APP.surat.map(s=>{ const cls = s.status==='Selesai'?'badge-green':s.status==='Terkirim'?'badge-blue':'badge-yellow'; return `<div class="info-card" style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div style="font-size:11px;color:var(--text-muted)">${s.no} · ${s.tgl}</div><div style="font-weight:700;font-size:14px;margin:4px 0">${s.perihal}</div><div style="font-size:12px;color:var(--text-secondary)">Kepada: ${s.kepada}</div></div><span class="badge ${cls}">${s.status}</span></div></div>`; }).join('');
 }
-
-// ========== NBM ==========
-function loadNBM(){
-  const el = document.getElementById('listNBM');
-  if(!APP.anggota.length){ el.innerHTML='<div style="text-align:center;color:var(--text-muted);padding:20px">Belum ada data anggota</div>'; return; }
-  renderNBM(APP.anggota);
-}
-function filterNBM(q){
-  renderNBM(APP.anggota.filter(a=>a.nama.toLowerCase().includes(q.toLowerCase())||a.nbm.includes(q)));
-}
-function renderNBM(list){
-  const el = document.getElementById('listNBM');
-  el.innerHTML = list.map(a=>`
-    <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)">
-      <div>
-        <div style="font-size:13px;font-weight:700">${a.nama}</div>
-        <div style="font-size:11px;color:var(--text-muted)">NBM: ${a.nbm||'-'}</div>
-      </div>
-      <span class="badge ${a.keaktifan==='Aktif'?'badge-green':'badge-yellow'}">${a.keaktifan}</span>
-    </div>`).join('');
-}
-
-// ========== LAPORAN ==========
-function kirimLaporan(){
-  showToast('Laporan berhasil dikirim!');
-  closeModal('modalKirimLaporan');
-}
-
-// ========== PROFIL ==========
+// ===================== NBM =====================
+function loadNBM(){ const el = document.getElementById('listNBM'); if(!APP.anggota.length){ el.innerHTML='<div style="text-align:center;color:var(--text-muted);padding:20px">Belum ada data anggota</div>'; return; } renderNBM(APP.anggota); }
+function filterNBM(q){ renderNBM(APP.anggota.filter(a=>a.nama.toLowerCase().includes(q.toLowerCase())||a.nbm.includes(q))); }
+function renderNBM(list){ const el = document.getElementById('listNBM'); el.innerHTML = list.map(a=>`<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)"><div><div style="font-size:13px;font-weight:700">${a.nama}</div><div style="font-size:11px;color:var(--text-muted)">NBM: ${a.nbm||'-'}</div></div><span class="badge ${a.keaktifan==='Aktif'?'badge-green':'badge-yellow'}">${a.keaktifan}</span></div>`).join(''); }
+// ===================== LAPORAN =====================
+function kirimLaporan(){ showToast('Laporan berhasil dikirim!'); closeModal('modalKirimLaporan'); }
+// ===================== PROFIL =====================
 function simpanProfil(){
-  APP.user.nama = document.getElementById('p_nama').value;
-  APP.user.jabatan = document.getElementById('p_jabatan').value;
-  const su = document.getElementById('p_sheets').value.trim();
-  if(su){ APP.sheetsUrl = su; localStorage.setItem('prm_sheets_url', su); }
-  document.getElementById('navRole').textContent = APP.user.jabatan;
-  document.getElementById('navAvatar').textContent = APP.user.nama[0]||'K';
-  closeModal('modalProfil');
-  showToast('Profil berhasil disimpan!');
+  APP.user.nama = document.getElementById('p_nama').value; APP.user.jabatan = document.getElementById('p_jabatan').value;
+  const su = document.getElementById('p_sheets').value.trim(); if(su){ APP.sheetsUrl = su; localStorage.setItem('prm_sheets_url', su); }
+  document.getElementById('navRole').textContent = APP.user.jabatan; document.getElementById('navAvatar').textContent = APP.user.nama[0]||'K';
+  closeModal('modalProfil'); showToast('Profil berhasil disimpan!');
 }
-
-// ========== SHEETS ==========
-function openSheetsSetup(){
-  document.getElementById('sheetsUrl').value = APP.sheetsUrl;
-  document.getElementById('sheetsId').value = APP.sheetsId;
-  openModal('modalSheets');
-}
-
-function saveSheetsConfig(){
-  const url = document.getElementById('sheetsUrl').value.trim();
-  const id  = document.getElementById('sheetsId').value.trim();
-  if(!url){ showToast('URL wajib diisi!','error'); return; }
-  APP.sheetsUrl = url;
-  APP.sheetsId  = id;
-  localStorage.setItem('prm_sheets_url', url);
-  localStorage.setItem('prm_sheets_id',  id);
-  document.getElementById('sheetsConfig').innerHTML = `<i class="fa fa-check-circle" style="color:var(--accent-green)"></i> <strong style="color:var(--accent-green)">Google Sheets terhubung.</strong> <a href="#" onclick="openSheetsSetup()" style="color:var(--accent-cyan);margin-left:4px;font-weight:700">Ubah konfigurasi →</a>`;
-  closeModal('modalSheets');
-  showToast('Google Sheets berhasil dihubungkan!');
-}
-
-async function syncToSheets(sheet, data){
-  if(!APP.sheetsUrl) return;
-  try {
-    const payload = { sheet, data, action: 'append' };
-    const res = await fetch(APP.sheetsUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify(payload)
-    });
-    const json = await res.json();
-    if(json.status !== 'ok') throw new Error(json.message || 'Gagal');
-  } catch(e) {
-    showToast('Gagal simpan ke Sheets: ' + e.message, 'error');
-    throw e;
-  }
-}
-
-// ========== SYNC EDIT & HAPUS KE SHEETS ==========
-async function syncActionToSheets(action, sheet, identifier, newData=null){
-  if(!APP.sheetsUrl) return;
-  try {
-    const payload = { action, sheet, identifier, newData };
-    const res = await fetch(APP.sheetsUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify(payload)
-    });
-    const json = await res.json();
-    if(json.status !== 'ok') throw new Error(json.message || 'Gagal');
-  } catch(e) {
-    showToast('Gagal: ' + e.message, 'error');
-    throw e;
-  }
-}
-
-// ========== MODAL HELPERS ==========
-function openModal(id){
-  const m = document.getElementById(id);
-  if(m){ m.classList.add('active'); }
-  if(id==='modalPertemuan') loadPertemuan();
-  if(id==='modalSurat') loadSurat();
-  if(id==='modalNBM') loadNBM();
-  if(id==='modalLaporan') updateLaporan();
-}
-function closeModal(id){
-  const m = document.getElementById(id);
-  if(m) m.classList.remove('active');
-}
-function closeAllModals(){
-  document.querySelectorAll('.modal-overlay').forEach(m=>m.classList.remove('active'));
-}
-
-// Close on backdrop click
-document.querySelectorAll('.modal-overlay').forEach(overlay=>{
-  overlay.addEventListener('click', e=>{
-    if(e.target === overlay) overlay.classList.remove('active');
-  });
-});
-
-// ========== TOAST ==========
-function showToast(msg, type=''){
-  const t = document.getElementById('toast');
-  const tm = document.getElementById('toastMsg');
-  tm.textContent = msg;
-  t.className = 'toast' + (type?(' '+type):'');
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),3000);
-}
-
+// ===================== SHEETS HELPERS =====================
+function openSheetsSetup(){ document.getElementById('sheetsUrl').value = APP.sheetsUrl; document.getElementById('sheetsId').value = APP.sheetsId; openModal('modalSheets'); }
+function saveSheetsConfig(){ const url = document.getElementById('sheetsUrl').value.trim(); const id = document.getElementById('sheetsId').value.trim(); if(!url){ showToast('URL wajib diisi!','error'); return; } APP.sheetsUrl = url; APP.sheetsId = id; localStorage.setItem('prm_sheets_url',url); localStorage.setItem('prm_sheets_id',id); document.getElementById('sheetsConfig').innerHTML = `<i class="fa fa-check-circle" style="color:var(--accent-green)"></i> <strong style="color:var(--accent-green)">Google Sheets terhubung.</strong> <a href="#" onclick="openSheetsSetup()" style="color:var(--accent-cyan);margin-left:4px;font-weight:700">Ubah konfigurasi →</a>`; closeModal('modalSheets'); showToast('Google Sheets berhasil dihubungkan!'); }
+async function syncToSheets(sheet, data){ if(!APP.sheetsUrl) return; try { const res = await fetch(APP.sheetsUrl, { method:'POST', headers:{'Content-Type':'text/plain'}, body:JSON.stringify({ sheet, data, action:'append' }) }); const json = await res.json(); if(json.status !== 'ok') throw new Error(json.message||'Gagal'); } catch(e){ showToast('Gagal simpan ke Sheets: '+e.message,'error'); throw e; } }
+async function syncActionToSheets(action, sheet, identifier, newData=null){ if(!APP.sheetsUrl) return; try { const res = await fetch(APP.sheetsUrl, { method:'POST', headers:{'Content-Type':'text/plain'}, body:JSON.stringify({ action, sheet, identifier, newData }) }); const json = await res.json(); if(json.status !== 'ok') throw new Error(json.message||'Gagal'); } catch(e){ showToast('Gagal: '+e.message,'error'); throw e; } }
+// ===================== MODAL HELPERS =====================
+function openModal(id){ const m = document.getElementById(id); if(m) m.classList.add('active'); if(id==='modalPertemuan') loadPertemuan(); if(id==='modalSurat') loadSurat(); if(id==='modalNBM') loadNBM(); if(id==='modalLaporan') updateLaporan(); }
+function closeModal(id){ const m = document.getElementById(id); if(m) m.classList.remove('active'); }
+function closeAllModals(){ document.querySelectorAll('.modal-overlay').forEach(m=>m.classList.remove('active')); }
+document.querySelectorAll('.modal-overlay').forEach(overlay=>{ overlay.addEventListener('click', e=>{ if(e.target === overlay) overlay.classList.remove('active'); }); });
+function showToast(msg, type=''){ const t = document.getElementById('toast'); const tm = document.getElementById('toastMsg'); tm.textContent = msg; t.className = 'toast' + (type?(' '+type):''); t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),3000); }
 function showNotif(){ showToast('Tidak ada notifikasi baru'); }
-
-// ========== ABSENSI ==========
-const BULAN = ['Januari','Februari','Maret','April','Mei','Juni',
-               'Juli','Agustus','September','Oktober','November','Desember'];
+// ===================== ABSENSI =====================
+const BULAN = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
 let _absensiTahun = 2025;
 let _absensiBulan = '';
-let _absensiSaving = false; // flag anti-double-save
-
-// --- PILIH TAHUN: load fresh dari Sheets, tampil grid bulan ---
+let _absensiSaving = false;
 function pilihTahunAbsensi(tahun){
-  _absensiTahun = tahun;
-  document.getElementById('titleAbsensiBulan').innerHTML =
-    '<i class="fa fa-calendar" style="color:#fbbf24"></i> Absensi ' + tahun;
-  closeModal('modalAbsensi');
-  openModal('modalAbsensiBulan');
-  // Loading sementara
-  document.getElementById('gridBulanAbsensi').innerHTML =
-    '<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--text-muted)">' +
-    '<div class="spinner" style="margin:0 auto 8px"></div>Memuat data...</div>';
-  const doRender = () => _renderGridBulan(tahun);
-  if(APP.sheetsUrl) loadAbsensiFromSheets().then(doRender).catch(doRender);
-  else doRender();
+  _absensiTahun = tahun; document.getElementById('titleAbsensiBulan').innerHTML = '<i class="fa fa-calendar" style="color:#fbbf24"></i> Absensi '+tahun; closeModal('modalAbsensi'); openModal('modalAbsensiBulan'); document.getElementById('gridBulanAbsensi').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--text-muted)"><div class="spinner" style="margin:0 auto 8px"></div>Memuat data...</div>'; const doRender = () => _renderGridBulan(tahun); if(APP.sheetsUrl) loadAbsensiFromSheets().then(doRender).catch(doRender); else doRender();
 }
-
 function _renderGridBulan(tahun){
   const grid = document.getElementById('gridBulanAbsensi');
   grid.innerHTML = BULAN.map(b => {
@@ -2308,26 +1270,17 @@ function _renderGridBulan(tahun){
     const hadir = rows.filter(r => r.hadir === 'Hadir').length;
     const total = rows.length;
     const ada   = total > 0;
-    return '<div class="shortcut-card" onclick="pilihBulanAbsensi('' + b + '')" ' +
-      'style="flex-direction:column;align-items:center;justify-content:center;padding:14px 8px;text-align:center;position:relative">' +
-      (ada ? '<span style="position:absolute;top:6px;right:6px;width:8px;height:8px;border-radius:50%;background:#22c55e"></span>' : '') +
-      '<i class="fa fa-calendar-day" style="font-size:20px;color:' + (ada ? '#2dd4bf' : '#475569') + ';margin-bottom:6px"></i>' +
-      '<span style="font-size:12px;font-weight:700">' + b + '</span>' +
-      (ada ? '<span style="font-size:9px;color:#22c55e;margin-top:3px">' + hadir + '/' + total + ' hadir</span>' : '') +
-    '</div>';
+    return `<div class="shortcut-card" onclick="pilihBulanAbsensi('${b}')" style="flex-direction:column;align-items:center;justify-content:center;padding:14px 8px;text-align:center;position:relative">${ada ? '<span style="position:absolute;top:6px;right:6px;width:8px;height:8px;border-radius:50%;background:#22c55e"></span>' : ''}<i class="fa fa-calendar-day" style="font-size:20px;color:${ada ? '#2dd4bf' : '#475569'};margin-bottom:6px"></i><span style="font-size:12px;font-weight:700">${b}</span>${ada ? `<span style="font-size:9px;color:#22c55e;margin-top:3px">${hadir}/${total} hadir</span>` : ''}</div>`;
   }).join('');
 }
-
-// --- PILIH BULAN: load fresh, render kartu absensi ---
 function pilihBulanAbsensi(bulan){
   _absensiBulan = bulan;
-  const key = _absensiTahun + '_' + bulan;
-  document.getElementById('titleTabelAbsensi').innerHTML =
-    '<i class="fa fa-clipboard-list" style="color:#fbbf24"></i> Absensi ' + bulan + ' ' + _absensiTahun;
+  document.getElementById('titleTabelAbsensi').innerHTML = `<i class="fa fa-clipboard-list" style="color:#fbbf24"></i> Absensi ${bulan} ${_absensiTahun}`;
   closeModal('modalAbsensiBulan');
   openModal('modalTabelAbsensi');
   _showAbsensiLoading();
   const doRender = () => {
+    const key = _absensiTahun + '_' + bulan;
     if(!APP.absensi[key] || APP.absensi[key].length === 0){
       APP.absensi[key] = APP.anggota.map(a => ({nama: a.nama, hadir: 'Belum diisi'}));
     }
@@ -2336,27 +1289,12 @@ function pilihBulanAbsensi(bulan){
   if(APP.sheetsUrl) loadAbsensiFromSheets().then(doRender).catch(doRender);
   else doRender();
 }
-
-function _showAbsensiLoading(){
-  const el = document.getElementById('absensiCardList');
-  if(el) el.innerHTML =
-    '<div style="text-align:center;padding:30px;color:var(--text-muted)">' +
-    '<div class="spinner" style="margin:0 auto 10px"></div>Memuat data absensi dari Google Sheets...</div>';
-  _updateAbsensiStats([]);
-}
-
-// --- RENDER kartu absensi (Solusi A: toggle card per anggota) ---
+function _showAbsensiLoading(){ const el = document.getElementById('absensiCardList'); if(el) el.innerHTML = '<div style="text-align:center;padding:30px;color:var(--text-muted)"><div class="spinner" style="margin:0 auto 10px"></div>Memuat data absensi dari Google Sheets...</div>'; _updateAbsensiStats([]); }
 function renderTabelAbsensi(key){
   const data = APP.absensi[key] || [];
-  const el   = document.getElementById('absensiCardList');
-  if(!data.length){
-    el.innerHTML = '<div style="text-align:center;padding:24px;color:var(--text-muted);font-size:13px">' +
-      '<i class="fa fa-users" style="font-size:24px;display:block;margin-bottom:10px"></i>' +
-      'Belum ada anggota. Tekan "+ Tambah Anggota".</div>';
-    _updateAbsensiStats([]);
-    return;
-  }
-  el.innerHTML = data.map((d, i) => {
+  const el = document.getElementById('absensiCardList');
+  if(!data.length){ el.innerHTML = '<div style="text-align:center;padding:24px;color:var(--text-muted);font-size:13px"><i class="fa fa-users" style="font-size:24px;display:block;margin-bottom:10px"></i>Belum ada anggota. Tekan "+ Tambah Anggota".</div>'; _updateAbsensiStats([]); return; }
+  el.innerHTML = data.map((d,i) => {
     const hv = (!d.hadir || d.hadir === false) ? 'Belum diisi' : String(d.hadir);
     const isHadir  = hv === 'Hadir';
     const isTidak  = hv === 'Tidak Hadir';
@@ -2365,393 +1303,51 @@ function renderTabelAbsensi(key){
     const avatarCl = isHadir ? '#22c55e' : isTidak ? '#ef4444' : '#64748b';
     const cardBorder= isHadir ? 'rgba(34,197,94,0.3)' : isTidak ? 'rgba(239,68,68,0.25)' : 'rgba(255,255,255,0.06)';
     const cardBg   = isHadir ? 'rgba(34,197,94,0.06)' : isTidak ? 'rgba(239,68,68,0.05)' : 'rgba(255,255,255,0.03)';
-    return '<div style="display:flex;align-items:center;gap:12px;padding:10px 12px;' +
-      'background:' + cardBg + ';border:1px solid ' + cardBorder + ';border-radius:12px;transition:all .2s">' +
-      // Avatar
-      '<div style="width:38px;height:38px;border-radius:50%;background:' + avatarBg + ';' +
-        'display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;' +
-        'color:' + avatarCl + ';flex-shrink:0">' + inisial + '</div>' +
-      // Nama & status text
-      '<div style="flex:1;min-width:0">' +
-        '<div style="font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">' + d.nama + '</div>' +
-        '<div style="font-size:11px;color:' + avatarCl + ';margin-top:1px">' +
-          (isHadir ? '✓ Hadir' : isTidak ? '✗ Tidak Hadir' : '○ Belum diisi') +
-        '</div>' +
-      '</div>' +
-      // Tombol Hadir
-      '<button onclick="setKehadiran(' + i + ','Hadir')" ' +
-        'style="padding:6px 12px;border-radius:8px;border:none;cursor:pointer;font-size:11px;font-weight:800;' +
-        'background:' + (isHadir ? '#22c55e' : 'rgba(34,197,94,0.15)') + ';' +
-        'color:' + (isHadir ? '#fff' : '#86efac') + ';' +
-        'box-shadow:' + (isHadir ? '0 2px 8px rgba(34,197,94,0.35)' : 'none') + ';' +
-        'transition:all .2s;font-family:Nunito,sans-serif">Hadir</button>' +
-      // Tombol Tidak Hadir
-      '<button onclick="setKehadiran(' + i + ','Tidak Hadir')" ' +
-        'style="padding:6px 10px;border-radius:8px;border:none;cursor:pointer;font-size:10px;font-weight:800;' +
-        'background:' + (isTidak ? '#ef4444' : 'rgba(239,68,68,0.15)') + ';' +
-        'color:' + (isTidak ? '#fff' : '#fca5a5') + ';' +
-        'box-shadow:' + (isTidak ? '0 2px 8px rgba(239,68,68,0.35)' : 'none') + ';' +
-        'transition:all .2s;font-family:Nunito,sans-serif">TDK<br>HADIR</button>' +
-    '</div>';
+    return `<div style="display:flex;align-items:center;gap:12px;padding:10px 12px;background:${cardBg};border:1px solid ${cardBorder};border-radius:12px;transition:all .2s"><div style="width:38px;height:38px;border-radius:50%;background:${avatarBg};display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:${avatarCl};flex-shrink:0">${inisial}</div><div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${d.nama}</div><div style="font-size:11px;color:${avatarCl};margin-top:1px">${isHadir?'✓ Hadir':isTidak?'✗ Tidak Hadir':'○ Belum diisi'}</div></div><button onclick="setKehadiran(${i}, 'Hadir')" style="padding:6px 12px;border-radius:8px;border:none;cursor:pointer;font-size:11px;font-weight:800;background:${isHadir ? '#22c55e' : 'rgba(34,197,94,0.15)'};color:${isHadir ? '#fff' : '#86efac'};box-shadow:${isHadir ? '0 2px 8px rgba(34,197,94,0.35)' : 'none'};transition:all .2s;font-family:Nunito,sans-serif">Hadir</button><button onclick="setKehadiran(${i}, 'Tidak Hadir')" style="padding:6px 10px;border-radius:8px;border:none;cursor:pointer;font-size:10px;font-weight:800;background:${isTidak ? '#ef4444' : 'rgba(239,68,68,0.15)'};color:${isTidak ? '#fff' : '#fca5a5'};box-shadow:${isTidak ? '0 2px 8px rgba(239,68,68,0.35)' : 'none'};transition:all .2s;font-family:Nunito,sans-serif">TDK<br>HADIR</button></div>`;
   }).join('');
   _updateAbsensiStats(data);
 }
-
-function _updateAbsensiStats(data){
-  const h  = data.filter(d => d.hadir === 'Hadir').length;
-  const t  = data.filter(d => d.hadir === 'Tidak Hadir').length;
-  const b  = data.filter(d => !d.hadir || d.hadir === 'Belum diisi' || d.hadir === false).length;
-  const sh = document.getElementById('statHadir');
-  const st = document.getElementById('statTidakHadir');
-  const sb = document.getElementById('statBelum');
-  if(sh) sh.textContent = h;
-  if(st) st.textContent = t;
-  if(sb) sb.textContent = b;
-}
-
-// --- SET KEHADIRAN: update lokal + auto-save ke Sheets ---
-function setKehadiran(idx, status){
-  const key = _absensiTahun + '_' + _absensiBulan;
-  if(!APP.absensi[key] || !APP.absensi[key][idx]) return;
-  APP.absensi[key][idx].hadir = status;
-  renderTabelAbsensi(key);
-  // Auto-save ke Sheets (debounced)
-  _scheduleAbsensiSave(key);
-}
-
+function _updateAbsensiStats(data){ const h=data.filter(d=>d.hadir==='Hadir').length; const t=data.filter(d=>d.hadir==='Tidak Hadir').length; const b=data.filter(d=>!d.hadir||d.hadir==='Belum diisi'||d.hadir===false).length; if(document.getElementById('statHadir')) document.getElementById('statHadir').textContent=h; if(document.getElementById('statTidakHadir')) document.getElementById('statTidakHadir').textContent=t; if(document.getElementById('statBelum')) document.getElementById('statBelum').textContent=b; }
+function setKehadiran(idx, status){ const key = _absensiTahun + '_' + _absensiBulan; if(!APP.absensi[key] || !APP.absensi[key][idx]) return; APP.absensi[key][idx].hadir = status; renderTabelAbsensi(key); _scheduleAbsensiSave(key); }
 let _absensiSaveTimer = null;
-function _scheduleAbsensiSave(key){
-  // Tampil notifikasi "Akan disimpan..."
-  _showSaveNotice('Menyimpan otomatis...', false);
-  // Debounce 1.5 detik agar tidak spam saat klik cepat bergantian
-  clearTimeout(_absensiSaveTimer);
-  _absensiSaveTimer = setTimeout(() => { _doSaveAbsensi(key); }, 1500);
-}
-
-function _showSaveNotice(msg, done){
-  const el  = document.getElementById('absensiSaveNotice');
-  const msg_el = document.getElementById('absensiSaveMsg');
-  if(!el || !msg_el) return;
-  el.style.display = 'flex';
-  el.style.background = done ? 'rgba(34,197,94,0.12)' : 'rgba(0,212,255,0.08)';
-  el.style.borderColor = done ? 'rgba(34,197,94,0.3)' : 'rgba(0,212,255,0.2)';
-  el.style.color = done ? '#86efac' : '#67e8f9';
-  msg_el.textContent = msg;
-  if(done) setTimeout(() => { el.style.display = 'none'; }, 2500);
-}
-
-async function _doSaveAbsensi(key){
-  if(!APP.sheetsUrl){ _showSaveNotice('Sheets belum terhubung', true); return; }
-  if(_absensiSaving) return;
-  _absensiSaving = true;
-  const data = APP.absensi[key] || [];
-  if(!data.length){ _absensiSaving = false; return; }
-  try {
-    const rows = data.map(d => ({
-      nama : d.nama,
-      hadir: (!d.hadir || d.hadir === false || d.hadir === '') ? 'Belum diisi' : String(d.hadir)
-    }));
-    const res = await fetch(APP.sheetsUrl, {
-      method : 'POST',
-      headers: { 'Content-Type': 'text/plain' },
-      body   : JSON.stringify({
-        action: 'saveAbsensiBatch',
-        tahun : String(_absensiTahun),
-        bulan : String(_absensiBulan),
-        rows
-      })
-    });
-    // GAS kadang redirect — baca text dulu baru parse
-    const text = await res.text();
-    let json;
-    try { json = JSON.parse(text); } catch(_){ json = { status:'error', message: text.slice(0,80) }; }
-    if(json.status === 'ok'){
-      _showSaveNotice('✓ Tersimpan ' + rows.length + ' anggota ke Google Sheets', true);
-    } else {
-      _showSaveNotice('Gagal: ' + (json.message || 'Cek GAS log'), true);
-    }
-  } catch(e){
-    _showSaveNotice('Gagal simpan: ' + (e.message||'network error'), true);
-  }
-  _absensiSaving = false;
-}
-
-// Tetap ada untuk backward-compat jika dipanggil dari tempat lain
-async function simpanAbsensi(){
-  const key = _absensiTahun + '_' + _absensiBulan;
-  clearTimeout(_absensiSaveTimer);
-  await _doSaveAbsensi(key);
-}
-
-function tambahAnggotaKeAbsensi(){
-  const key = _absensiTahun + '_' + _absensiBulan;
-  const sudahAda = (APP.absensi[key]||[]).map(x=>x.nama);
-  const baru = APP.anggota.filter(a=>!sudahAda.includes(a.nama)).map(a=>({nama:a.nama,hadir:'Belum diisi'}));
-  if(!APP.absensi[key]) APP.absensi[key] = [];
-  APP.absensi[key] = [...APP.absensi[key], ...baru];
-  renderTabelAbsensi(key);
-  if(baru.length){ showToast(baru.length + ' anggota ditambahkan'); _scheduleAbsensiSave(key); }
-  else showToast('Semua anggota sudah ada di daftar');
-}
-
-function refreshAbsensi(){
-  const icon = document.getElementById('iconRefreshAbsensi');
-  if(icon) icon.style.animation = 'spin .6s linear infinite';
-  _showAbsensiLoading();
-  loadAbsensiFromSheets().then(() => {
-    const key = _absensiTahun + '_' + _absensiBulan;
-    if(icon) icon.style.animation = '';
-    renderTabelAbsensi(key);
-    showToast('Data absensi diperbarui!');
-  }).catch(() => {
-    if(icon) icon.style.animation = '';
-    showToast('Gagal memuat dari Sheets','error');
-  });
-}
-
-// ========== QURBAN ==========
+function _scheduleAbsensiSave(key){ _showSaveNotice('Menyimpan otomatis...', false); clearTimeout(_absensiSaveTimer); _absensiSaveTimer = setTimeout(() => { _doSaveAbsensi(key); }, 1500); }
+function _showSaveNotice(msg, done){ const el = document.getElementById('absensiSaveNotice'); const msg_el = document.getElementById('absensiSaveMsg'); if(!el||!msg_el) return; el.style.display='flex'; el.style.background=done?'rgba(34,197,94,0.12)':'rgba(0,212,255,0.08)'; el.style.borderColor=done?'rgba(34,197,94,0.3)':'rgba(0,212,255,0.2)'; el.style.color=done?'#86efac':'#67e8f9'; msg_el.textContent=msg; if(done) setTimeout(()=>{el.style.display='none';},2500); }
+async function _doSaveAbsensi(key){ if(!APP.sheetsUrl){ _showSaveNotice('Sheets belum terhubung', true); return; } if(_absensiSaving) return; _absensiSaving=true; const data = APP.absensi[key]||[]; if(!data.length){ _absensiSaving=false; return; } try { const rows = data.map(d=>({ nama:d.nama, hadir:(!d.hadir||d.hadir===false||d.hadir==='')?'Belum diisi':String(d.hadir) })); const res = await fetch(APP.sheetsUrl, { method:'POST', headers:{'Content-Type':'text/plain'}, body:JSON.stringify({ action:'saveAbsensiBatch', tahun:String(_absensiTahun), bulan:String(_absensiBulan), rows }) }); const text = await res.text(); let json; try{ json=JSON.parse(text); }catch(_){ json={status:'error',message:text.slice(0,80)}; } if(json.status==='ok') _showSaveNotice('✓ Tersimpan '+rows.length+' anggota ke Google Sheets', true); else _showSaveNotice('Gagal: '+(json.message||'Cek GAS log'), true); } catch(e){ _showSaveNotice('Gagal simpan: '+(e.message||'network error'), true); } _absensiSaving=false; }
+function tambahAnggotaKeAbsensi(){ const key = _absensiTahun + '_' + _absensiBulan; const sudahAda = (APP.absensi[key]||[]).map(x=>x.nama); const baru = APP.anggota.filter(a=>!sudahAda.includes(a.nama)).map(a=>({nama:a.nama,hadir:'Belum diisi'})); if(!APP.absensi[key]) APP.absensi[key]=[]; APP.absensi[key] = [...APP.absensi[key], ...baru]; renderTabelAbsensi(key); if(baru.length){ showToast(baru.length+' anggota ditambahkan'); _scheduleAbsensiSave(key); } else showToast('Semua anggota sudah ada di daftar'); }
+function refreshAbsensi(){ const icon = document.getElementById('iconRefreshAbsensi'); if(icon) icon.style.animation='spin .6s linear infinite'; _showAbsensiLoading(); loadAbsensiFromSheets().then(()=>{ const key = _absensiTahun+'_'+_absensiBulan; if(icon) icon.style.animation=''; renderTabelAbsensi(key); showToast('Data absensi diperbarui!'); }).catch(()=>{ if(icon) icon.style.animation=''; showToast('Gagal memuat dari Sheets','error'); }); }
+// ===================== QURBAN =====================
 let _qurbanTahun = 2025;
-
-function pilihTahunQurban(tahun){
-  _qurbanTahun = tahun;
-  document.getElementById('titleTabelQurban').innerHTML =
-    `<i class="fa fa-moon" style="color:#2dd4bf"></i> Qurban Tahun ${tahun}`;
-  closeModal('modalQurban');
-  openModal('modalTabelQurban');
-  // Selalu ambil data segar dari Sheets saat buka
-  loadQurbanFromSheets();
-}
-function renderTabelQurban(){
-  const data = APP.qurban[_qurbanTahun] || [];
-  const b = document.getElementById('bodyQurban');
-  if(!data.length){
-    b.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:20px">Belum ada data muqorib</td></tr>';
-    return;
-  }
-  b.innerHTML = data.map((d,i) => `
-    <tr>
-      <td>${i+1}</td>
-      <td>
-        <div style="font-weight:700">${d.nama}</div>
-        <div style="font-size:10px;color:var(--text-muted)">${d.hewan||'Kambing'}</div>
-      </td>
-      <td style="font-size:12px">${d.alamat||'-'}</td>
-      <td style="white-space:nowrap">
-        <span onclick="editQurban(${i})" style="cursor:pointer;color:var(--accent-cyan);font-size:13px;margin-right:10px" title="Edit">
-          <i class="fa fa-edit"></i>
-        </span>
-        <span onclick="hapusQurban(${i})" style="cursor:pointer;color:var(--accent-red);font-size:13px" title="Hapus">
-          <i class="fa fa-trash-alt"></i>
-        </span>
-      </td>
-    </tr>`).join('');
-}
-
-function refreshQurban(){
-  showToast('Memuat data dari Google Sheets...');
-  loadQurbanFromSheets().then(()=> showToast('✅ Data Qurban diperbarui!'));
-}
-
-// ========== EDIT MUQORIB ==========
-function editQurban(i){
-  const data = APP.qurban[_qurbanTahun];
-  if(!data || !data[i]) return;
-  const d = data[i];
-
-  // Isi form dengan data yang akan diedit
-  document.getElementById('q_editIndex').value = i;
-  document.getElementById('q_namaLama').value  = d.nama; // simpan nama lama untuk update di Sheets
-  document.getElementById('q_nama').value      = d.nama    || '';
-  document.getElementById('q_alamat').value    = d.alamat  || '';
-  document.getElementById('q_hewan').value     = d.hewan   || 'Kambing';
-  document.getElementById('q_catatan').value   = d.catatan || '';
-
-  // Ubah judul & tombol
-  document.getElementById('titleFormQurban').innerHTML =
-    '<i class="fa fa-edit" style="color:#fbbf24"></i> Edit Muqorib';
-  document.getElementById('btnSimpanQurban').innerHTML =
-    '<i class="fa fa-save"></i> Simpan Perubahan';
-
-  openModal('modalTambahQurban');
-}
-
-function resetFormQurban(){
-  document.getElementById('q_editIndex').value = -1;
-  document.getElementById('q_namaLama').value  = '';
-  document.getElementById('q_nama').value      = '';
-  document.getElementById('q_alamat').value    = '';
-  document.getElementById('q_catatan').value   = '';
-  document.getElementById('q_hewan').value     = 'Kambing';
-  document.getElementById('titleFormQurban').innerHTML =
-    '<i class="fa fa-plus" style="color:#2dd4bf"></i> Tambah Muqorib';
-  document.getElementById('btnSimpanQurban').innerHTML =
-    '<i class="fa fa-save"></i> Simpan';
-}
-
+function pilihTahunQurban(tahun){ _qurbanTahun = tahun; document.getElementById('titleTabelQurban').innerHTML = `<i class="fa fa-moon" style="color:#2dd4bf"></i> Qurban Tahun ${tahun}`; closeModal('modalQurban'); openModal('modalTabelQurban'); loadQurbanFromSheets(); }
+function renderTabelQurban(){ const data = APP.qurban[_qurbanTahun]||[]; const b = document.getElementById('bodyQurban'); if(!data.length){ b.innerHTML='<tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:20px">Belum ada data muqorib</td></tr>'; return; } b.innerHTML = data.map((d,i)=>`<tr><td>${i+1}</td><td><div style="font-weight:700">${d.nama}</div><div style="font-size:10px;color:var(--text-muted)">${d.hewan||'Kambing'}</div></td><td style="font-size:12px">${d.alamat||'-'}</td><td style="white-space:nowrap"><span onclick="editQurban(${i})" style="cursor:pointer;color:var(--accent-cyan);font-size:13px;margin-right:10px" title="Edit"><i class="fa fa-edit"></i></span><span onclick="hapusQurban(${i})" style="cursor:pointer;color:var(--accent-red);font-size:13px" title="Hapus"><i class="fa fa-trash-alt"></i></span></td></tr>`).join(''); }
+function refreshQurban(){ showToast('Memuat data dari Google Sheets...'); loadQurbanFromSheets().then(()=> showToast('✅ Data Qurban diperbarui!')); }
+function editQurban(i){ const data = APP.qurban[_qurbanTahun]; if(!data||!data[i]) return; const d=data[i]; document.getElementById('q_editIndex').value=i; document.getElementById('q_namaLama').value=d.nama; document.getElementById('q_nama').value=d.nama||''; document.getElementById('q_alamat').value=d.alamat||''; document.getElementById('q_hewan').value=d.hewan||'Kambing'; document.getElementById('q_catatan').value=d.catatan||''; document.getElementById('titleFormQurban').innerHTML='<i class="fa fa-edit" style="color:#fbbf24"></i> Edit Muqorib'; document.getElementById('btnSimpanQurban').innerHTML='<i class="fa fa-save"></i> Simpan Perubahan'; openModal('modalTambahQurban'); }
+function resetFormQurban(){ document.getElementById('q_editIndex').value=-1; document.getElementById('q_namaLama').value=''; document.getElementById('q_nama').value=''; document.getElementById('q_alamat').value=''; document.getElementById('q_catatan').value=''; document.getElementById('q_hewan').value='Kambing'; document.getElementById('titleFormQurban').innerHTML='<i class="fa fa-plus" style="color:#2dd4bf"></i> Tambah Muqorib'; document.getElementById('btnSimpanQurban').innerHTML='<i class="fa fa-save"></i> Simpan'; }
 function simpanQurban(){
-  const nama = document.getElementById('q_nama').value.trim();
-  if(!nama){ showToast('Nama muqorib wajib diisi!','error'); return; }
-
-  const editIndex = parseInt(document.getElementById('q_editIndex').value);
-  const namaLama  = document.getElementById('q_namaLama').value.trim();
-  const isEdit    = editIndex >= 0 && namaLama;
-
-  const item = {
-    nama    : nama,
-    alamat  : document.getElementById('q_alamat').value.trim(),
-    hewan   : document.getElementById('q_hewan').value,
-    catatan : document.getElementById('q_catatan').value.trim(),
-    tgl     : isEdit
-                ? (APP.qurban[_qurbanTahun]?.[editIndex]?.tgl || new Date().toISOString())
-                : new Date().toISOString()
-  };
-
-  closeModal('modalTambahQurban');
-  resetFormQurban();
-
+  const nama = document.getElementById('q_nama').value.trim(); if(!nama){ showToast('Nama muqorib wajib diisi!','error'); return; }
+  const editIndex = parseInt(document.getElementById('q_editIndex').value); const namaLama = document.getElementById('q_namaLama').value.trim(); const isEdit = editIndex>=0 && namaLama;
+  const item = { nama, alamat: document.getElementById('q_alamat').value.trim(), hewan: document.getElementById('q_hewan').value, catatan: document.getElementById('q_catatan').value.trim(), tgl: isEdit ? (APP.qurban[_qurbanTahun]?.[editIndex]?.tgl||new Date().toISOString()) : new Date().toISOString() };
+  closeModal('modalTambahQurban'); resetFormQurban();
   if(APP.sheetsUrl){
-    if(isEdit){
-      // --- MODE EDIT: hapus baris lama, tambah baris baru ---
-      showToast('Memperbarui data di Google Sheets...');
-      syncActionToSheets('deleteQurban', 'qurban', namaLama, {tahun: _qurbanTahun})
-        .then(()=> syncToSheets('qurban', {
-          tahun   : _qurbanTahun,
-          nama    : item.nama,
-          alamat  : item.alamat,
-          hewan   : item.hewan,
-          catatan : item.catatan,
-          tgl     : item.tgl
-        }))
-        .then(()=>{
-          showToast('✅ ' + item.nama + ' berhasil diperbarui!');
-          setTimeout(()=> loadQurbanFromSheets(), 800);
-        })
-        .catch(e=> showToast('Gagal update: ' + e.message, 'error'));
-    } else {
-      // --- MODE TAMBAH BARU ---
-      showToast('Menyimpan ke Google Sheets...');
-      syncToSheets('qurban', {
-        tahun   : _qurbanTahun,
-        nama    : item.nama,
-        alamat  : item.alamat,
-        hewan   : item.hewan,
-        catatan : item.catatan,
-        tgl     : item.tgl
-      }).then(()=>{
-        showToast('✅ ' + item.nama + ' tersimpan!');
-        setTimeout(()=> loadQurbanFromSheets(), 800);
-      }).catch(e=> showToast('Gagal simpan: ' + e.message, 'error'));
-    }
-  } else {
-    // Fallback offline
-    if(!APP.qurban[_qurbanTahun]) APP.qurban[_qurbanTahun] = [];
-    if(isEdit) APP.qurban[_qurbanTahun][editIndex] = item;
-    else APP.qurban[_qurbanTahun].push(item);
-    renderTabelQurban();
-    showToast(isEdit ? 'Data diperbarui (lokal)' : 'Tersimpan lokal (Sheets belum terhubung)');
-  }
-
-  ['q_nama','q_alamat','q_catatan'].forEach(id=> document.getElementById(id).value='');
+    if(isEdit){ showToast('Memperbarui data di Google Sheets...'); syncActionToSheets('deleteQurban','qurban',namaLama,{tahun:_qurbanTahun}).then(()=> syncToSheets('qurban',{ tahun:_qurbanTahun, nama:item.nama, alamat:item.alamat, hewan:item.hewan, catatan:item.catatan, tgl:item.tgl })).then(()=>{ showToast('✅ '+item.nama+' berhasil diperbarui!'); setTimeout(()=> loadQurbanFromSheets(),800); }).catch(e=> showToast('Gagal update: '+e.message,'error')); }
+    else { showToast('Menyimpan ke Google Sheets...'); syncToSheets('qurban',{ tahun:_qurbanTahun, nama:item.nama, alamat:item.alamat, hewan:item.hewan, catatan:item.catatan, tgl:item.tgl }).then(()=>{ showToast('✅ '+item.nama+' tersimpan!'); setTimeout(()=> loadQurbanFromSheets(),800); }).catch(e=> showToast('Gagal simpan: '+e.message,'error')); }
+  } else { if(!APP.qurban[_qurbanTahun]) APP.qurban[_qurbanTahun]=[]; if(isEdit) APP.qurban[_qurbanTahun][editIndex]=item; else APP.qurban[_qurbanTahun].push(item); renderTabelQurban(); showToast(isEdit?'Data diperbarui (lokal)':'Tersimpan lokal (Sheets belum terhubung)'); }
+  ['q_nama','q_alamat','q_catatan'].forEach(id=>document.getElementById(id).value='');
 }
-function hapusQurban(i){
-  if(!APP.qurban[_qurbanTahun]) return;
-  const nama = APP.qurban[_qurbanTahun][i]?.nama;
-  if(!confirm(`Hapus muqorib "${nama}" dari daftar Qurban ${_qurbanTahun}?`)) return;
-  // Hapus dari Sheets dulu, lalu reload
-  showToast('Menghapus dari Google Sheets...');
-  if(APP.sheetsUrl){
-    syncActionToSheets('deleteQurban', 'qurban', nama, {tahun: _qurbanTahun})
-      .then(()=>{
-        showToast('✅ ' + nama + ' dihapus!');
-        setTimeout(()=> loadQurbanFromSheets(), 800);
-      })
-      .catch(()=> showToast('Gagal hapus dari Sheets','error'));
-  } else {
-    APP.qurban[_qurbanTahun].splice(i,1);
-    renderTabelQurban();
-  }
-  showToast(nama + ' dihapus dari daftar');
-  // Hapus juga dari Google Sheets
-  if(APP.sheetsUrl){
-    syncActionToSheets('deleteQurban', 'qurban', nama, {tahun: _qurbanTahun})
-      .then(()=> showToast('✅ ' + nama + ' dihapus dari Google Sheets!'))
-      .catch(()=> showToast('Gagal hapus dari Sheets, hapus manual','error'));
-  }
-}
-
-// ========== GANTI LOGO ==========
-function gantiLogo(){
-  document.getElementById('logoInput').click();
-}
-function loadLogo(input){
-  const file = input.files[0];
-  if(!file) return;
-  // Batasi ukuran file logo max 500KB agar tidak terlalu besar
-  if(file.size > 500*1024){ showToast('Logo terlalu besar! Maksimal 500KB.','error'); return; }
-  const reader = new FileReader();
-  reader.onload = function(e){
-    const dataUrl = e.target.result;
-    // Simpan lokal agar langsung tampil
-    localStorage.setItem('prm_logo', dataUrl);
-    applyLogo(dataUrl);
-    showToast('Logo diperbarui!');
-    // Simpan juga ke Google Sheets (PropertiesService) agar semua perangkat sama
-    if(APP.sheetsUrl){
-      fetch(APP.sheetsUrl, {
-        method:'POST',
-        headers:{'Content-Type':'text/plain'},
-        body: JSON.stringify({ sheet:'config', action:'saveConfig', data:{ logo: dataUrl } })
-      }).then(()=> showToast('Logo tersinkronisasi ke semua perangkat!')).catch(()=>{});
-    }
-  };
-  reader.readAsDataURL(file);
-}
-function applyLogo(dataUrl){
-  const img = document.getElementById('logoImg');
-  const def = document.getElementById('logoDefault');
-  img.src = dataUrl;
-  img.style.display = 'block';
-  def.style.display = 'none';
-}
-
-// ========== SET DEFAULTS ==========
+function hapusQurban(i){ if(!APP.qurban[_qurbanTahun]) return; const nama = APP.qurban[_qurbanTahun][i]?.nama; if(!confirm(`Hapus muqorib "${nama}" dari daftar Qurban ${_qurbanTahun}?`)) return; showToast('Menghapus dari Google Sheets...'); if(APP.sheetsUrl){ syncActionToSheets('deleteQurban','qurban',nama,{tahun:_qurbanTahun}).then(()=>{ showToast('✅ '+nama+' dihapus!'); setTimeout(()=> loadQurbanFromSheets(),800); }).catch(()=> showToast('Gagal hapus dari Sheets','error')); } else { APP.qurban[_qurbanTahun].splice(i,1); renderTabelQurban(); showToast(nama+' dihapus dari daftar'); } }
+// ===================== LOGO =====================
+function gantiLogo(){ document.getElementById('logoInput').click(); }
+function loadLogo(input){ const file = input.files[0]; if(!file) return; if(file.size>500*1024){ showToast('Logo terlalu besar! Maksimal 500KB.','error'); return; } const reader = new FileReader(); reader.onload = function(e){ const dataUrl = e.target.result; localStorage.setItem('prm_logo', dataUrl); applyLogo(dataUrl); showToast('Logo diperbarui!'); if(APP.sheetsUrl){ fetch(APP.sheetsUrl,{ method:'POST', headers:{'Content-Type':'text/plain'}, body: JSON.stringify({ sheet:'config', action:'saveConfig', data:{ logo: dataUrl } }) }).then(()=> showToast('Logo tersinkronisasi ke semua perangkat!')).catch(()=>{}); } }; reader.readAsDataURL(file); }
+function applyLogo(dataUrl){ const img = document.getElementById('logoImg'); const def = document.getElementById('logoDefault'); img.src = dataUrl; img.style.display = 'block'; if(def) def.style.display = 'none'; }
+// ===================== INIT =====================
 (function init(){
   const today = new Date().toISOString().split('T')[0];
-  document.getElementById('k_tgl').value = today;
-  document.getElementById('s_tgl').value = today;
-  // Logo sudah tertanam di HTML — hanya timpa jika user pernah ganti manual
+  if(document.getElementById('k_tgl')) document.getElementById('k_tgl').value = today;
+  if(document.getElementById('s_tgl')) document.getElementById('s_tgl').value = today;
   const savedLogo = localStorage.getItem('prm_logo');
-  if(savedLogo && savedLogo.length > 100) {
-    applyLogo(savedLogo);
-  }
-  // Pastikan logo tertanam selalu tampil jika tidak ada override
+  if(savedLogo && savedLogo.length > 100) applyLogo(savedLogo);
   const logoImg = document.getElementById('logoImg');
-  if(logoImg && !logoImg.src.startsWith('data:image') && !savedLogo) {
-    document.getElementById('logoDefault').style.display = 'none';
-    logoImg.style.display = 'block';
-  }
+  if(logoImg && !logoImg.src.startsWith('data:image') && !savedLogo) { if(document.getElementById('logoDefault')) document.getElementById('logoDefault').style.display='none'; logoImg.style.display='block'; }
 })();
-
-// ========== GOOGLE APPS SCRIPT CODE (for info panel) ==========
-// Users should paste this into their Google Apps Script editor:
-/*
-function doPost(e) {
-  try {
-    var payload = JSON.parse(e.postData.contents);
-    var ss = SpreadsheetApp.getActiveSpreadsheet();
-    var sheet = ss.getSheetByName(payload.sheet) || ss.insertSheet(payload.sheet);
-    var data = payload.data;
-    var row = Object.values(data);
-    if(sheet.getLastRow() === 0) {
-      sheet.appendRow(Object.keys(data));
-    }
-    sheet.appendRow(row);
-    return ContentService.createTextOutput(JSON.stringify({status:'ok'})).setMimeType(ContentService.MimeType.JSON);
-  } catch(err) {
-    return ContentService.createTextOutput(JSON.stringify({status:'error',msg:err.toString()})).setMimeType(ContentService.MimeType.JSON);
-  }
-}
-*/
 </script>
 </body>
 </html>
